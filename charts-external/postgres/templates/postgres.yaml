@@ -1,0 +1,60 @@
+{{ if .Values.enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres
+spec:
+  ports:
+  - name: '5432'
+    port: 5432
+  selector:
+    app: postgres
+---
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: postgres
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: postgres
+    spec:
+      containers:
+      - name: postgres
+        image: {{ .Values.image | default "budgetkey/budgetkey-postgres:latest" | quote }}
+        ports:
+        - containerPort: 5432
+        resources: {{ .Values.resources }}
+        env:
+        - name: POSTGRES_PASSWORD
+        {{ if .Values.secretName }}
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Values.secretName | quote }}
+              key: POSTGRES_PASSWORD
+        {{ else }}
+          value: "123456"
+        {{ end }}
+        volumeMounts:
+        - name: data
+          mountPath: /var/lib/postgresql/data/db
+          # postgres doesn't let you use the root of a disk (it complaints about having lost+found directory)
+          subPath: data
+      volumes:
+      - name: data
+      {{ if .Values.gcePersistentDiskName }}
+        gcePersistentDisk:
+          pdName: {{ .Values.gcePersistentDiskName | quote }}
+      {{ else }}
+        {{ .Values.global.persistentDataVolume.type }}: {
+          {{ if eq .Values.global.persistentDataVolume.type "hostPath" }}
+            "path": "{{ .Values.global.persistentDataVolume.basePath }}/postgres",
+            "type": "DirectoryOrCreate"
+          {{ end }}
+        }
+      {{ end }}
+{{ end }}

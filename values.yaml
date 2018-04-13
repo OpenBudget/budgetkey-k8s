@@ -1,16 +1,33 @@
 global:
   debug: false
-
-nginx:
-  enabled: true
-
-traefik:
-  enabled: true
-
-adminer:
-  enabled: true
+  persistentDataVolume:
+    type: emptyDir
 
 socialmap:
   enabled: true
   mainpageResources: >
     {"requests": {"cpu": "50m", "memory": "100Mi"}, "limits": {"cpu": "100m", "memory": "200Mi"}}
+
+openprocure:
+  enabled: true
+  mainpageResources: >
+    {"requests": {"cpu": "50m", "memory": "100Mi"}, "limits": {"cpu": "100m", "memory": "200Mi"}}
+
+nginx:
+  enabled: true
+  resources: >
+    {"requests": {"cpu": "50m", "memory": "100Mi"}, "limits": {"cpu": "100m", "memory": "200Mi"}}
+
+themes:
+  enabled: true
+
+postgres:
+  enabled: true
+  resources: >
+    {"requests": {"cpu": "50m", "memory": "100Mi"}, "limits": {"cpu": "100m", "memory": "200Mi"}}
+
+elasticsearch:
+  enabled: true
+  resources: >
+    {"requests": {"cpu": "50m", "memory": "100Mi"}, "limits": {"cpu": "100m", "memory": "200Mi"}}
+  ES_JAVA_OPTS: "-Xms100m -Xmx100m"

@@ -1,0 +1,33 @@
+{{ if .Values.enabled }}
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: themes
+spec:
+  selector:
+    matchLabels:
+      name: themes
+  template:
+    metadata:
+      labels:
+        name: themes
+    spec:
+      containers:
+      - name: openprocure
+        image: {{ .Values.openprocureImage | default "budgetkey/open-procure:latest" | quote }}
+        command:
+        - sh
+        - "-c"
+        - |
+          cp -v /theme.govbuy.json /themes/theme.govbuy.json &&\
+          while true; do sleep 86400; done
+        resources: {requests: {cpu: "10m", memory: "10Mi"}, limits: {cpu: "50m", memory: "50Mi"}}
+        volumeMounts:
+        - name: themes
+          mountPath: /themes
+      volumes:
+      - name: themes
+        hostPath:
+          path: /var/budgetkey-themes
+          type: DirectoryOrCreate
+{{ end }}

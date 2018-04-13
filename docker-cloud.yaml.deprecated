@@ -91,18 +91,18 @@ budgetkey-list-manager:
   restart: always
   tags:
     - budget-key
-budgetkey-postgres:
-  autoredeploy: true
-  environment:
-    - POSTGRES_PASSWORD=*********
-  image: 'budgetkey/budgetkey-postgres:latest'
-  ports:
-    - '5432:5432'
-  restart: always
-  tags:
-    - budget-key
-  volumes:
-    - '/mnt/budgetkey-persistent-data/db:/var/lib/postgresql/data/db'
+# budgetkey-postgres:
+#   autoredeploy: true
+#   environment:
+#     - POSTGRES_PASSWORD=*********
+#   image: 'budgetkey/budgetkey-postgres:latest'
+#   ports:
+#     - '5432:5432'
+#   restart: always
+#   tags:
+#     - budget-key
+#   volumes:
+#     - '/mnt/budgetkey-persistent-data/db:/var/lib/postgresql/data/db'
 db-backup:
   autoredeploy: true
   environment:
@@ -154,35 +154,35 @@ open-budget-data-api:
   restart: always
   tags:
     - budget-key
-open-budget-elasticsearch:
-  autoredeploy: true
-  environment:
-    - ES_JAVA_OPTS=-Xms3g -Xmx3g
-    - path.data=/elasticsearch-persistent-data/
-    - xpack.security.enabled=false
-  image: 'budgetkey/open-budget-elasticsearch:latest'
-  ports:
-    - '9200:9200'
-    - '9300:9300'
-  restart: always
-  tags:
-    - budget-key-elasticsearch
-  volumes:
-    - '/mnt/budgetkey-persistent-data/elasticsearch:/usr/share/elasticsearch/data'
-open-budget-nginx-frontend:
-  autoredeploy: true
-  expose:
-    - '443'
-  image: 'budgetkey/open-budget-nginx-frontend:latest'
-  ports:
-    - '80:80'
-    - '5601:5601'
-  restart: always
-  tags:
-    - budget-key
-  volumes:
-    - '/mnt/budgetkey-persistent-data/datapackages:/var/datapackages'
-    - '/mnt/budgetkey-persistent-data/fonts:/var/_fonts'
+# open-budget-elasticsearch:
+#   autoredeploy: true
+#   environment:
+#     - ES_JAVA_OPTS=-Xms3g -Xmx3g
+#     - path.data=/elasticsearch-persistent-data/
+#     - xpack.security.enabled=false
+#   image: 'budgetkey/open-budget-elasticsearch:latest'
+#   ports:
+#     - '9200:9200'
+#     - '9300:9300'
+#   restart: always
+#   tags:
+#     - budget-key-elasticsearch
+#   volumes:
+#     - '/mnt/budgetkey-persistent-data/elasticsearch:/usr/share/elasticsearch/data'
+# open-budget-nginx-frontend:
+#   autoredeploy: true
+#   expose:
+#     - '443'
+#   image: 'budgetkey/open-budget-nginx-frontend:latest'
+#   ports:
+#     - '80:80'
+#     - '5601:5601'
+#   restart: always
+#   tags:
+#     - budget-key
+#   volumes:
+#     - '/mnt/budgetkey-persistent-data/datapackages:/var/datapackages'
+#     - '/mnt/budgetkey-persistent-data/fonts:/var/_fonts'
 open-budget-search-api:
   autoredeploy: true
   environment:
@@ -200,16 +200,16 @@ open-budget-search-api:
   restart: always
   tags:
     - budget-key
-open-procure:
-  autoredeploy: true
-  image: 'budgetkey/open-procure:latest'
-  tags:
-    - budget-key
-  volumes:
-    - '/mnt/budgetkey-persistent-data/themes:/themes'
-openprocure-app-main-page:
-  autoredeploy: true
-  image: 'budgetkey/openprocure-app-main-page:latest'
-  restart: always
-  tags:
-    - budget-key
+# open-procure:
+#   autoredeploy: true
+#   image: 'budgetkey/open-procure:latest'
+#   tags:
+#     - budget-key
+#   volumes:
+#     - '/mnt/budgetkey-persistent-data/themes:/themes'
+# openprocure-app-main-page:
+#   autoredeploy: true
+#   image: 'budgetkey/openprocure-app-main-page:latest'
+#   restart: always
+#   tags:
+#     - budget-key
