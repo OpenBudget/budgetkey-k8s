@@ -1,0 +1,38 @@
+{{ if .Values.enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: openprocure-main-page
+spec:
+  ports:
+  - name: '8000'
+    port: 8000
+  selector:
+    app: openprocure-main-page
+---
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: openprocure-main-page
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: openprocure-main-page
+    spec:
+      containers:
+      - name: openprocure
+        image: {{ .Values.mainpageImage | default "budgetkey/openprocure-app-main-page:latest" | quote }}
+        ports:
+        - containerPort: 8000
+        resources: {{ .Values.mainpageResources }}
+        volumeMounts:
+        - name: themes
+          mountPath: /themes
+      volumes:
+      - name: themes
+        hostPath:
+          path: /var/budgetkey-themes
+          type: DirectoryOrCreate
+{{ end }}

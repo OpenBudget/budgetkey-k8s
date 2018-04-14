@@ -1,0 +1,58 @@
+{{ if .Values.enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: elasticsearch
+spec:
+  ports:
+  - name: '9200'
+    port: 9200
+  - name: '9300'
+    port: 9300
+  selector:
+    app: elasticsearch
+---
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: elasticsearch
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: elasticsearch
+    spec:
+      containers:
+      - name: elasticsearch
+        image: {{ .Values.image | default "budgetkey/open-budget-elasticsearch:latest" | quote }}
+        ports:
+        - containerPort: 9200
+        - containerPort: 9300
+        resources: {{ .Values.resources }}
+        env:
+        - name: ES_JAVA_OPTS
+          value: {{ .Values.ES_JAVA_OPTS | quote }}
+        - name: path.data
+          value: "/elasticsearch-persistent-data/"
+        - name: xpack.security.enabled
+          value: "false"
+        volumeMounts:
+        - name: data
+          mountPath: /usr/share/elasticsearch/data
+      volumes:
+      - name: data
+      {{ if .Values.gcePersistentDiskName }}
+        gcePersistentDisk:
+          pdName: {{ .Values.gcePersistentDiskName | quote }}
+      {{ else }}
+        {{ .Values.global.persistentDataVolume.type }}: {
+          {{ if eq .Values.global.persistentDataVolume.type "hostPath" }}
+            "path": "{{ .Values.global.persistentDataVolume.basePath }}/elasticsearch",
+            "type": "DirectoryOrCreate"
+          {{ end }}
+        }
+      {{ end }}
+{{ end }}

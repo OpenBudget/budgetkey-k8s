@@ -1,0 +1,22 @@
+{{ if and .Values.enabled .Values.secretName }}
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: db-backup
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: db-backup
+    spec:
+      containers:
+      - name: db-backup
+        image: {{ .Values.image | default "orihoch/kubernetes-db-to-s3" | quote }}
+        resources: {{ .Values.resources }}
+        envFrom:
+        - secretRef:
+            name: {{ .Values.secretName | quote }}
+{{ end }}

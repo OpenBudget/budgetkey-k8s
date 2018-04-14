@@ -1,0 +1,24 @@
+global:
+  persistentDataVolume:
+    type: hostPath
+    basePath: /var/budgetkey-persistent-data
+    hostname: gke-knessetdata-pool-1-ed4cc0f3-3d9d
+
+postgres:
+  # gcloud compute disks create --size=500GB --zone=us-central1-a budgetkey-postgres-data
+  gcePersistentDiskName: budgetkey-postgres-data
+  # kubectl create secret generic postgres --from-literal=POSTGRES_PASSWORD=
+  secretName: postgres
+
+elasticsearch:
+  # gcloud compute disks create --size=500GB --zone=us-central1-a budgetkey-elasticsearch-data
+  gcePersistentDiskName: budgetkey-elasticsearch-data
+
+db-backup:
+  # kubectl create secret generic db-backup --from-literal=S3_BUCKET= \
+  #                                         --from-literal=S3_NAMESPACE= \
+  #                                         --from-literal=AWS_ACCESS_KEY= \
+  #                                         --from-literal=AWS_SECRET_KEY= \
+  #                                         --from-literal=S3_HOST= \
+  #                                         --from-literal=S3_HOST_BUCKET="
+  secretName: db-backup
