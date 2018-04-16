@@ -4,16 +4,25 @@ global:
     type: hostPath
     basePath: /var/budgetkey-persistent-data
     hostname: gke-budgetkey-default-pool-bfb61637-qzv3
+  serverName: next2.obudget.org
 
 postgres:
   # gcloud --project=next-obudget-org compute disks create --size=100GB --zone=europe-west1-b budgetkey-postgres-data
   gcePersistentDiskName: budgetkey-postgres-data
   # kubectl create secret generic postgres --from-literal=POSTGRES_PASSWORD=
   secretName: postgres
+  enableLoadBalancer: true
+  # gcloud --project=next-obudget-org compute addresses create budgetkey-postgres --region=europe-west1
+  # gcloud --project=next-obudget-org compute addresses describe budgetkey-postgres --region=europe-west1 | grep ^address:
+  loadBalancerIP: 35.189.219.73
 
-# elasticsearch:
-  # gcloud --project=next-obudget-org compute disks create --size=100GB --zone=europe-west1-b budgetkey-postgres-data
-  # gcePersistentDiskName: budgetkey-elasticsearch-data
+elasticsearch:
+  # gcloud --project=next-obudget-org compute disks create --size=100GB --zone=europe-west1-b budgetkey-elasticsearch-data
+  gcePersistentDiskName: budgetkey-elasticsearch-data
+  resources: >
+    {"requests": {"cpu": "1000m", "memory": "4Gi"}, "limits": {"cpu": "2500m", "memory": "6Gi"}}
+  ES_JAVA_OPTS: "-Xms3g -Xmx3g"
+  enableAntiAffinity: true
 
 db-backup:
   createClusterRole: true
@@ -25,11 +34,6 @@ db-backup:
   #                                         --from-literal=S3_HOST_BUCKET="
   secretName: db-backup
 
-elasticsearch:
-  resources: >
-    {"requests": {"cpu": "1000m", "memory": "4Gi"}, "limits": {"cpu": "2500m", "memory": "6Gi"}}
-  ES_JAVA_OPTS: "-Xms3g -Xmx3g"
-
 nginx:
   enableLoadBalancer: true
   # gcloud --project=next-obudget-org compute addresses create budgetkey-nginx --region=europe-west1
@@ -38,4 +42,10 @@ nginx:
   image: orihoch/open-budget-nginx-frontend:changes-for-k8s-env
   overrideServerRules: true
   overrideStartupScript: true
+  enableAntiAffinity: true
 
+data-api:
+  # kubectl create secret generic data-api --from-literal=DATABASE_URL=postgresql://*****:*****@postgres/budgetkey \
+  #                                        --from-literal=DB_USER=********* \
+  #                                        --from-literal=DB_PWD=*********
+  secretName: data-api

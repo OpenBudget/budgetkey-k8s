@@ -24,6 +24,19 @@ metadata:
   name: nginx
 spec:
   replicas: 1
+  {{ if .Values.enableAntiAffinity }}
+  affinity:
+    # ensure nginx won't be on the same node as elasticsearch
+    podAntiAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+      - labelSelector:
+          matchExpressions:
+          - key: app
+            operator: In
+            values:
+            - elasticsearch
+        topologyKey: "kubernetes.io/hostname"
+  {{ end }}
   template:
     metadata:
       labels:

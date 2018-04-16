@@ -9,6 +9,12 @@ spec:
     port: 5432
   selector:
     app: postgres
+  {{ if .Values.enableLoadBalancer }}
+  type: LoadBalancer
+  {{ if .Values.loadBalancerIP }}
+  loadBalancerIP: {{ .Values.loadBalancerIP | quote }}
+  {{ end }}
+  {{ end }}
 ---
 apiVersion: apps/v1beta1
 kind: Deployment

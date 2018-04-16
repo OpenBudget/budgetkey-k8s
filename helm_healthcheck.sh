@@ -58,6 +58,14 @@ kibana_healthcheck() {
     kubectl rollout status deployment/kibana
 }
 
+data_api_healthcheck() {
+    ! [ "`./read_env_yaml.sh data-api enabled`" == "true" ] \
+        && echo "data-api chart is disabled, skipping healthcheck" && return 0
+    [ "`./read_env_yaml.sh data-api secretName`" == "" ] \
+        && echo "data-api is not set, skipping healthcheck" && return 0
+    kubectl rollout status deployment/data-api
+}
+
 ! socialmap_healthcheck && echo failed socialmap healthcheck && RES=1;
 ! themes_healthcheck && echo failed themes healthcheck && RES=1;
 ! openprocure_healthcheck && echo failed openprocure healthcheck && RES=1;
@@ -65,7 +73,8 @@ kibana_healthcheck() {
 ! postgres_healthcheck && echo failed postgres healthcheck && RES=1;
 ! elasticsearch_healthcheck && echo failed elasticsearch healthcheck && RES=1;
 ! db_backup_healthcheck && echo failed db-bcakup healthcheck && RES=1;
-! kibana_healthcheck && echo failed db-bcakup healthcheck && RES=1;
+! kibana_healthcheck && echo failed kibana healthcheck && RES=1;
+! data_api_healthcheck && echo failed data-api healthcheck && RES=1;
 
 [ "${RES}" == "0" ] && echo Great Success!
 

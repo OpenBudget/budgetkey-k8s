@@ -14,5 +14,6 @@ echo "Upgrading all charts of ${K8S_ENVIRONMENT_NAME} environment"
 ! ./helm_upgrade_external_chart.sh elasticsearch "$@" "$@" && echo "failed elasticsearch upgrade" && RES=1;
 ! ./helm_upgrade_external_chart.sh db-backup "$@" "$@" && echo "failed db-backup upgrade" && RES=1;
 ! ./helm_upgrade_external_chart.sh kibana "$@" "$@" && echo "failed kibana upgrade" && RES=1;
+! ./helm_upgrade_external_chart.sh data-api "$@" "$@" && echo "failed data-api upgrade" && RES=1;
 
 exit $RES

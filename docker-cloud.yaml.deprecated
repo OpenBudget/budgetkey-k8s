@@ -131,29 +131,29 @@ dd-agent:
     - '/var/run/docker.sock:/var/run/docker.sock:ro'
     - '/proc:/host/proc:ro'
     - '/sys/fs/cgroup:/host/sys/fs/cgroup:ro'
-kibana:
-  image: 'kibana:5.3'
-  links:
-    - 'open-budget-elasticsearch:elasticsearch'
-  restart: always
-  tags:
-    - budget-key
-open-budget-data-api:
-  autoredeploy: true
-  environment:
-    - 'DATABASE_URL=postgresql://*********@budgetkey-postgres/budgetkey'
-    - DB_DB=obudget
-    - DB_HOST=data.obudget.org
-    - DB_PORT=5432
-    - DB_PWD=*********
-    - DB_USER=*********
-    - SERVER_NAME=next.obudget.org
-  expose:
-    - '8000'
-  image: 'budgetkey/open-budget-data-api:latest'
-  restart: always
-  tags:
-    - budget-key
+# kibana:
+#   image: 'kibana:5.3'
+#   links:
+#     - 'open-budget-elasticsearch:elasticsearch'
+#   restart: always
+#   tags:
+#     - budget-key
+# open-budget-data-api:
+#   autoredeploy: true
+#   environment:
+#     - 'DATABASE_URL=postgresql://*********@budgetkey-postgres/budgetkey'
+#     - DB_DB=obudget
+#     - DB_HOST=data.obudget.org
+#     - DB_PORT=5432
+#     - DB_PWD=*********
+#     - DB_USER=*********
+#     - SERVER_NAME=next.obudget.org
+#   expose:
+#     - '8000'
+#   image: 'budgetkey/open-budget-data-api:latest'
+#   restart: always
+#   tags:
+#     - budget-key
 # open-budget-elasticsearch:
 #   autoredeploy: true
 #   environment:

@@ -1,0 +1,54 @@
+{{ if .Values.enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: data-api
+spec:
+  ports:
+  - name: '8000'
+    port: 8000
+  selector:
+    app: data-api
+---
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: data-api
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: data-api
+    spec:
+      containers:
+      - name: data-api
+        image: {{ .Values.mainpageImage | default "budgetkey/open-budget-data-api:latest" | quote }}
+        ports:
+        - containerPort: 8000
+        resources: {{ .Values.mainpageResources }}
+        env:
+        - name: DB_DB
+          value: {{ .Values.DB_DB | default "budgetkey" | quote }}
+        - name: DB_HOST
+          value: {{ .Values.DB_HOST | default "postgres" | quote }}
+        - name: DB_PORT
+          value: {{ .Values.DB_PORT | default "5432" | quote }}
+        - name: SERVER_NAME
+          value: {{ .Values.global.serverName }}
+        {{ if .Values.secretName }}
+        - name: DATABASE_URL
+          valueFrom: {secretKeyRef: {name: {{ .Values.secretName | quote }}, key: DATABASE_URL}}
+        - name: DB_PWD
+          valueFrom: {secretKeyRef: {name: {{ .Values.secretName | quote }}, key: DB_PWD}}
+        - name: DB_USER
+          valueFrom: {secretKeyRef: {name: {{ .Values.secretName | quote }}, key: DB_USER}}
+        {{ else }}
+        - name: DATABASE_URL
+          value: postgresql://budgetkey:123456@postgres/budgetkey
+        - name: DB_PWD
+          value: "123456"
+        - name: DB_USER
+          value: budgetkey
+        {{ end }}
+{{ end }}
