@@ -36,3 +36,8 @@ db-backup:
   enabled: true
   resources: >
     {"requests": {"cpu": "10m", "memory": "50Mi"}, "limits": {"cpu": "50m", "memory": "100Mi"}}
+
+kibana:
+  enabled: true
+  resources: >
+    {"requests": {"cpu": "50m", "memory": "100Mi"}, "limits": {"cpu": "100m", "memory": "200Mi"}}

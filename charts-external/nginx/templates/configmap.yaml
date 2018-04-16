@@ -1,0 +1,42 @@
+{{ if .Values.enabled }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nginx
+data:
+  server-rules.conf: |
+    location /datapackages {
+       root /var/;
+       autoindex on;
+    }
+
+    location /_fonts {
+       root /var/;
+       if ($request_filename ~ "^.+(eot|svg|ttf|otf|woff2|woff)$") {
+           add_header "Access-Control-Allow-Origin" "*";
+           add_header "Access-Control-Allow-Methods" "POST, GET, OPTIONS";
+       }
+       autoindex on;
+       add_header Access-Control-Allow-Origin *;
+    }
+
+  startup.sh: |
+    #!/bin/sh
+    set -e
+
+    echo "HELLO WORLD!"
+    ls -la /var/datapackages
+    chmod 777 /var/datapackages
+
+    # SERVICES="open-budget-data-api budgetkey-app-search open-budget-search-api budgetkey-app-generic-item budgetkey-app-main-page"
+
+
+    # for x in $SERVICES
+    # do
+    #   while ! ping -c1 $x &>/dev/null; do :; done && echo "$x is UP"
+    # done
+
+    echo "NGINX STARTING"
+    nginx -g "daemon off;"
+
+{{ end }}
