@@ -6,5 +6,4 @@ deploy:
   provider: script
   script: bash .travis_deploy.sh
   on:
-    branch: budgetkey-environment
-    # branch: master
+    branch: master
