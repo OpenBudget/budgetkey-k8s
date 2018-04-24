@@ -41,11 +41,6 @@ spec:
     metadata:
       labels:
         app: nginx
-      {{ if .Values.overrideServerRules }}
-      annotations:
-        # update the pod on nginx-conf changes
-        checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
-      {{ end }}
     spec:
       {{ if .Values.global.persistentDataVolume.hostname }}
       nodeSelector:
@@ -63,19 +58,13 @@ spec:
         - sh
         - "-c"
         - |
-          echo "NGINX STARTING"
-          nginx -g "daemon off;"
+          {{ .Values.overrideStartupScript }}
         {{ end }}
         volumeMounts:
         - mountPath: /var/datapackages
           name: datapackages
         - mountPath: /var/_fonts
           name: fonts
-        {{ if .Values.overrideServerRules }}
-        - mountPath: /etc/nginx/server-rules.conf
-          name: nginx-server-rules
-          subPath: server-rules.conf
-        {{ end }}
       volumes:
       - name: datapackages
         {{ .Values.global.persistentDataVolume.type }}: {
@@ -91,9 +80,4 @@ spec:
             "type": "DirectoryOrCreate"
           {{ end }}
         }
-      {{ if .Values.overrideServerRules }}
-      - name: nginx-server-rules
-        configMap:
-          name: nginx
-      {{ end }}
 {{ end }}
