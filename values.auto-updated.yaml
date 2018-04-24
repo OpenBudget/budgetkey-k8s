@@ -1,4 +1,4 @@
 nginx:
-  image: orihoch/open-budget-nginx-frontend:cf062f1fda77d41b8d94003fc8d878346d56151a
+  image: budgetkey/open-budget-nginx-frontend:52ea089e97d3c5bfd8343e9bf1b5f057127da286
 socialmap:
   mainpageImage: orihoch/socialmap-app-main-page:ee8427a9345dc87aff42a5beecfc85a559228849
