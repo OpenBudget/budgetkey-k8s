@@ -48,3 +48,12 @@ data-api:
   #                                        --from-literal=DB_USER=********* \
   #                                        --from-literal=DB_PWD=*********
   secretName: data-api
+
+migration-from-docker-cloud:
+  enabled: true
+  datapackagesEnabled: true
+  # kubectl create secret generic data-migration --from-file=private_key=/path/to/private/key \
+  #                                              --from-literal=KEY_FILE= \
+  #                                              --from-literal=SSH_USER= \
+  #                                              --from-literal=SSH_HOST=
+  dataMigrationSecretName: data-migration
