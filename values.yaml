@@ -44,3 +44,24 @@ kibana:
 
 data-api:
   enabled: true
+
+search-api:
+  enabled: true
+
+list-manager:
+  enabled: true
+
+app-search:
+  enabled: true
+
+app-generic-item:
+  enabled: true
+
+auth:
+  enabled: true
+
+pipelines:
+  enabled: true
+
+app-main-page:
+  enabled: true

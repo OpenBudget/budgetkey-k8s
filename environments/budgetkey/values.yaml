@@ -40,8 +40,7 @@ nginx:
   # gcloud --project=next-obudget-org compute addresses describe budgetkey-nginx --region=europe-west1 | grep ^address:
   loadBalancerIP: 35.195.110.140
   image: orihoch/open-budget-nginx-frontend:changes-for-k8s-env
-  overrideServerRules: true
-  overrideStartupScript: true
+  overrideStartupScript: ls -la /var/datapackages && chmod 777 /var/datapackages && echo "NGINX STARTING" && nginx -g "daemon off;"
   enableAntiAffinity: true
 
 data-api:
