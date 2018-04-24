@@ -50,8 +50,8 @@ data-api:
   secretName: data-api
 
 migration-from-docker-cloud:
-  enabled: true
-  datapackagesEnabled: true
+  enabled: false
+  datapackagesEnabled: false
   # kubectl create secret generic data-migration --from-file=private_key=/path/to/private/key \
   #                                              --from-literal=KEY_FILE= \
   #                                              --from-literal=SSH_USER= \
