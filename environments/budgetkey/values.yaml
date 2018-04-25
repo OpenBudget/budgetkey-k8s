@@ -94,3 +94,6 @@ auth:
 list-manager:
   # kubectl create secret generic list-manager --from-literal=DATABASE_URL=
   secretName: list-manager
+
+search-api:
+  secretName: data-api

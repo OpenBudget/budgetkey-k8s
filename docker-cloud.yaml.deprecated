@@ -79,18 +79,18 @@ budgetkey-app-search:
 #     - '/mnt/budgetkey-persistent-data/.ssh:/home/dpp/.ssh'
 #   volumes_from:
 #     - open-budget-nginx-frontend
-budgetkey-list-manager:
-  autoredeploy: true
-  environment:
-    - 'AUTH_SERVER=http://auth:8000/auth/public-key'
-    - 'DATABASE_URL=postgresql://*********@budgetkey-postgres/private'
-    - GUNICORN_PORT=8000
-  expose:
-    - '8000'
-  image: 'budgetkey/budgetkey-list-manager:latest'
-  restart: always
-  tags:
-    - budget-key
+# budgetkey-list-manager:
+#   autoredeploy: true
+#   environment:
+#     - 'AUTH_SERVER=http://auth:8000/auth/public-key'
+#     - 'DATABASE_URL=postgresql://*********@budgetkey-postgres/private'
+#     - GUNICORN_PORT=8000
+#   expose:
+#     - '8000'
+#   image: 'budgetkey/budgetkey-list-manager:latest'
+#   restart: always
+#   tags:
+#     - budget-key
 # budgetkey-postgres:
 #   autoredeploy: true
 #   environment:
@@ -183,23 +183,23 @@ dd-agent:
 #   volumes:
 #     - '/mnt/budgetkey-persistent-data/datapackages:/var/datapackages'
 #     - '/mnt/budgetkey-persistent-data/fonts:/var/_fonts'
-open-budget-search-api:
-  autoredeploy: true
-  environment:
-    - DB_DB=obudget
-    - DB_HOST=data.obudget.org
-    - DB_PORT=5432
-    - DB_PWD=*********
-    - DB_USER=*********
-    - ES_HOST=open-budget-elasticsearch
-    - ES_PORT=9200
-    - INDEX_NAME=budgetkey_20180319232948938759_e07786a8
-  image: 'budgetkey/open-budget-search-api:latest'
-  links:
-    - open-budget-elasticsearch
-  restart: always
-  tags:
-    - budget-key
+# open-budget-search-api:
+#   autoredeploy: true
+#   environment:
+#     - DB_DB=obudget
+#     - DB_HOST=data.obudget.org
+#     - DB_PORT=5432
+#    - DB_PWD=*********
+#    - DB_USER=*********
+#     - ES_HOST=open-budget-elasticsearch
+#     - ES_PORT=9200
+#     - INDEX_NAME=budgetkey_20180319232948938759_e07786a8
+#  image: 'budgetkey/open-budget-search-api:latest'
+#  links:
+#    - open-budget-elasticsearch
+#  restart: always
+#  tags:
+#    - budget-key
 # open-procure:
 #   autoredeploy: true
 #   image: 'budgetkey/open-procure:latest'
