@@ -10,6 +10,7 @@ spec:
       labels:
         app: app-generic-item
     spec:
+      terminationGracePeriodSeconds: 5
       containers:
       - name: app-generic-item
         image: {{ .Values.image | default "budgetkey/budgetkey-app-generic-item:latest" | quote }}

@@ -10,6 +10,7 @@ spec:
       labels:
         app: socialmap-main-page
     spec:
+      terminationGracePeriodSeconds: 5
       containers:
       - name: socialmap
         image: {{ .Values.mainpageImage | quote }}
