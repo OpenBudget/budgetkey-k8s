@@ -57,12 +57,24 @@ migration-from-docker-cloud:
   sshEnabled: false
   setSshPermissionsEnabled: false
   setDatapackagesPermissionsEnabled: false
-
+  # persistent disks can only be mounted write from one node, stop the db/elasticsearch pods sbefore running the job
+  # better to run it on the same node as the DB, so a re-mount of the persistent disk won't be needed
+  dbEnabled: false
+  dbPersistentDiskName: budgetkey-postgres-data
+  dbNodeName: gke-budgetkey-default-pool-bfb61637-qzv3
+  elasticsearchEnabled: false
+  elasticsearchPersistentDiskName: budgetkey-elasticsearch-data
+  elasticsearchNodeName: gke-budgetkey-default-pool-bfb61637-sczn
   # kubectl create secret generic data-migration --from-file=private_key=/path/to/private/key \
   #                                              --from-literal=KEY_FILE= \
   #                                              --from-literal=SSH_USER= \
   #                                              --from-literal=SSH_HOST=
   dataMigrationSecretName: data-migration
+  # kubectl create secret generic elasticsearch-migration --from-file=private_key=/path/to/private/key \
+  #                                                       --from-literal=KEY_FILE= \
+  #                                                       --from-literal=SSH_USER= \
+  #                                                       --from-literal=SSH_HOST=
+  elasticsearchMigrationSecretName: elasticsearch-migration
 
 pipelines:
   enableAntiAffinity: true
