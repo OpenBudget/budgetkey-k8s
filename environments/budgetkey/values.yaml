@@ -17,6 +17,8 @@ postgres:
   loadBalancerIP: 35.189.219.73
 
 elasticsearch:
+  # disabled while running the migration
+  enabled: false
   # gcloud --project=next-obudget-org compute disks create --size=100GB --zone=europe-west1-b budgetkey-elasticsearch-data
   gcePersistentDiskName: budgetkey-elasticsearch-data
   resources: >
