@@ -34,7 +34,7 @@ spec:
         image: {{ .Values.image | default "budgetkey/budgetkey-data-pipelines:latest" | quote }}
         ports:
         - containerPort: 8000
-        resources: {{ .Values.mainpageResources }}
+        resources: {{ .Values.resources }}
         envFrom:
         - configMapRef:
             name: pipelines
