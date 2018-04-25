@@ -1,0 +1,84 @@
+{{ if .Values.enabled }}
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: pipelines
+spec:
+  replicas: 1
+  {{ if .Values.enableAntiAffinity }}
+  affinity:
+    # ensure pipelines won't be on the same node as elasticsearch
+    podAntiAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+      - labelSelector:
+          matchExpressions:
+          - key: app
+            operator: In
+            values:
+            - elasticsearch
+        topologyKey: "kubernetes.io/hostname"
+  {{ end }}
+  template:
+    metadata:
+      labels:
+        app: pipelines
+      annotations:
+        checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
+    spec:
+      {{ if .Values.global.persistentDataVolume.hostname }}
+      nodeSelector:
+        kubernetes.io/hostname: {{ .Values.global.persistentDataVolume.hostname | quote }}
+      {{ end }}
+      containers:
+      - name: pipelines
+        image: {{ .Values.image | default "budgetkey/budgetkey-data-pipelines:latest" | quote }}
+        ports:
+        - containerPort: 8000
+        resources: {{ .Values.mainpageResources }}
+        envFrom:
+        - configMapRef:
+            name: pipelines
+        {{ if .Values.secretName }}
+        # override the values from configmap
+        - secretRef:
+            name: {{ .Values.secretName | quote }}
+        {{ end }}
+        volumeMounts:
+        - mountPath: /var/datapackages
+          name: datapackages
+        - mountPath: /var/_fonts
+          name: fonts
+        - mountPath: /var/redis
+          name: redis
+        - mountPath: /home/dpp/.ssh
+          name: ssh
+      volumes:
+      - name: datapackages
+        {{ .Values.global.persistentDataVolume.type }}: {
+          {{ if eq .Values.global.persistentDataVolume.type "hostPath" }}
+            "path": "{{ .Values.global.persistentDataVolume.basePath }}/datapackages",
+            "type": "DirectoryOrCreate"
+          {{ end }}
+        }
+      - name: fonts
+        {{ .Values.global.persistentDataVolume.type }}: {
+          {{ if eq .Values.global.persistentDataVolume.type "hostPath" }}
+            "path": "{{ .Values.global.persistentDataVolume.basePath }}/fonts",
+            "type": "DirectoryOrCreate"
+          {{ end }}
+        }
+      - name: redis
+        {{ .Values.global.persistentDataVolume.type }}: {
+          {{ if eq .Values.global.persistentDataVolume.type "hostPath" }}
+            "path": "{{ .Values.global.persistentDataVolume.basePath }}/redis",
+            "type": "DirectoryOrCreate"
+          {{ end }}
+        }
+      - name: ssh
+        {{ .Values.global.persistentDataVolume.type }}: {
+          {{ if eq .Values.global.persistentDataVolume.type "hostPath" }}
+            "path": "{{ .Values.global.persistentDataVolume.basePath }}/.ssh",
+            "type": "DirectoryOrCreate"
+          {{ end }}
+        }
+{{ end }}

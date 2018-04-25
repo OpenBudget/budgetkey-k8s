@@ -17,6 +17,8 @@ postgres:
   loadBalancerIP: 35.189.219.73
 
 elasticsearch:
+  # disabled while running the migration
+  enabled: false
   # gcloud --project=next-obudget-org compute disks create --size=100GB --zone=europe-west1-b budgetkey-elasticsearch-data
   gcePersistentDiskName: budgetkey-elasticsearch-data
   resources: >
@@ -48,3 +50,35 @@ data-api:
   #                                        --from-literal=DB_USER=********* \
   #                                        --from-literal=DB_PWD=*********
   secretName: data-api
+
+migration-from-docker-cloud:
+  enabled: false
+  datapackagesEnabled: false
+  fontsEnabled: false
+  redisEnabled: false
+  sshEnabled: false
+  setSshPermissionsEnabled: false
+  setDatapackagesPermissionsEnabled: false
+  # persistent disks can only be mounted write from one node, stop the db/elasticsearch pods sbefore running the job
+  # better to run it on the same node as the DB, so a re-mount of the persistent disk won't be needed
+  dbEnabled: false
+  dbPersistentDiskName: budgetkey-postgres-data
+  dbNodeName: gke-budgetkey-default-pool-bfb61637-qzv3
+  elasticsearchEnabled: false
+  elasticsearchPersistentDiskName: budgetkey-elasticsearch-data
+  elasticsearchNodeName: gke-budgetkey-default-pool-bfb61637-sczn
+  # kubectl create secret generic data-migration --from-file=private_key=/path/to/private/key \
+  #                                              --from-literal=KEY_FILE= \
+  #                                              --from-literal=SSH_USER= \
+  #                                              --from-literal=SSH_HOST=
+  dataMigrationSecretName: data-migration
+  # kubectl create secret generic elasticsearch-migration --from-file=private_key=/path/to/private/key \
+  #                                                       --from-literal=KEY_FILE= \
+  #                                                       --from-literal=SSH_USER= \
+  #                                                       --from-literal=SSH_HOST=
+  elasticsearchMigrationSecretName: elasticsearch-migration
+
+pipelines:
+  enableAntiAffinity: true
+  # see the pipelines configmap for the required keys
+  secretName: pipelines
