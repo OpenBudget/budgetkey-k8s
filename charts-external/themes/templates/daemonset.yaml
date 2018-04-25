@@ -21,7 +21,7 @@ spec:
         - |
           cp -v /theme.govbuy.json /themes/theme.govbuy.json &&\
           while true; do sleep 86400; done
-        resources: {requests: {cpu: "10m", memory: "10Mi"}, limits: {cpu: "50m", memory: "50Mi"}}
+        resources: {{ .Values.resources }}
         volumeMounts:
         - name: themes
           mountPath: /themes

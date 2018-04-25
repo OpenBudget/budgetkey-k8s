@@ -5,7 +5,7 @@ metadata:
   name: auth
 data:
   # DATABASE_URL: postgresql://*********@budgetkey-postgres/private'
-  EXTERNAL_ADDRESS: next.obudget.org
+  EXTERNAL_ADDRESS: {{ .Values.global.serverName | default "next.obudget.org" | quote }}
   # GOOGLE_KEY: *********.apps.googleusercontent.com
   # GOOGLE_SECRET: *********
   GUNICORN_PORT: "8000"

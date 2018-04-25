@@ -1,31 +1,22 @@
 global:
   namespace: budgetkey
+  # shared volume which requires all pods using it to be on the same node
   persistentDataVolume:
     type: hostPath
     basePath: /var/budgetkey-persistent-data
     hostname: gke-budgetkey-default-pool-bfb61637-qzv3
   serverName: next2.obudget.org
 
-postgres:
-  # gcloud --project=next-obudget-org compute disks create --size=100GB --zone=europe-west1-b budgetkey-postgres-data
-  gcePersistentDiskName: budgetkey-postgres-data
-  # kubectl create secret generic postgres --from-literal=POSTGRES_PASSWORD=
-  secretName: postgres
-  enableLoadBalancer: true
-  # gcloud --project=next-obudget-org compute addresses create budgetkey-postgres --region=europe-west1
-  # gcloud --project=next-obudget-org compute addresses describe budgetkey-postgres --region=europe-west1 | grep ^address:
-  loadBalancerIP: 35.189.219.73
+auth:
+  # see the auth configmap for the required keys
+  secretName: auth
 
-elasticsearch:
-  enabled: true
-  # gcloud --project=next-obudget-org compute disks create --size=100GB --zone=europe-west1-b budgetkey-elasticsearch-data
-  gcePersistentDiskName: budgetkey-elasticsearch-data
-  resources: >
-    {"requests": {"cpu": "1000m", "memory": "4Gi"}, "limits": {"cpu": "2500m", "memory": "6Gi"}}
-  ES_JAVA_OPTS: "-Xms3g -Xmx3g"
-  enableAntiAffinity: true
+data-api:
+  # kubectl create secret generic data-api --from-literal=DATABASE_URL=postgresql://*****:*****@postgres/budgetkey
+  secretName: data-api
 
 db-backup:
+  enabled: true
   createClusterRole: true
   # kubectl create secret generic db-backup --from-literal=S3_BUCKET= \
   #                                         --from-literal=S3_NAMESPACE= \
@@ -35,20 +26,18 @@ db-backup:
   #                                         --from-literal=S3_HOST_BUCKET="
   secretName: db-backup
 
-nginx:
-  enableLoadBalancer: true
-  # gcloud --project=next-obudget-org compute addresses create budgetkey-nginx --region=europe-west1
-  # gcloud --project=next-obudget-org compute addresses describe budgetkey-nginx --region=europe-west1 | grep ^address:
-  loadBalancerIP: 35.195.110.140
-  image: orihoch/open-budget-nginx-frontend:changes-for-k8s-env
-  overrideStartupScript: ls -la /var/datapackages && chmod 777 /var/datapackages && echo "NGINX STARTING" && nginx -g "daemon off;"
+elasticsearch:
+  # gcloud --project=next-obudget-org compute disks create --size=100GB --zone=europe-west1-b budgetkey-elasticsearch-data
+  gcePersistentDiskName: budgetkey-elasticsearch-data
+  resources: >
+    {"requests": {"cpu": "1000m", "memory": "4Gi"}, "limits": {"cpu": "2500m", "memory": "6Gi"}}
+  ES_JAVA_OPTS: "-Xms3g -Xmx3g"
+  # prevents elasticsearch from scheduling on the same pod as pipelines and nginx
   enableAntiAffinity: true
 
-data-api:
-  # kubectl create secret generic data-api --from-literal=DATABASE_URL=postgresql://*****:*****@postgres/budgetkey \
-  #                                        --from-literal=DB_USER=********* \
-  #                                        --from-literal=DB_PWD=*********
-  secretName: data-api
+list-manager:
+  # kubectl create secret generic list-manager --from-literal=DATABASE_URL=
+  secretName: list-manager
 
 migration-from-docker-cloud:
   enabled: false
@@ -78,22 +67,29 @@ migration-from-docker-cloud:
   #                                                       --from-literal=SSH_HOST=
   elasticsearchMigrationSecretName: elasticsearch-migration
 
-pipelines:
+nginx:
+  enableLoadBalancer: true
+  # gcloud --project=next-obudget-org compute addresses create budgetkey-nginx --region=europe-west1
+  # gcloud --project=next-obudget-org compute addresses describe budgetkey-nginx --region=europe-west1 | grep ^address:
+  loadBalancerIP: 35.195.110.140
+  overrideStartupScript: ls -la /var/datapackages && chmod 777 /var/datapackages && echo "NGINX STARTING" && nginx -g "daemon off;"
+  # prevents nginx from scheduling on the same node as elasticsearch
   enableAntiAffinity: true
+
+pipelines:
   # see the pipelines configmap for the required keys
   secretName: pipelines
   resources: >
     {"requests": {"cpu": "600m", "memory": "500Mi"}, "limits": {"cpu": "800m", "memory": "1.5Gi"}}
+  # prevents pipelines from scheduling on the same node as elasticsearch
+  enableAntiAffinity: true
 
-auth:
-  # see the auth configmap for the required keys
-  secretName: auth
-  resources: >
-    {"requests": {"cpu": "50m", "memory": "100Mi"}, "limits": {"cpu": "100m", "memory": "300Mi"}}
-
-list-manager:
-  # kubectl create secret generic list-manager --from-literal=DATABASE_URL=
-  secretName: list-manager
-
-search-api:
-  secretName: data-api
+postgres:
+  # gcloud --project=next-obudget-org compute disks create --size=100GB --zone=europe-west1-b budgetkey-postgres-data
+  gcePersistentDiskName: budgetkey-postgres-data
+  # kubectl create secret generic postgres --from-literal=POSTGRES_PASSWORD=
+  secretName: postgres
+  enableLoadBalancer: true
+  # gcloud --project=next-obudget-org compute addresses create budgetkey-postgres --region=europe-west1
+  # gcloud --project=next-obudget-org compute addresses describe budgetkey-postgres --region=europe-west1 | grep ^address:
+  loadBalancerIP: 35.189.219.73

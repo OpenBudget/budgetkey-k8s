@@ -6,7 +6,6 @@ metadata:
 data:
   # AWS_ACCESS_KEY_ID:
   # AWS_SECRET_ACCESS_KEY:
-  # BUDGETKEY_OLD_DB: postgresql://*********@data.obudget.org/obudget
   # DATABASE_URL: postgresql://*********@budgetkey-postgres/budgetkey
   DATAHUB_ENDPOINT: https://api.datahub.io
   DATAHUB_OWNER: budgetkey

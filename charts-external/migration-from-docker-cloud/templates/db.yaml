@@ -27,6 +27,7 @@ spec:
         volumeMounts:
         - mountPath: /var/db
           name: db
+          subPath: data
         - mountPath: /secrets
           name: secrets
           readOnly: true
