@@ -1,0 +1,30 @@
+{{ if .Values.enabled }}
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: app-search
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: app-search
+    spec:
+      containers:
+      - name: app-search
+        image: {{ .Values.image | default "budgetkey/budgetkey-app-search:latest" | quote }}
+        ports:
+        - containerPort: 8000
+        resources: {{ .Values.resources }}
+        env:
+        - name: BASE_PATH
+          value: "/s/"
+        volumeMounts:
+        - name: themes
+          mountPath: /themes
+      volumes:
+      - name: themes
+        hostPath:
+          path: /var/budgetkey-themes
+          type: DirectoryOrCreate
+{{ end }}

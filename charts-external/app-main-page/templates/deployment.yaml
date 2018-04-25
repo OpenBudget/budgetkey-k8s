@@ -1,0 +1,19 @@
+{{ if .Values.enabled }}
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: app-main-page
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: app-main-page
+    spec:
+      containers:
+      - name: app-main-page
+        image: {{ .Values.image | default "budgetkey/budgetkey-app-main-page:latest" | quote }}
+        ports:
+        - containerPort: 8000
+        resources: {{ .Values.resources }}
+{{ end }}

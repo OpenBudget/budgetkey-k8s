@@ -1,0 +1,30 @@
+{{ if .Values.enabled }}
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: app-generic-item
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: app-generic-item
+    spec:
+      containers:
+      - name: app-generic-item
+        image: {{ .Values.image | default "budgetkey/budgetkey-app-generic-item:latest" | quote }}
+        ports:
+        - containerPort: 8000
+        resources: {{ .Values.resources }}
+        env:
+        - name: BASE_PATH
+          value: "/i/"
+        volumeMounts:
+        - name: themes
+          mountPath: /themes
+      volumes:
+      - name: themes
+        hostPath:
+          path: /var/budgetkey-themes
+          type: DirectoryOrCreate
+{{ end }}
