@@ -10,6 +10,7 @@ spec:
       labels:
         app: data-api
     spec:
+      terminationGracePeriodSeconds: 5
       containers:
       - name: data-api
         image: {{ .Values.image | default "budgetkey/open-budget-data-api:latest" | quote }}

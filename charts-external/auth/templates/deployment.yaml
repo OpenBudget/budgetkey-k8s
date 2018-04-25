@@ -12,6 +12,7 @@ spec:
       annotations:
         checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
     spec:
+      terminationGracePeriodSeconds: 5
       containers:
       - name: auth
         image: {{ .Values.image | default "datopian/auth:latest" | quote }}

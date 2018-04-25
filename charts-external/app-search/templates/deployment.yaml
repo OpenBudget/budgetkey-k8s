@@ -10,6 +10,7 @@ spec:
       labels:
         app: app-search
     spec:
+      terminationGracePeriodSeconds: 5
       containers:
       - name: app-search
         image: {{ .Values.image | default "budgetkey/budgetkey-app-search:latest" | quote }}

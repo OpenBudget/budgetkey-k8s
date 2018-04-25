@@ -10,6 +10,7 @@ spec:
       labels:
         app: list-manager
     spec:
+      terminationGracePeriodSeconds: 5
       containers:
       - name: list-manager
         image: {{ .Values.image | default "budgetkey/budgetkey-list-manager:latest" | quote }}

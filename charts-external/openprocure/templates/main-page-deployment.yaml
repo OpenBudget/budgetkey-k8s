@@ -10,6 +10,7 @@ spec:
       labels:
         app: openprocure-main-page
     spec:
+      terminationGracePeriodSeconds: 5
       containers:
       - name: openprocure
         image: {{ .Values.mainpageImage | default "budgetkey/openprocure-app-main-page:latest" | quote }}
