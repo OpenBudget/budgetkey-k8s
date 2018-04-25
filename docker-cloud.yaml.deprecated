@@ -1,24 +1,24 @@
-auth:
-  environment:
-    - 'DATABASE_URL=postgresql://*********@budgetkey-postgres/private'
-    - EXTERNAL_ADDRESS=next.obudget.org
-    - GOOGLE_KEY=*********.apps.googleusercontent.com
-    - GOOGLE_SECRET=*********
-    - GUNICORN_PORT=8000
-    - |-
-      PRIVATE_KEY=-----BEGIN RSA PRIVATE KEY-----
-      *********
-      -----END RSA PRIVATE KEY-----
-    - |-
-      PUBLIC_KEY=-----BEGIN PUBLIC KEY-----
-      *********
-      -----END PUBLIC KEY-----
-  image: 'datopian/auth:latest'
-  ports:
-    - '8000'
-  restart: always
-  tags:
-    - budget-key
+# auth:
+#   environment:
+#     - 'DATABASE_URL=postgresql://*********@budgetkey-postgres/private'
+#     - EXTERNAL_ADDRESS=next.obudget.org
+#     - GOOGLE_KEY=*********.apps.googleusercontent.com
+#     - GOOGLE_SECRET=*********
+#     - GUNICORN_PORT=8000
+#     - |-
+#       PRIVATE_KEY=-----BEGIN RSA PRIVATE KEY-----
+#       *********
+#       -----END RSA PRIVATE KEY-----
+#     - |-
+#       PUBLIC_KEY=-----BEGIN PUBLIC KEY-----
+#       *********
+#       -----END PUBLIC KEY-----
+#   image: 'datopian/auth:latest'
+#   ports:
+#     - '8000'
+#   restart: always
+#   tags:
+#     - budget-key
 authorizedkeys:
   autodestroy: always
   deployment_strategy: every_node
@@ -53,44 +53,44 @@ budgetkey-app-search:
     - budget-key
   volumes:
     - '/mnt/budgetkey-persistent-data/themes:/themes'
-budgetkey-data-pipelines:
-  autoredeploy: true
-  environment:
-    - AWS_ACCESS_KEY_ID=*********
-    - AWS_SECRET_ACCESS_KEY=*********
-    - 'BUDGETKEY_OLD_DB=postgresql://*********@data.obudget.org/obudget'
-    - 'DATABASE_URL=postgresql://*********@budgetkey-postgres/budgetkey'
-    - 'DATAHUB_ENDPOINT=https://api.datahub.io'
-    - DATAHUB_OWNER=budgetkey
-    - DATAHUB_OWNERID=*********
-    - DATAHUB_TOKEN=*********
-    - 'DPP_DB_ENGINE=postgresql://*********@budgetkey-postgres/budgetkey'
-    - 'DPP_ELASTICSEARCH=open-budget-elasticsearch:9200'
-    - GITHUB_AUTH_TOKEN=*********
-    - 'S3_ENDPOINT_URL=https://ams3.digitaloceanspaces.com'
-  image: 'budgetkey/budgetkey-data-pipelines:latest'
-  links:
-    - open-budget-elasticsearch
-  restart: always
-  tags:
-    - budget-key
-  volumes:
-    - '/mnt/budgetkey-persistent-data/redis:/var/redis'
-    - '/mnt/budgetkey-persistent-data/.ssh:/home/dpp/.ssh'
-  volumes_from:
-    - open-budget-nginx-frontend
-budgetkey-list-manager:
-  autoredeploy: true
-  environment:
-    - 'AUTH_SERVER=http://auth:8000/auth/public-key'
-    - 'DATABASE_URL=postgresql://*********@budgetkey-postgres/private'
-    - GUNICORN_PORT=8000
-  expose:
-    - '8000'
-  image: 'budgetkey/budgetkey-list-manager:latest'
-  restart: always
-  tags:
-    - budget-key
+# budgetkey-data-pipelines:
+#   autoredeploy: true
+#   environment:
+#     - AWS_ACCESS_KEY_ID=*********
+#     - AWS_SECRET_ACCESS_KEY=*********
+#     - 'BUDGETKEY_OLD_DB=postgresql://*********@data.obudget.org/obudget'
+#     - 'DATABASE_URL=postgresql://*********@budgetkey-postgres/budgetkey'
+#     - 'DATAHUB_ENDPOINT=https://api.datahub.io'
+#     - DATAHUB_OWNER=budgetkey
+#     - DATAHUB_OWNERID=*********
+#     - DATAHUB_TOKEN=*********
+#     - 'DPP_DB_ENGINE=postgresql://*********@budgetkey-postgres/budgetkey'
+#     - 'DPP_ELASTICSEARCH=open-budget-elasticsearch:9200'
+#     - GITHUB_AUTH_TOKEN=*********
+#     - 'S3_ENDPOINT_URL=https://ams3.digitaloceanspaces.com'
+#   image: 'budgetkey/budgetkey-data-pipelines:latest'
+#   links:
+#     - open-budget-elasticsearch
+#   restart: always
+#   tags:
+#     - budget-key
+#   volumes:
+#     - '/mnt/budgetkey-persistent-data/redis:/var/redis'
+#     - '/mnt/budgetkey-persistent-data/.ssh:/home/dpp/.ssh'
+#   volumes_from:
+#     - open-budget-nginx-frontend
+# budgetkey-list-manager:
+#   autoredeploy: true
+#   environment:
+#     - 'AUTH_SERVER=http://auth:8000/auth/public-key'
+#     - 'DATABASE_URL=postgresql://*********@budgetkey-postgres/private'
+#     - GUNICORN_PORT=8000
+#   expose:
+#     - '8000'
+#   image: 'budgetkey/budgetkey-list-manager:latest'
+#   restart: always
+#   tags:
+#     - budget-key
 # budgetkey-postgres:
 #   autoredeploy: true
 #   environment:
@@ -103,23 +103,23 @@ budgetkey-list-manager:
 #     - budget-key
 #   volumes:
 #     - '/mnt/budgetkey-persistent-data/db:/var/lib/postgresql/data/db'
-db-backup:
-  autoredeploy: true
-  environment:
-    - AWS_ACCESS_KEY=*********
-    - AWS_SECRET_KEY=*********
-    - S3_BUCKET=budgetkey-files
-    - S3_HOST=ams3.digitaloceanspaces.com
-    - 'S3_HOST_BUCKET=%(bucket)s.ams3.digitaloceanspaces.com'
-    - S3_NAMESPACE=budgetkey
-    - old_AWS_ACCESS_KEY=*********
-    - old_AWS_SECRET_KEY=*********
-  image: 'openknowledge/dockercloud-db-to-s3:latest'
-  restart: always
-  roles:
-    - global
-  tags:
-    - budget-key
+# db-backup:
+#   autoredeploy: true
+#   environment:
+#     - AWS_ACCESS_KEY=*********
+#     - AWS_SECRET_KEY=*********
+#     - S3_BUCKET=budgetkey-files
+#     - S3_HOST=ams3.digitaloceanspaces.com
+#     - 'S3_HOST_BUCKET=%(bucket)s.ams3.digitaloceanspaces.com'
+#     - S3_NAMESPACE=budgetkey
+#     - old_AWS_ACCESS_KEY=*********
+#     - old_AWS_SECRET_KEY=*********
+#   image: 'openknowledge/dockercloud-db-to-s3:latest'
+#   restart: always
+#   roles:
+#     - global
+#   tags:
+#     - budget-key
 dd-agent:
   deployment_strategy: every_node
   environment:
@@ -183,23 +183,23 @@ dd-agent:
 #   volumes:
 #     - '/mnt/budgetkey-persistent-data/datapackages:/var/datapackages'
 #     - '/mnt/budgetkey-persistent-data/fonts:/var/_fonts'
-open-budget-search-api:
-  autoredeploy: true
-  environment:
-    - DB_DB=obudget
-    - DB_HOST=data.obudget.org
-    - DB_PORT=5432
-    - DB_PWD=*********
-    - DB_USER=*********
-    - ES_HOST=open-budget-elasticsearch
-    - ES_PORT=9200
-    - INDEX_NAME=budgetkey_20180319232948938759_e07786a8
-  image: 'budgetkey/open-budget-search-api:latest'
-  links:
-    - open-budget-elasticsearch
-  restart: always
-  tags:
-    - budget-key
+# open-budget-search-api:
+#   autoredeploy: true
+#   environment:
+#     - DB_DB=obudget
+#     - DB_HOST=data.obudget.org
+#     - DB_PORT=5432
+#    - DB_PWD=*********
+#    - DB_USER=*********
+#     - ES_HOST=open-budget-elasticsearch
+#     - ES_PORT=9200
+#     - INDEX_NAME=budgetkey_20180319232948938759_e07786a8
+#  image: 'budgetkey/open-budget-search-api:latest'
+#  links:
+#    - open-budget-elasticsearch
+#  restart: always
+#  tags:
+#    - budget-key
 # open-procure:
 #   autoredeploy: true
 #   image: 'budgetkey/open-procure:latest'

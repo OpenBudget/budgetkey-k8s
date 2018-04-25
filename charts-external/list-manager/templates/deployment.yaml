@@ -1,0 +1,26 @@
+{{ if .Values.enabled }}
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: list-manager
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: list-manager
+    spec:
+      containers:
+      - name: list-manager
+        image: {{ .Values.image | default "budgetkey/budgetkey-list-manager:latest" | quote }}
+        ports:
+        - containerPort: 8000
+        resources: {{ .Values.resources }}
+        env:
+        - name: AUTH_SERVER
+          value: http://auth:8000/auth/public-key
+        - name: GUNICORN_PORT
+          value: "8000"
+        - name: DATABASE_URL
+          valueFrom: {secretKeyRef: {name: {{ .Values.secretName | quote }}, key: DATABASE_URL}}
+{{ end }}

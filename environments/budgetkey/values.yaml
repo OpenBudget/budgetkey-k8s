@@ -17,8 +17,7 @@ postgres:
   loadBalancerIP: 35.189.219.73
 
 elasticsearch:
-  # disabled while running the migration
-  enabled: false
+  enabled: true
   # gcloud --project=next-obudget-org compute disks create --size=100GB --zone=europe-west1-b budgetkey-elasticsearch-data
   gcePersistentDiskName: budgetkey-elasticsearch-data
   resources: >
@@ -59,6 +58,7 @@ migration-from-docker-cloud:
   sshEnabled: false
   setSshPermissionsEnabled: false
   setDatapackagesPermissionsEnabled: false
+  setRedisPermissionsEnabled: false
   # persistent disks can only be mounted write from one node, stop the db/elasticsearch pods sbefore running the job
   # better to run it on the same node as the DB, so a re-mount of the persistent disk won't be needed
   dbEnabled: false
@@ -82,3 +82,18 @@ pipelines:
   enableAntiAffinity: true
   # see the pipelines configmap for the required keys
   secretName: pipelines
+  resources: >
+    {"requests": {"cpu": "600m", "memory": "500Mi"}, "limits": {"cpu": "800m", "memory": "1.5Gi"}}
+
+auth:
+  # see the auth configmap for the required keys
+  secretName: auth
+  resources: >
+    {"requests": {"cpu": "50m", "memory": "100Mi"}, "limits": {"cpu": "100m", "memory": "300Mi"}}
+
+list-manager:
+  # kubectl create secret generic list-manager --from-literal=DATABASE_URL=
+  secretName: list-manager
+
+search-api:
+  secretName: data-api
