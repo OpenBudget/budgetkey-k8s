@@ -1,0 +1,46 @@
+{{ if and .Values.enabled .Values.redisEnabled }}
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: redis-migration
+spec:
+  template:
+    metadata:
+      name: redis-migration
+    spec:
+      nodeSelector:
+        kubernetes.io/hostname: {{ .Values.global.persistentDataVolume.hostname | quote }}
+      containers:
+      - name: migration
+        image: orihoch/budgetkey-k8s-utils-scp-data-migration:4
+        env:
+        - name: FROM_PATH
+          value: /mnt/budgetkey-persistent-data/redis/
+        - name: TO_PATH
+          value: /var
+        - name: KEY_FILE
+          valueFrom: {secretKeyRef: {name: {{ .Values.dataMigrationSecretName | quote }}, key: KEY_FILE}}
+        - name: SSH_USER
+          valueFrom: {secretKeyRef: {name: {{ .Values.dataMigrationSecretName | quote }}, key: SSH_USER}}
+        - name: SSH_HOST
+          valueFrom: {secretKeyRef: {name: {{ .Values.dataMigrationSecretName | quote }}, key: SSH_HOST}}
+        volumeMounts:
+        - mountPath: /var/redis
+          name: redis
+        - mountPath: /secrets
+          name: secrets
+          readOnly: true
+        resources: {"requests": {"cpu": "10m", "memory": "100Mi"}, "limits": {"cpu": "50m", "memory": "500Mi"}}
+      restartPolicy: Never
+      volumes:
+      - name: redis
+        {{ .Values.global.persistentDataVolume.type }}: {
+          {{ if eq .Values.global.persistentDataVolume.type "hostPath" }}
+            "path": "{{ .Values.global.persistentDataVolume.basePath }}/redis",
+            "type": "DirectoryOrCreate"
+          {{ end }}
+        }
+      - name: secrets
+        secret:
+          secretName: {{ .Values.dataMigrationSecretName | quote }}
+{{ end }}
