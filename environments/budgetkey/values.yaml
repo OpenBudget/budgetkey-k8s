@@ -55,9 +55,15 @@ migration-from-docker-cloud:
   fontsEnabled: false
   redisEnabled: false
   sshEnabled: false
+  setSshPermissionsEnabled: false
 
   # kubectl create secret generic data-migration --from-file=private_key=/path/to/private/key \
   #                                              --from-literal=KEY_FILE= \
   #                                              --from-literal=SSH_USER= \
   #                                              --from-literal=SSH_HOST=
   dataMigrationSecretName: data-migration
+
+pipelines:
+  enableAntiAffinity: true
+  # see the pipelines configmap for the required keys
+  secretName: pipelines
