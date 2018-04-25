@@ -1,30 +1,36 @@
 global:
-  debug: false
   persistentDataVolume:
     type: emptyDir
 
-socialmap:
-  enabled: true
-  mainpageResources: >
-    {"requests": {"cpu": "50m", "memory": "100Mi"}, "limits": {"cpu": "100m", "memory": "200Mi"}}
-
-openprocure:
-  enabled: true
-  mainpageResources: >
-    {"requests": {"cpu": "50m", "memory": "100Mi"}, "limits": {"cpu": "100m", "memory": "200Mi"}}
-
-nginx:
+app-generic-item:
   enabled: true
   resources: >
-    {"requests": {"cpu": "50m", "memory": "100Mi"}, "limits": {"cpu": "100m", "memory": "200Mi"}}
+    {"requests": {"cpu": "50m", "memory": "100Mi"}, "limits": {"cpu": "200m", "memory": "300Mi"}}
 
-themes:
-  enabled: true
-
-postgres:
+app-main-page:
   enabled: true
   resources: >
-    {"requests": {"cpu": "50m", "memory": "100Mi"}, "limits": {"cpu": "100m", "memory": "200Mi"}}
+    {"requests": {"cpu": "50m", "memory": "100Mi"}, "limits": {"cpu": "200m", "memory": "300Mi"}}
+
+app-search:
+  enabled: true
+  resources: >
+    {"requests": {"cpu": "50m", "memory": "100Mi"}, "limits": {"cpu": "200m", "memory": "300Mi"}}
+
+auth:
+  enabled: true
+  resources: >
+    {"requests": {"cpu": "50m", "memory": "100Mi"}, "limits": {"cpu": "200m", "memory": "300Mi"}}
+
+data-api:
+  enabled: true
+  resources: >
+    {"requests": {"cpu": "50m", "memory": "100Mi"}, "limits": {"cpu": "200m", "memory": "300Mi"}}
+
+db-backup:
+  enabled: true
+  resources: >
+    {"requests": {"cpu": "10m", "memory": "50Mi"}, "limits": {"cpu": "50m", "memory": "100Mi"}}
 
 elasticsearch:
   enabled: true
@@ -32,36 +38,47 @@ elasticsearch:
     {"requests": {"cpu": "50m", "memory": "100Mi"}, "limits": {"cpu": "100m", "memory": "200Mi"}}
   ES_JAVA_OPTS: "-Xms100m -Xmx100m"
 
-db-backup:
-  enabled: true
-  resources: >
-    {"requests": {"cpu": "10m", "memory": "50Mi"}, "limits": {"cpu": "50m", "memory": "100Mi"}}
-
 kibana:
   enabled: true
   resources: >
     {"requests": {"cpu": "50m", "memory": "100Mi"}, "limits": {"cpu": "100m", "memory": "200Mi"}}
 
-data-api:
-  enabled: true
-
-search-api:
-  enabled: true
-
 list-manager:
   enabled: true
+  resources: >
+    {"requests": {"cpu": "50m", "memory": "100Mi"}, "limits": {"cpu": "200m", "memory": "300Mi"}}
 
-app-search:
+nginx:
   enabled: true
+  resources: >
+    {"requests": {"cpu": "50m", "memory": "100Mi"}, "limits": {"cpu": "100m", "memory": "200Mi"}}
 
-app-generic-item:
+openprocure:
   enabled: true
-
-auth:
-  enabled: true
+  mainpageResources: >
+    {"requests": {"cpu": "50m", "memory": "100Mi"}, "limits": {"cpu": "100m", "memory": "200Mi"}}
 
 pipelines:
   enabled: true
+  resources: >
+    {"requests": {"cpu": "50m", "memory": "100Mi"}, "limits": {"cpu": "200m", "memory": "300Mi"}}
 
-app-main-page:
+postgres:
   enabled: true
+  resources: >
+    {"requests": {"cpu": "50m", "memory": "100Mi"}, "limits": {"cpu": "100m", "memory": "200Mi"}}
+
+search-api:
+  enabled: true
+  resources: >
+    {"requests": {"cpu": "50m", "memory": "100Mi"}, "limits": {"cpu": "200m", "memory": "300Mi"}}
+
+socialmap:
+  enabled: true
+  mainpageResources: >
+    {"requests": {"cpu": "50m", "memory": "100Mi"}, "limits": {"cpu": "100m", "memory": "200Mi"}}
+
+themes:
+  enabled: true
+  resources: >
+    {"requests": {"cpu": "50m", "memory": "100Mi"}, "limits": {"cpu": "200m", "memory": "300Mi"}}
