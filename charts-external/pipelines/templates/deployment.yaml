@@ -31,6 +31,7 @@ spec:
       nodeSelector:
         kubernetes.io/hostname: {{ .Values.global.persistentDataVolume.hostname | quote }}
       {{ end }}
+      terminationGracePeriodSeconds: 5
       containers:
       - name: pipelines
         image: {{ .Values.image | default "budgetkey/budgetkey-data-pipelines:latest" | quote }}

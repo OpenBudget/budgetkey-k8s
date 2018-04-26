@@ -80,7 +80,7 @@ pipelines:
   # see the pipelines configmap for the required keys
   secretName: pipelines
   resources: >
-    {"requests": {"cpu": "600m", "memory": "500Mi"}, "limits": {"cpu": "800m", "memory": "1.5Gi"}}
+    {"requests": {"cpu": "800m", "memory": "2Gi"}, "limits": {"cpu": "1200m", "memory": "4Gi"}}
   # prevents pipelines from scheduling on the same node as elasticsearch
   enableAntiAffinity: true
 
