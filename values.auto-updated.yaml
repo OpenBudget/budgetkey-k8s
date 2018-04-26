@@ -1,6 +1,6 @@
 nginx:
   image: budgetkey/open-budget-nginx-frontend:73426a8a9084c3828e816cee00b775d629298d89
 pipelines:
-  image: budgetkey/budgetkey-data-pipelines:latest
+  image: budgetkey/budgetkey-data-pipelines:970e56bfd8c7a92b8fa2f4c3d05198fd44779a4e
 socialmap:
   mainpageImage: orihoch/socialmap-app-main-page:ee8427a9345dc87aff42a5beecfc85a559228849
