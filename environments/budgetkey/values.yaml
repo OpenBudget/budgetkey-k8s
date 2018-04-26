@@ -11,6 +11,9 @@ auth:
   # see the auth configmap for the required keys
   secretName: auth
 
+cluster-admin:
+  enabled: true
+
 data-api:
   # kubectl create secret generic data-api --from-literal=DATABASE_URL=postgresql://*****:*****@postgres/budgetkey
   secretName: data-api
