@@ -1,5 +1,5 @@
 nginx:
-  image: budgetkey/open-budget-nginx-frontend:52ea089e97d3c5bfd8343e9bf1b5f057127da286
+  image: budgetkey/open-budget-nginx-frontend:73426a8a9084c3828e816cee00b775d629298d89
 pipelines:
   image: budgetkey/budgetkey-data-pipelines:latest
 socialmap:
