@@ -23,5 +23,5 @@ spec:
         - name: ES_PORT
           value: "9200"
         - name: INDEX_NAME
-          value: {{ .Values.INDEX_NAME | default "budgetkey_20180319232948938759_e07786a8" | quote }}
+          value: {{ .Values.INDEX_NAME | default "budgetkey" | quote }}
 {{ end }}
