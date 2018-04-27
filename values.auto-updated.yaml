@@ -8,6 +8,8 @@ data-api:
   image: budgetkey/open-budget-data-api:af083f541646bcffe45fe08adf33e8858182a873
 elasticsearch:
   image: budgetkey/open-budget-elasticsearch:b85fa9a9254979a39e62e191a1d63f877aec4a32
+list-manager:
+  image: budgetkey/budgetkey-list-manager:f586932ca8aa973d76fb7153c0328a6c4d2c5af2
 nginx:
   image: budgetkey/open-budget-nginx-frontend:73426a8a9084c3828e816cee00b775d629298d89
 pipelines:
