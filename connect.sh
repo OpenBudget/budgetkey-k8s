@@ -15,6 +15,7 @@ k8s_connect_gke() {
 	export K8S_ENVIRONMENT_NAME
 	export K8S_ENVIRONMENT_CONTEXT
   kubectl config set-context "${K8S_ENVIRONMENT_CONTEXT}" "--namespace=${K8S_NAMESPACE}" >/dev/null
+  kubectl config use-context "${K8S_ENVIRONMENT_CONTEXT}"
   [ "${K8S_CONNECT_ORIGINAL_PS1}" == "" ] && export K8S_CONNECT_ORIGINAL_PS1="${PS1}"
   export PS1="${K8S_CONNECT_ORIGINAL_PS1}\[\033[01;33m\]${CLOUDSDK_CORE_PROJECT}-${CLOUDSDK_CONTAINER_CLUSTER}-${K8S_NAMESPACE}\[\033[0m\]$ "
   source <(kubectl completion bash)
@@ -27,7 +28,7 @@ k8s_connect_custom() {
 	export K8S_ENVIRONMENT_NAME
 	export K8S_ENVIRONMENT_CONTEXT
   kubectl config set-context "${K8S_ENVIRONMENT_CONTEXT}" "--namespace=${K8S_NAMESPACE}" >/dev/null
-  kubectl use-context "${K8S_ENVIRONMENT_CONTEXT}"
+  kubectl config use-context "${K8S_ENVIRONMENT_CONTEXT}"
   [ "${K8S_CONNECT_ORIGINAL_PS1}" == "" ] && export K8S_CONNECT_ORIGINAL_PS1="${PS1}"
   export PS1="${K8S_CONNECT_ORIGINAL_PS1}\[\033[01;33m\]`kubectl config current-context 2>/dev/null`\[\033[0m\]$ "
   source <(kubectl completion bash)
