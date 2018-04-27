@@ -11,4 +11,3 @@ deploy:
   script: bash .travis_deploy.sh
   on:
     branch: master
-    condition: "! echo $TRAVIS_COMMIT_MESSAGE | grep -- --no-deploy"

@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+echo "${TRAVIS_COMMIT_MESSAGE}" | grep -- --no-deploy && echo skipping deployment && exit 0
+
 openssl aes-256-cbc -K $encrypted_93b308bc8a42_key -iv $encrypted_93b308bc8a42_iv -in environments/budgetkey/k8s-ops-secret.json.enc -out environments/budgetkey/secret-k8s-ops.json -d
 K8S_ENVIRONMENT_NAME="budgetkey"
 OPS_REPO_SLUG="OpenBudget/budgetkey-k8s"
