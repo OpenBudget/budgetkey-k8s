@@ -8,7 +8,7 @@ OPS_REPO_SLUG="OpenBudget/budgetkey-k8s"
 OPS_REPO_BRANCH="${TRAVIS_BRANCH}"
 ./run_docker_ops.sh "${K8S_ENVIRONMENT_NAME}" "
     RES=0;
-    curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get > get_helm.sh && chmod 700 get_helm.sh && ./get_helm.sh;
+    curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get --version v2.8.2 > get_helm.sh && chmod 700 get_helm.sh && ./get_helm.sh;
     if ./helm_upgrade_all.sh --install --dry-run --debug; then
         echo Dry run was successfull, performing upgrades
         ! ./helm_upgrade_all.sh --install && echo Failed upgrade && RES=1
