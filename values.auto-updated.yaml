@@ -1,3 +1,5 @@
+app-generic-item:
+  image: budgetkey/budgetkey-app-generic-item:b60332d526798ca81b663f9948f4231f1995afd4
 nginx:
   image: budgetkey/open-budget-nginx-frontend:73426a8a9084c3828e816cee00b775d629298d89
 pipelines:
