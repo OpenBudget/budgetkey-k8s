@@ -20,3 +20,5 @@ search-api:
   image: budgetkey/open-budget-search-api:1da6a432f499dce65615b1baec5f2d5fc0dc1ff1
 socialmap:
   mainpageImage: budgetkey/socialmap-app-main-page:57da1469c01b18d59c9980a4a623534ca4fea262
+themes:
+  openprocureImage: budgetkey/open-procure:04c5e3936d7c9d57b09224b152354b60143df75e
