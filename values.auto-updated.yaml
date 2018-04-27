@@ -4,6 +4,8 @@ app-main-page:
   image: budgetkey/budgetkey-app-main-page:c15a618ced70728d2c0acdfed5738cabe989a45a
 app-search:
   image: budgetkey/budgetkey-app-search:dd6bf8fbc24ea66268eaa6811f56308c312bd71f
+elasticsearch:
+  image: budgetkey/open-budget-elasticsearch:b85fa9a9254979a39e62e191a1d63f877aec4a32
 nginx:
   image: budgetkey/open-budget-nginx-frontend:73426a8a9084c3828e816cee00b775d629298d89
 pipelines:
