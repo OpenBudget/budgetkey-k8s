@@ -38,7 +38,7 @@ The Budgetkey Kubernetes environment manages most Budgetkey infrastructure as co
   * `kubectl get nodes`
 * Install [helm client](https://docs.helm.sh/using_helm/#installing-the-helm-client)
 * Initialize helm
-  * `helm init --history-max 1 --upgrade --wait`
+  * `helm init --history-max 2 --upgrade --wait`
 * Verify helm version on both client and server
   * `helm version`
   * should be v1.8.2 or later
