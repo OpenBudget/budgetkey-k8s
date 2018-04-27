@@ -19,6 +19,7 @@ spec:
             values:
             - pipelines
             - nginx
+            - postgres
         topologyKey: "kubernetes.io/hostname"
   {{ end }}
   template:

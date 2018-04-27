@@ -5,27 +5,27 @@ global:
 app-generic-item:
   enabled: true
   resources: >
-    {"requests": {"cpu": "10m", "memory": "100Mi"}, "limits": {"cpu": "50m", "memory": "200Mi"}}
+    {"requests": {"cpu": "50m", "memory": "100Mi"}, "limits": {"memory": "300Mi"}}
 
 app-main-page:
   enabled: true
   resources: >
-    {"requests": {"cpu": "10m", "memory": "100Mi"}, "limits": {"cpu": "50m", "memory": "200Mi"}}
+    {"requests": {"cpu": "50m", "memory": "100Mi"}, "limits": {"memory": "300Mi"}}
 
 app-search:
   enabled: true
   resources: >
-    {"requests": {"cpu": "10m", "memory": "100Mi"}, "limits": {"cpu": "50m", "memory": "200Mi"}}
+    {"requests": {"cpu": "50m", "memory": "100Mi"}, "limits": {"memory": "300Mi"}}
 
 auth:
   enabled: true
   resources: >
-    {"requests": {"cpu": "10m", "memory": "100Mi"}, "limits": {"cpu": "50m", "memory": "200Mi"}}
+    {"requests": {"cpu": "75m", "memory": "150Mi"}, "limits": {"memory": "300Mi"}}
 
 data-api:
   enabled: true
   resources: >
-    {"requests": {"cpu": "10m", "memory": "100Mi"}, "limits": {"cpu": "50m", "memory": "200Mi"}}
+    {"requests": {"cpu": "75m", "memory": "150Mi"}, "limits": {"memory": "300Mi"}}
 
 db-backup:
   enabled: true
@@ -35,48 +35,48 @@ db-backup:
 elasticsearch:
   enabled: true
   resources: >
-    {"requests": {"cpu": "50m", "memory": "100Mi"}, "limits": {"cpu": "100m", "memory": "200Mi"}}
+    {"requests": {"cpu": "100m", "memory": "150Mi"}, "limits": {"memory": "500Mi"}}
   ES_JAVA_OPTS: "-Xms100m -Xmx100m"
 
 kibana:
   enabled: true
   resources: >
-    {"requests": {"cpu": "50m", "memory": "100Mi"}, "limits": {"cpu": "100m", "memory": "200Mi"}}
+    {"requests": {"cpu": "75m", "memory": "150Mi"}, "limits": {"memory": "300Mi"}}
 
 list-manager:
   enabled: true
   resources: >
-    {"requests": {"cpu": "10m", "memory": "100Mi"}, "limits": {"cpu": "50m", "memory": "200Mi"}}
+    {"requests": {"cpu": "75m", "memory": "150Mi"}, "limits": {"memory": "300Mi"}}
 
 nginx:
   enabled: true
   resources: >
-    {"requests": {"cpu": "50m", "memory": "100Mi"}, "limits": {"cpu": "100m", "memory": "200Mi"}}
+    {"requests": {"cpu": "100m", "memory": "150Mi"}, "limits": {"memory": "500Mi"}}
 
 openprocure:
   enabled: true
   mainpageResources: >
-    {"requests": {"cpu": "10m", "memory": "100Mi"}, "limits": {"cpu": "50m", "memory": "200Mi"}}
+    {"requests": {"cpu": "50m", "memory": "100Mi"}, "limits": {"memory": "300Mi"}}
 
 pipelines:
   enabled: true
   resources: >
-    {"requests": {"cpu": "50m", "memory": "100Mi"}, "limits": {"cpu": "200m", "memory": "300Mi"}}
+    {"requests": {"cpu": "100m", "memory": "150Mi"}, "limits": {"memory": "500Mi"}}
 
 postgres:
   enabled: true
   resources: >
-    {"requests": {"cpu": "50m", "memory": "100Mi"}, "limits": {"cpu": "100m", "memory": "200Mi"}}
+    {"requests": {"cpu": "100m", "memory": "150Mi"}, "limits": {"memory": "500Mi"}}
 
 search-api:
   enabled: true
   resources: >
-    {"requests": {"cpu": "10m", "memory": "100Mi"}, "limits": {"cpu": "50m", "memory": "200Mi"}}
+    {"requests": {"cpu": "75m", "memory": "150Mi"}, "limits": {"memory": "300Mi"}}
 
 socialmap:
   enabled: true
   mainpageResources: >
-    {"requests": {"cpu": "10m", "memory": "100Mi"}, "limits": {"cpu": "50m", "memory": "200Mi"}}
+    {"requests": {"cpu": "50m", "memory": "100Mi"}, "limits": {"memory": "300Mi"}}
 
 themes:
   enabled: true
