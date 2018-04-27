@@ -19,4 +19,4 @@ postgres:
 search-api:
   image: budgetkey/open-budget-search-api:1da6a432f499dce65615b1baec5f2d5fc0dc1ff1
 socialmap:
-  mainpageImage: orihoch/socialmap-app-main-page:ee8427a9345dc87aff42a5beecfc85a559228849
+  mainpageImage: budgetkey/socialmap-app-main-page:57da1469c01b18d59c9980a4a623534ca4fea262
