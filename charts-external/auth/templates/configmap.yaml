@@ -4,7 +4,7 @@ kind: ConfigMap
 metadata:
   name: auth
 data:
-  # DATABASE_URL: postgresql://*********@budgetkey-postgres/private'
+  DATABASE_URL: postgresql://budgetkey:123456@postgres/budgetkey
   EXTERNAL_ADDRESS: {{ .Values.global.serverName | default "next.obudget.org" | quote }}
   # GOOGLE_KEY: *********.apps.googleusercontent.com
   # GOOGLE_SECRET: *********

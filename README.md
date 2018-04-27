@@ -61,7 +61,7 @@ Initialize the Helm server side component
 
 ```
 kubectl create -f rbac-config.yaml
-helm init --service-account tiller --upgrade --force-upgrade --history-max 1
+helm init --service-account tiller --upgrade --force-upgrade --history-max 2
 ```
 
 Deploy all charts (if dry run succeeds)
