@@ -7,7 +7,7 @@ spec:
   replicas: 1
   {{ if .Values.enableAntiAffinity }}
   affinity:
-    # ensure nginx won't be on the same node as elasticsearch
+    # ensure nginx won't be on the same node as elasticsearch or postgres
     podAntiAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:
       - labelSelector:
@@ -16,6 +16,7 @@ spec:
             operator: In
             values:
             - elasticsearch
+            - postgres
         topologyKey: "kubernetes.io/hostname"
   {{ end }}
   template:

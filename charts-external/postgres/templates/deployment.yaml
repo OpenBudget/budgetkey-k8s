@@ -7,6 +7,21 @@ spec:
   replicas: 1
   strategy:
     type: Recreate
+  {{ if .Values.enableAntiAffinity }}
+  affinity:
+    # ensure postgres won't be on the same node as elasticsearch, pipelines or nginx
+    podAntiAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+      - labelSelector:
+          matchExpressions:
+          - key: app
+            operator: In
+            values:
+            - elasticsearch
+            - pipelines
+            - nginx
+        topologyKey: "kubernetes.io/hostname"
+  {{ end }}
   template:
     metadata:
       labels:
