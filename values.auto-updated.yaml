@@ -11,7 +11,7 @@ elasticsearch:
 list-manager:
   image: budgetkey/budgetkey-list-manager:2096b7d1b52302f0e97ea9b4bbf537b94160e42d
 nginx:
-  image: budgetkey/open-budget-nginx-frontend:8be67e8f34b11fad52050f62507d3c027c5f105b
+  image: budgetkey/open-budget-nginx-frontend:b1a1388d233bea9e8e6f1e4cfc8e6ec322322344
 openprocure:
   mainpageImage: budgetkey/openprocure-app-main-page:2647edc39c433f0359473cceaa255b9d92bb0d4b
 pipelines:
