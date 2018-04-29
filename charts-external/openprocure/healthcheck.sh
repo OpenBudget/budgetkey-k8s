@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-kubectl rollout status deployment/openprocure-main-page
+kubectl rollout status deployment/openprocure-app-main-page

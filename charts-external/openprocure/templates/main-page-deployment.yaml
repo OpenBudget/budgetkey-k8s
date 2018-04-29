@@ -2,13 +2,13 @@
 apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
-  name: openprocure-main-page
+  name: openprocure-app-main-page
 spec:
   replicas: 1
   template:
     metadata:
       labels:
-        app: openprocure-main-page
+        app: openprocure-app-main-page
     spec:
       terminationGracePeriodSeconds: 5
       containers:

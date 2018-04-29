@@ -13,8 +13,8 @@ ALL_DEPLOYMENT_NAMES="auth
                       app-generic-item
                       app-main-page
                       app-search
-                      socialmap-main-page
-                      openprocure-main-page
+                      socialmap-app-main-page
+                      openprocure-app-main-page
                       nginx"
 
 patch_deployment() {

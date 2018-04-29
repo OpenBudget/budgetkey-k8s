@@ -2,13 +2,13 @@
 apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
-  name: socialmap-main-page
+  name: socialmap-app-main-page
 spec:
   replicas: 1
   template:
     metadata:
       labels:
-        app: socialmap-main-page
+        app: socialmap-app-main-page
     spec:
       terminationGracePeriodSeconds: 5
       containers:

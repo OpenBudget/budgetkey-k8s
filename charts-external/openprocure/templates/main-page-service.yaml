@@ -7,4 +7,4 @@ spec:
   - name: '8000'
     port: 8000
   selector:
-    app: openprocure-main-page
+    app: openprocure-app-main-page
