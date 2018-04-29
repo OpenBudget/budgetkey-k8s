@@ -11,7 +11,10 @@ spec:
     metadata:
       labels:
         name: themes
+      annotations:
+        checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
     spec:
+      terminationGracePeriodSeconds: 0
       containers:
       - name: openprocure
         image: {{ .Values.openprocureImage | default "budgetkey/open-procure:latest" | quote }}
@@ -19,15 +22,32 @@ spec:
         - sh
         - "-c"
         - |
-          cp -v /theme.govbuy.json /themes/theme.govbuy.json &&\
+          cp -vrfL /theme.govbuy.json /themes/theme.govbuy.json &&\
           while true; do sleep 86400; done
         resources: {{ .Values.resources }}
         volumeMounts:
         - name: themes
           mountPath: /themes
+      - name: themes
+        image: alpine
+        command:
+        - sh
+        - "-c"
+        - |
+          cp -vrfL /configmap-themes/* /themes/ &&\
+          while true; do sleep 86400; done
+        resources: {{ .Values.resources }}
+        volumeMounts:
+        - name: themes
+          mountPath: /themes
+        - name: configmap
+          mountPath: /configmap-themes
       volumes:
       - name: themes
         hostPath:
-          path: /var/budgetkey-themes
+          path: {{ .Values.global.themesHostPath | quote }}
           type: DirectoryOrCreate
+      - name: configmap
+        configMap:
+          name: themes
 {{ end }}

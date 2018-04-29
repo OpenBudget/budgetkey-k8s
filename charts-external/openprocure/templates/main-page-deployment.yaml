@@ -23,6 +23,6 @@ spec:
       volumes:
       - name: themes
         hostPath:
-          path: /var/budgetkey-themes
+          path: {{ .Values.global.themesHostPath | quote }}
           type: DirectoryOrCreate
 {{ end }}
