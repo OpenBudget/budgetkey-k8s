@@ -88,6 +88,8 @@ pipelines:
     {"requests": {"cpu": "800m", "memory": "2Gi"}, "limits": {"cpu": "1500m", "memory": "5Gi"}}
   # prevents pipelines from scheduling on the same node as elasticsearch
   enableAntiAffinity: true
+  # gcloud --project=next-obudget-org compute disks create --size=100GB --zone=europe-west1-b budgetkey-pipelines-data
+  gcePersistentDiskName: budgetkey-pipelines-data
 
 postgres:
   # gcloud --project=next-obudget-org compute disks create --size=100GB --zone=europe-west1-b budgetkey-postgres-data
