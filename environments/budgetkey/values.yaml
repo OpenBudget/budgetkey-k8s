@@ -6,6 +6,7 @@ global:
     basePath: /var/budgetkey-persistent-data
     hostname: gke-budgetkey-default-pool-bfb61637-qzv3
   serverName: next.obudget.org
+  themesHostPath: /var/budgetkey-themes
 
 auth:
   # see the auth configmap for the required keys
