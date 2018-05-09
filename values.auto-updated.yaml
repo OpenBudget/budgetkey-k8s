@@ -24,3 +24,4 @@ socialmap:
   mainpageImage: budgetkey/socialmap-app-main-page:2a0446ceb717f8e864635c1a2f4cb88039a49600
 themes:
   openprocureImage: budgetkey/open-procure:04c5e3936d7c9d57b09224b152354b60143df75e
+  themesImage: budgetkey/budgetkey-app-themes:fe018e8bbfb20f5651eb2adcb6dd58af70ad54c0
