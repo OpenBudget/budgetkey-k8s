@@ -13,13 +13,13 @@ spec:
         name: themes
     spec:
       containers:
-      - name: openprocure
-        image: {{ .Values.openprocureImage | default "budgetkey/open-procure:latest" | quote }}
+      - name: themes
+        image: {{ .Values.themesImage | default "budgetkey/budgetkey-app-themes:latest" | quote }}
         command:
         - sh
         - "-c"
         - |
-          cp -v /theme.govbuy.json /themes/theme.govbuy.json &&\
+          cp -v /theme.*.json /themes/ &&\
           while true; do sleep 86400; done
         resources: {{ .Values.resources }}
         volumeMounts:
