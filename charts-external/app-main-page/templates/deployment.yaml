@@ -17,4 +17,12 @@ spec:
         ports:
         - containerPort: 8000
         resources: {{ .Values.resources }}
+        volumeMounts:
+        - name: themes
+          mountPath: /themes
+      volumes:
+      - name: themes
+        hostPath:
+          path: /var/budgetkey-themes
+          type: DirectoryOrCreate
 {{ end }}
