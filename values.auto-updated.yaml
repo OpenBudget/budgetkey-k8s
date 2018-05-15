@@ -3,7 +3,7 @@ app-generic-item:
 app-main-page:
   image: budgetkey/budgetkey-app-main-page:5aa1d702d3ad4f59e032662bdcf5ec1d3155c345
 app-search:
-  image: budgetkey/budgetkey-app-search:c58bccc32ecf8a151ab39991377a731231e936bb
+  image: budgetkey/budgetkey-app-search:f90b95505ea57abdfded26f56eff9d66e4ee0e62
 data-api:
   image: budgetkey/open-budget-data-api:af083f541646bcffe45fe08adf33e8858182a873
 elasticsearch:
