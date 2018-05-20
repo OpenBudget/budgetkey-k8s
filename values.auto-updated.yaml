@@ -1,5 +1,5 @@
 app-generic-item:
-  image: budgetkey/budgetkey-app-generic-item:5eec7ac41a0756cfdf9d2f9846c4bf1320c762ab
+  image: budgetkey/budgetkey-app-generic-item:6f58a40d484dc37d2196f0ed8c20e733471a5a1c
 app-main-page:
   image: budgetkey/budgetkey-app-main-page:5aa1d702d3ad4f59e032662bdcf5ec1d3155c345
 app-search:
