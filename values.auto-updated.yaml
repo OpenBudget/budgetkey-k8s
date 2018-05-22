@@ -5,7 +5,7 @@ app-main-page:
 app-search:
   image: budgetkey/budgetkey-app-search:f90b95505ea57abdfded26f56eff9d66e4ee0e62
 data-api:
-  image: budgetkey/open-budget-data-api:1151cef254b94668ce20133acb802a4c9451ff81
+  image: budgetkey/open-budget-data-api:71222a9ef8f6700ba028a75cb4b070ece92c6fae
 elasticsearch:
   image: budgetkey/open-budget-elasticsearch:b85fa9a9254979a39e62e191a1d63f877aec4a32
 list-manager:
