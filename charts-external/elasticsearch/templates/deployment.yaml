@@ -9,7 +9,7 @@ spec:
     type: Recreate
   {{ if .Values.enableAntiAffinity }}
   affinity:
-    # ensure elasticsearch won't be on the same node as nginx and pipelines
+    # ensure elasticsearch won't be on the same node as nginx, pipelines or postgres
     podAntiAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:
       - labelSelector:

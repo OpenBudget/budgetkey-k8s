@@ -5,9 +5,13 @@ metadata:
   name: nginx
 spec:
   replicas: 1
+  {{ if .Values.enableHostPorts }}
+  strategy:
+    type: Recreate
+  {{ end }}
   {{ if .Values.enableAntiAffinity }}
   affinity:
-    # ensure nginx won't be on the same node as elasticsearch or postgres
+    # ensure nginx won't be on the same node as elasticsearch
     podAntiAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:
       - labelSelector:
@@ -16,7 +20,7 @@ spec:
             operator: In
             values:
             - elasticsearch
-            - postgres
+            # - postgres
         topologyKey: "kubernetes.io/hostname"
   {{ end }}
   template:
@@ -33,14 +37,15 @@ spec:
         image: {{ .Values.image | default "budgetkey/open-budget-nginx-frontend:latest" | quote }}
         ports:
         - containerPort: 80
+          {{ if .Values.enableHostPorts }}hostPort: 80{{ end }}
         - containerPort: 5601
+          {{ if .Values.enableHostPorts }}hostPort: 5601{{ end }}
         resources: {{ .Values.resources }}
         {{ if .Values.overrideStartupScript }}
         command:
         - sh
         - "-c"
-        - |
-          {{ .Values.overrideStartupScript }}
+        - {{ .Values.overrideStartupScript | quote }}
         {{ end }}
         volumeMounts:
         - mountPath: /var/datapackages

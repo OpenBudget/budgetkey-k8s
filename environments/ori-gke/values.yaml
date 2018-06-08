@@ -1,2 +1,16 @@
 global:
   namespace: ori-gke
+
+nginx:
+  enableHostPorts: true
+  overrideStartupScript: |
+    echo 'location /datapackages {
+      root /var/;
+      autoindex on;
+    } ' > /etc/nginx/server-rules.conf
+    rm /etc/nginx/conf.d/kibana.conf
+    echo 127.0.0.1 socialmap-app-main-page >> /etc/hosts
+    nginx -g "daemon off;"
+
+postgres:
+  enableHostPorts: true
