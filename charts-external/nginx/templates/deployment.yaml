@@ -38,8 +38,6 @@ spec:
         ports:
         - containerPort: 80
           {{ if .Values.enableHostPorts }}hostPort: 80{{ end }}
-        - containerPort: 5601
-          {{ if .Values.enableHostPorts }}hostPort: 5601{{ end }}
         resources: {{ .Values.resources }}
         {{ if .Values.overrideStartupScript }}
         command:

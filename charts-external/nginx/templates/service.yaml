@@ -6,8 +6,6 @@ spec:
   ports:
   - name: '80'
     port: 80
-  - name: '5601'
-    port: 5601
   selector:
     app: nginx
   {{ if .Values.enableLoadBalancer }}
