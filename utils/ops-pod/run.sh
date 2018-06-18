@@ -18,4 +18,5 @@ done &&\
 kubectl exec -it "${NAME}" $EXEC_PARAMS
 RES=$?
 kubectl delete pod "${NAME}"
+helm delete --purge "${NAME}"
 exit $RES

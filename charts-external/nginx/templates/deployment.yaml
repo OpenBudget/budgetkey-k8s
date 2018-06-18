@@ -5,10 +5,6 @@ metadata:
   name: nginx
 spec:
   replicas: 1
-  {{ if .Values.enableHostPorts }}
-  strategy:
-    type: Recreate
-  {{ end }}
   {{ if .Values.enableAntiAffinity }}
   affinity:
     # ensure nginx won't be on the same node as elasticsearch
@@ -20,49 +16,41 @@ spec:
             operator: In
             values:
             - elasticsearch
-            # - postgres
         topologyKey: "kubernetes.io/hostname"
   {{ end }}
   template:
     metadata:
       labels:
         app: nginx
+      annotations:
+        checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
     spec:
-      {{ if .Values.global.persistentDataVolume.hostname }}
-      nodeSelector:
-        kubernetes.io/hostname: {{ .Values.global.persistentDataVolume.hostname | quote }}
-      {{ end }}
       containers:
       - name: nginx
-        image: {{ .Values.image | default "budgetkey/open-budget-nginx-frontend:latest" | quote }}
+        # this is plain nginx alpine with embedded fonts
+        # all nginx configurations are done using the configmap
+        image: orihoch/budgetkey-nginx@sha256:04db7f5b12c5cf486f5e314a6a7da4d9c05dac0bb534d773dcff1e949c863341
         ports:
         - containerPort: 80
-          {{ if .Values.enableHostPorts }}hostPort: 80{{ end }}
         resources: {{ .Values.resources }}
-        {{ if .Values.overrideStartupScript }}
-        command:
-        - sh
-        - "-c"
-        - {{ .Values.overrideStartupScript | quote }}
-        {{ end }}
         volumeMounts:
-        - mountPath: /var/datapackages
-          name: datapackages
-        - mountPath: /var/_fonts
-          name: fonts
+        - name: configmap
+          mountPath: /etc/nginx/default_server.conf
+          subPath: default_server.conf
+        - name: configmap
+          mountPath: /etc/nginx/servers.conf
+          subPath: servers.conf
+        - name: configmap
+          mountPath: /etc/nginx/conf.d/kibana.conf
+          subPath: kibana.conf
+        - name: configmap
+          mountPath: /etc/nginx/kibana.htpasswd
+          subPath: kibana.htpasswd
+        - name: configmap
+          mountPath: /etc/nginx/server-rules.conf
+          subPath: server-rules.conf
       volumes:
-      - name: datapackages
-        {{ .Values.global.persistentDataVolume.type }}: {
-          {{ if eq .Values.global.persistentDataVolume.type "hostPath" }}
-            "path": "{{ .Values.global.persistentDataVolume.basePath }}/datapackages",
-            "type": "DirectoryOrCreate"
-          {{ end }}
-        }
-      - name: fonts
-        {{ .Values.global.persistentDataVolume.type }}: {
-          {{ if eq .Values.global.persistentDataVolume.type "hostPath" }}
-            "path": "{{ .Values.global.persistentDataVolume.basePath }}/fonts",
-            "type": "DirectoryOrCreate"
-          {{ end }}
-        }
+      - name: configmap
+        configMap:
+          name: nginx
 {{ end }}
