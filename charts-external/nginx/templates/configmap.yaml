@@ -1,0 +1,92 @@
+{{ if .Values.enabled }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nginx
+data:
+  default_server.conf: |
+    server_name  next.obudget.org;
+
+  servers.conf: |
+    server {
+      server_name data.obudget.org;
+      return 301 https://app.redash.io/hasadna/;
+    }
+
+    server {
+      server_name socialmap.org.il www.socialmap.org.il;
+      location / {
+        proxy_pass http://socialmap-app-main-page:8000/;
+      }
+    }
+
+  kibana.conf: |
+    server {
+        listen 80;
+        server_name  kibana.obudget.org kibana2.obudget.org;
+        client_max_body_size 50m;
+        location / {
+            proxy_pass http://kibana:5601;
+            auth_basic "Kibana";
+            auth_basic_user_file /etc/nginx/kibana.htpasswd;
+        }
+    }
+
+  kibana.htpasswd: |
+    budgetkey:$apr1$osnd5bKS$QCBIR1f6GiqNpN3b/hqzP.
+
+  server-rules.conf: |
+    location /search/ {
+        proxy_pass http://open-budget-search-api:8000;
+    }
+
+    location /get/ {
+        proxy_pass http://open-budget-search-api:8000;
+    }
+
+    location /api/ {
+        proxy_pass http://open-budget-data-api:8000;
+    }
+
+    location /list {
+        proxy_pass http://budgetkey-list-manager:8000;
+    }
+
+    location /s/ {
+        proxy_pass http://budgetkey-app-search:8000;
+    }
+
+    location /i/ {
+        proxy_pass http://budgetkey-app-generic-item:8000;
+    }
+
+    location /auth/ {
+        proxy_pass http://auth:8000;
+    }
+
+    location /pipelines/ {
+        proxy_pass http://budgetkey-data-pipelines:5000/;
+    }
+
+    location /datapackages {
+       proxy_pass http://budgetkey-data-pipelines;
+    }
+
+    location /_fonts {
+       root /var/;
+       if ($request_filename ~ "^.+(eot|svg|ttf|otf|woff2|woff)$") {
+           add_header "Access-Control-Allow-Origin" "*";
+           add_header "Access-Control-Allow-Methods" "POST, GET, OPTIONS";
+       }
+       autoindex on;
+       add_header Access-Control-Allow-Origin *;
+    }
+
+    location /govbuy/ {
+        proxy_pass http://openprocure-app-main-page:8000/;
+    }
+
+    location / {
+        proxy_pass http://budgetkey-app-main-page:8000/;
+    }
+{{ end }}

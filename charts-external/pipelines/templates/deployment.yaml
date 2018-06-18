@@ -18,7 +18,6 @@ spec:
             operator: In
             values:
             - elasticsearch
-            # - postgres
         topologyKey: "kubernetes.io/hostname"
   {{ end }}
   template:
@@ -27,11 +26,8 @@ spec:
         app: pipelines
       annotations:
         checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
+        checksum/nginx-config: {{ include (print $.Template.BasePath "/nginx-configmap.yaml") . | sha256sum }}
     spec:
-      {{ if .Values.global.persistentDataVolume.hostname }}
-      nodeSelector:
-        kubernetes.io/hostname: {{ .Values.global.persistentDataVolume.hostname | quote }}
-      {{ end }}
       terminationGracePeriodSeconds: 5
       containers:
       - name: pipelines
@@ -49,40 +45,44 @@ spec:
         {{ end }}
         volumeMounts:
         - mountPath: /var/datapackages
-          name: datapackages
-        - mountPath: /var/_fonts
-          name: fonts
+          name: data
+          subPath: budgetkey-persistent-data/datapackages
         - mountPath: /var/redis
-          name: redis
+          name: data
+          subPath: budgetkey-persistent-data/redis
         - mountPath: /home/dpp/.ssh
-          name: ssh
+          name: data
+          subPath: budgetkey-persistent-data/.ssh
+      - name: nginx
+        image: nginx:alpine
+        command:
+        - sh
+        - "-c"
+        - |
+          echo "HELLO WORLD!" &&\
+          ls -la /var/datapackages &&\
+          chmod -R 777 /var/datapackages &&\
+          echo "NGINX STARTING" &&\
+          nginx -g "daemon off;"
+        ports:
+        - containerPort: 80
+        resources: {"requests": {"cpu": "30m", "memory": "150Mi"}, "limits": {"memory": "300Mi"}}
+        volumeMounts:
+        - name: pipelines-nginx-conf
+          mountPath: /etc/nginx/conf.d
+          readOnly: true
+        - mountPath: /var/datapackages
+          name: data
+          subPath: budgetkey-persistent-data/datapackages
       volumes:
-      - name: datapackages
-        {{ .Values.global.persistentDataVolume.type }}: {
-          {{ if eq .Values.global.persistentDataVolume.type "hostPath" }}
-            "path": "{{ .Values.global.persistentDataVolume.basePath }}/datapackages",
-            "type": "DirectoryOrCreate"
-          {{ end }}
-        }
-      - name: fonts
-        {{ .Values.global.persistentDataVolume.type }}: {
-          {{ if eq .Values.global.persistentDataVolume.type "hostPath" }}
-            "path": "{{ .Values.global.persistentDataVolume.basePath }}/fonts",
-            "type": "DirectoryOrCreate"
-          {{ end }}
-        }
-      - name: redis
-        {{ .Values.global.persistentDataVolume.type }}: {
-          {{ if eq .Values.global.persistentDataVolume.type "hostPath" }}
-            "path": "{{ .Values.global.persistentDataVolume.basePath }}/redis",
-            "type": "DirectoryOrCreate"
-          {{ end }}
-        }
-      - name: ssh
-        {{ .Values.global.persistentDataVolume.type }}: {
-          {{ if eq .Values.global.persistentDataVolume.type "hostPath" }}
-            "path": "{{ .Values.global.persistentDataVolume.basePath }}/.ssh",
-            "type": "DirectoryOrCreate"
-          {{ end }}
-        }
+      - name: data
+        {{ if .Values.gcePersistentDiskName }}
+        gcePersistentDisk:
+          pdName: {{ .Values.gcePersistentDiskName | quote }}
+        {{ else }}
+        emptyDir: {}
+        {{ end }}
+      - name: pipelines-nginx-conf
+        configMap:
+          name: pipelines-nginx-conf
 {{ end }}

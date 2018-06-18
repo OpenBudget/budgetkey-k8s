@@ -1,0 +1,5 @@
+_fonts
+*.html
+*.sh
+*.conf
+Dockerfile
