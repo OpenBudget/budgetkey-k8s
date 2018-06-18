@@ -5,10 +5,6 @@ metadata:
   name: nginx
 spec:
   replicas: 1
-  {{ if .Values.enableHostPorts }}
-  strategy:
-    type: Recreate
-  {{ end }}
   {{ if .Values.enableAntiAffinity }}
   affinity:
     # ensure nginx won't be on the same node as elasticsearch
