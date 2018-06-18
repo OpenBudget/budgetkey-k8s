@@ -1,18 +1,18 @@
 #!/usr/bin/env bash
 
 create_source_snapshot() {
-    gcloud compute disks snapshot "${1}" --snapshot-names="${1}-migration-to-hasadna-cluster" \
+    gcloud compute disks snapshot "${1}" --snapshot-names="${1}-migration-to-hasadna-cluster-3" \
                                          --project=next-obudget-org --zone=europe-west1-b
 }
 
 get_source_snapshot_selfLink() {
-    gcloud compute snapshots describe "${1}-migration-to-hasadna-cluster" --project=next-obudget-org --format json \
+    gcloud compute snapshots describe "${1}-migration-to-hasadna-cluster-3" --project=next-obudget-org --format json \
         | jq -r .selfLink
 }
 
 create_new_disk() {
-    gcloud compute disks create "${1}" --source-snapshot=$(get_source_snapshot_selfLink "${1}") \
-                                       --project=hasadna-general --zone=europe-west1-b
+    gcloud compute disks create "${1}-3" --source-snapshot=$(get_source_snapshot_selfLink "${1}") \
+                                         --project=hasadna-general --zone=europe-west1-b
 }
 
 copy_secret() {
@@ -38,7 +38,7 @@ copy_secret list-manager
 copy_secret pipelines
 copy_secret postgres
 
-gcloud --project=hasadna-general compute disks create --size=100GB --zone=europe-west1-b budgetkey-pipelines-data
+gcloud --project=next-obudget-org compute disks create --size=100GB --zone=europe-west1-b budgetkey-pipelines-data-2
 
 echo 'apiVersion: "v1"
 kind: "Pod"

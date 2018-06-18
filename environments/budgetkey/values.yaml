@@ -8,9 +8,6 @@ auth:
   # prevent unexpected upgrade / discrepency of images between nodes
   image: datopian/auth@sha256:b0ca1a6243a46df92ae5d975e72dfcda4367e479e20399b8ce2b42458990a9fb
 
-cluster-admin:
-  enabled: true
-
 data-api:
   # kubectl create secret generic data-api --from-literal=DATABASE_URL=postgresql://*****:*****@postgres/budgetkey
   secretName: data-api
@@ -29,7 +26,7 @@ db-backup:
 
 elasticsearch:
   # gcloud --project=hasadna-general compute disks create --size=100GB --zone=europe-west1-b budgetkey-elasticsearch-data
-  gcePersistentDiskName: budgetkey-elasticsearch-data
+  gcePersistentDiskName: budgetkey-elasticsearch-data-2
   resources: >
     {"requests": {"cpu": "3000m", "memory": "4Gi"}, "limits": {"cpu": "3500m", "memory": "6Gi"}}
   ES_JAVA_OPTS: "-Xms3g -Xmx3g"
@@ -55,11 +52,11 @@ pipelines:
     {"requests": {"cpu": "200m", "memory": "2Gi"}, "limits": {"memory": "3Gi"}}
   # prevents pipelines from scheduling on the same node as elasticsearch
   enableAntiAffinity: true
-  gcePersistentDiskName: budgetkey-pipelines-data
+  gcePersistentDiskName: budgetkey-pipelines-data-3
 
 postgres:
   # gcloud --project=hasadna-general compute disks create --size=100GB --zone=europe-west1-b budgetkey-postgres-data
-  gcePersistentDiskName: budgetkey-postgres-data
+  gcePersistentDiskName: budgetkey-postgres-data-2
   # kubectl create secret generic postgres --from-literal=POSTGRES_PASSWORD=
   secretName: postgres
   # enableLoadBalancer: true
