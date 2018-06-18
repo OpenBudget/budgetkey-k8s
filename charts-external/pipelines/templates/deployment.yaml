@@ -49,40 +49,40 @@ spec:
         {{ end }}
         volumeMounts:
         - mountPath: /var/datapackages
-          name: datapackages
-        - mountPath: /var/_fonts
-          name: fonts
+          name: data
+          subPath: datapackages
         - mountPath: /var/redis
-          name: redis
+          name: data
+          subPath: redis
         - mountPath: /home/dpp/.ssh
-          name: ssh
+          name: data
+          subPath: ssh
+      - name: nginx
+        image: nginx:alpine
+        ports:
+        - containerPort: 80
+        resources: {"requests": {"cpu": "50m", "memory": "150Mi"}, "limits": {"memory": "300Mi"}}
+        volumeMounts:
+        - name: pipelines-nginx-conf
+          mountPath: /etc/nginx/conf.d
+          readOnly: true
+        - mountPath: /var/datapackages
+          name: data
+          subPath: datapackages
       volumes:
-      - name: datapackages
+      - name: pipelines-nginx-conf
+        configMap:
+          name: pipelines-nginx-conf
+      - name: data
+      {{ if .Values.gcePersistentDiskName }}
+        gcePersistentDisk:
+          pdName: {{ .Values.gcePersistentDiskName | quote }}
+      {{ else }}
         {{ .Values.global.persistentDataVolume.type }}: {
           {{ if eq .Values.global.persistentDataVolume.type "hostPath" }}
-            "path": "{{ .Values.global.persistentDataVolume.basePath }}/datapackages",
+            "path": "{{ .Values.global.persistentDataVolume.basePath }}/pipelines-data",
             "type": "DirectoryOrCreate"
           {{ end }}
         }
-      - name: fonts
-        {{ .Values.global.persistentDataVolume.type }}: {
-          {{ if eq .Values.global.persistentDataVolume.type "hostPath" }}
-            "path": "{{ .Values.global.persistentDataVolume.basePath }}/fonts",
-            "type": "DirectoryOrCreate"
-          {{ end }}
-        }
-      - name: redis
-        {{ .Values.global.persistentDataVolume.type }}: {
-          {{ if eq .Values.global.persistentDataVolume.type "hostPath" }}
-            "path": "{{ .Values.global.persistentDataVolume.basePath }}/redis",
-            "type": "DirectoryOrCreate"
-          {{ end }}
-        }
-      - name: ssh
-        {{ .Values.global.persistentDataVolume.type }}: {
-          {{ if eq .Values.global.persistentDataVolume.type "hostPath" }}
-            "path": "{{ .Values.global.persistentDataVolume.basePath }}/.ssh",
-            "type": "DirectoryOrCreate"
-          {{ end }}
-        }
+      {{ end }}
 {{ end }}
