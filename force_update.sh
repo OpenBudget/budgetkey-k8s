@@ -12,6 +12,7 @@ ALL_DEPLOYMENT_NAMES="auth
                       search-api
                       app-generic-item
                       app-main-page
+                      app-profile
                       app-search
                       socialmap-app-main-page
                       openprocure-app-main-page

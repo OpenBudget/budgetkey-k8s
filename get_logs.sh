@@ -10,6 +10,7 @@ fi
 
 LOG_LABELS="app=app-generic-item
             app=app-main-page
+            app=app-profile
             app=app-search
             app=auth
             app=data-api

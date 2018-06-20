@@ -1,0 +1,28 @@
+{{ if .Values.enabled }}
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: app-profile
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: app-profile
+    spec:
+      terminationGracePeriodSeconds: 5
+      containers:
+      - name: app-profile
+        image: {{ .Values.image | default "budgetkey/budgetkey-app-profile:latest" | quote }}
+        ports:
+        - containerPort: 8000
+        resources: {{ .Values.resources }}
+        volumeMounts:
+        - name: themes
+          mountPath: /themes
+      volumes:
+      - name: themes
+        hostPath:
+          path: /var/budgetkey-themes
+          type: DirectoryOrCreate
+{{ end }}
