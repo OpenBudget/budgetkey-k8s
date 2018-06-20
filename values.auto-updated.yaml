@@ -9,7 +9,7 @@ data-api:
 elasticsearch:
   image: budgetkey/open-budget-elasticsearch:b85fa9a9254979a39e62e191a1d63f877aec4a32
 list-manager:
-  image: budgetkey/budgetkey-list-manager:2096b7d1b52302f0e97ea9b4bbf537b94160e42d
+  image: budgetkey/budgetkey-list-manager:200e43d7c76d04fe205d25017674853e2265132e
 nginx:
   image: budgetkey/open-budget-nginx-frontend:d8cbc9e27c438584170ee5ab3bc1896e1727f0d1
 openprocure:
