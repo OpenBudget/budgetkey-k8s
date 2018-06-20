@@ -13,6 +13,7 @@ ALL_DEPLOYMENT_NAMES="auth
                       app-generic-item
                       app-main-page
                       app-profile
+                      app-about
                       app-search
                       socialmap-app-main-page
                       openprocure-app-main-page

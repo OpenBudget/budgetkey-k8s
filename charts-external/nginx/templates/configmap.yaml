@@ -64,6 +64,10 @@ data:
         proxy_pass http://budgetkey-app-profile:8000;
     }
 
+    location /about/ {
+        proxy_pass http://budgetkey-app-about:8000;
+    }
+
     location /auth/ {
         proxy_pass http://auth:8000;
     }

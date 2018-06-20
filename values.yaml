@@ -17,6 +17,11 @@ app-profile:
   resources: >
     {"requests": {"cpu": "30m", "memory": "100Mi"}, "limits": {"memory": "300Mi"}}
 
+app-about:
+  enabled: true
+  resources: >
+    {"requests": {"cpu": "30m", "memory": "100Mi"}, "limits": {"memory": "300Mi"}}
+
 app-search:
   enabled: true
   resources: >
