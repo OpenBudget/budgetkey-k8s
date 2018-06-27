@@ -3,7 +3,7 @@ sudo: required
 services:
 - docker
 install:
-- curl -L https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get | sudo bash
+- curl -L https://raw.githubusercontent.com/hasadna/hasadna-k8s/master/apps_travis_script.sh | bash /dev/stdin install_helm
 script:
 - bash helm_lint_all.sh
 deploy:
