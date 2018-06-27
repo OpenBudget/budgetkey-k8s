@@ -7,7 +7,7 @@
 # thanks for your understanding and cooperation
 
 ! which kubectl >/dev/null && echo "attempting automatic installation of kubectl" && gcloud --quiet components install kubectl
-! which helm >/dev/null && echo "attempting automatic installation of helm" && curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get > get_helm.sh && chmod 700 get_helm.sh && ./get_helm.sh
+! which helm >/dev/null && echo "attempting automatic installation of helm" && curl -L https://raw.githubusercontent.com/hasadna/hasadna-k8s/master/apps_travis_script.sh | bash /dev/stdin install_helm
 ! which dotenv >/dev/null && echo "attempting automatic installation of python-dotenv" && sudo pip install python-dotenv
 ! which jq >/dev/null && echo "attempting automatic installation of jq" && sudo apt-get update && sudo apt-get install -y jq
 

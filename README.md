@@ -36,12 +36,14 @@ The Budgetkey Kubernetes environment manages most Budgetkey infrastructure as co
   * `minikube start`
 * Verify you are connected to the cluster
   * `kubectl get nodes`
-* Install [helm client](https://docs.helm.sh/using_helm/#installing-the-helm-client)
-* Initialize helm
+* Install Helm client
+  * use the hasadna-k8s script to get the correct version -
+  * `curl -L https://raw.githubusercontent.com/hasadna/hasadna-k8s/master/apps_travis_script.sh | bash /dev/stdin install_helm`
+  * if you have problems, refer to helm docs - [helm client](https://docs.helm.sh/using_helm/#installing-the-helm-client)
+* Initialize helm on the server
   * `helm init --history-max 2 --upgrade --wait`
 * Verify helm version on both client and server
   * `helm version`
-  * should be v1.8.2 or later
 * Clone the budgetkey-k8s repo
   * `git clone https://github.com/OpenBudget/budgetkey-k8s.git`
 * Change to the budgetkey-k8s directory
@@ -57,11 +59,12 @@ All code assumes you are inside a bash shell with required dependencies and conn
 
 Deployments are managed using [Helm](https://github.com/kubernetes/helm)
 
-Initialize the Helm server side component
+The helm server-side component is managed cluster-wide by [hasadna-k8s](https://github.com/hasadna/hasadna-k8s)
+
+You should make sure you have the correct helm client version using hasadna-k8s script:
 
 ```
-kubectl create -f rbac-config.yaml
-helm init --service-account tiller --upgrade --force-upgrade --history-max 2
+curl -L https://raw.githubusercontent.com/hasadna/hasadna-k8s/master/apps_travis_script.sh | bash /dev/stdin install_helm
 ```
 
 Deploy all charts (if dry run succeeds)
