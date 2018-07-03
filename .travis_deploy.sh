@@ -9,12 +9,12 @@ OPS_REPO_BRANCH="${TRAVIS_BRANCH}"
 ./run_docker_ops.sh "${K8S_ENVIRONMENT_NAME}" '
     RES=0;
     curl -L https://raw.githubusercontent.com/hasadna/hasadna-k8s/master/apps_travis_script.sh | bash /dev/stdin install_helm;
-    ./kubectl_patch_charts.py '"${TRAVIS_COMMIT_MESSAGE}"' --dry-run
+    ./kubectl_patch_charts.py "'"${TRAVIS_COMMIT_MESSAGE}"'" --dry-run
     PATCH_RES=$?
     if [ "${PATCH_RES}" != "2" ]; then
         echo detected patches based on commit message
         if [ "${PATCH_RES}" == "0" ]; then
-            ! ./kubectl_patch_charts.py '"${TRAVIS_COMMIT_MESSAGE}"' && echo failed patches && RES=1
+            ! ./kubectl_patch_charts.py "'"${TRAVIS_COMMIT_MESSAGE}"'" && echo failed patches && RES=1
             ! ./helm_healthcheck.sh && echo Failed healthcheck && RES=1
         else
             echo patches dry run failed && RES=1
