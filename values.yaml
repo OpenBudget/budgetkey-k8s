@@ -51,6 +51,10 @@ emails:
   enabled: true
   resources: >
     {"requests": {"cpu": "30m", "memory": "100Mi"}, "limits": {"memory": "1Gi"}}
+  automatic-update:
+    commit-message: automatic update of budgetkey-emails
+    deployment-name: emails
+    container-name: emails
 
 auth:
   enabled: true
@@ -104,6 +108,7 @@ openprocure:
     commit-message: automatic update of openprocure-app-main-page
     deployment-name: openprocure-app-main-page
     container-name: openprocure
+    image-prop: mainpageImage
 
 pipelines:
   enabled: true
@@ -136,6 +141,7 @@ socialmap:
     commit-message: automatic update of socialmap-app-main-page
     deployment-name: socialmap-app-main-page
     container-name: socialmap
+    image-prop: mainpageImage
 
 themes:
   enabled: true
@@ -145,3 +151,4 @@ themes:
     commit-message: automatic update of app themes
     daemonset-name: themes
     container-name: themes
+    image-prop: themesImage
