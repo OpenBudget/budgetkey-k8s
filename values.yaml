@@ -6,55 +6,31 @@ app-generic-item:
   enabled: true
   resources: >
     {"requests": {"cpu": "30m", "memory": "100Mi"}, "limits": {"memory": "300Mi"}}
-  automatic-update:
-    commit-message: automatic update of budgetkey-app-generic-item
-    deployment-name: app-generic-item
-    container-name: app-generic-item
 
 app-main-page:
   enabled: true
   resources: >
     {"requests": {"cpu": "30m", "memory": "100Mi"}, "limits": {"memory": "300Mi"}}
-  automatic-update:
-    commit-message: automatic update of budgetkey-app-main-page
-    deployment-name: app-main-page
-    container-name: app-main-page
 
 app-profile:
   enabled: true
   resources: >
     {"requests": {"cpu": "30m", "memory": "100Mi"}, "limits": {"memory": "300Mi"}}
-  automatic-update:
-    commit-message: automatic update of budgetkey-app-profile
-    deployment-name: app-profile
-    container-name: app-profile
 
 app-about:
   enabled: true
   resources: >
     {"requests": {"cpu": "30m", "memory": "100Mi"}, "limits": {"memory": "300Mi"}}
-  automatic-update:
-    commit-message: automatic update of budgetkey-app-about
-    deployment-name: app-about
-    container-name: app-about
 
 app-search:
   enabled: true
   resources: >
     {"requests": {"cpu": "30m", "memory": "100Mi"}, "limits": {"memory": "300Mi"}}
-  automatic-update:
-    commit-message: automatic update of budgetkey-app-search
-    deployment-name: app-search
-    container-name: app-search
 
 emails:
   enabled: true
   resources: >
     {"requests": {"cpu": "30m", "memory": "100Mi"}, "limits": {"memory": "1Gi"}}
-  automatic-update:
-    commit-message: automatic update of budgetkey-emails
-    deployment-name: emails
-    container-name: emails
 
 auth:
   enabled: true
@@ -65,10 +41,6 @@ data-api:
   enabled: true
   resources: >
     {"requests": {"cpu": "45m", "memory": "50Mi"}, "limits": {"memory": "300Mi"}}
-  automatic-update:
-    commit-message: automatic update of open-budget-data-api
-    deployment-name: data-api
-    container-name: data-api
 
 db-backup:
   enabled: true
@@ -90,10 +62,6 @@ list-manager:
   enabled: true
   resources: >
     {"requests": {"cpu": "40m", "memory": "100Mi"}, "limits": {"memory": "300Mi"}}
-  automatic-update:
-    commit-message: automatic update of budgetkey-list-manager
-    deployment-name: list-manager
-    container-name: list-manager
 
 nginx:
   enabled: true
@@ -104,20 +72,11 @@ openprocure:
   enabled: true
   mainpageResources: >
     {"requests": {"cpu": "30m", "memory": "100Mi"}, "limits": {"memory": "300Mi"}}
-  automatic-update:
-    commit-message: automatic update of openprocure-app-main-page
-    deployment-name: openprocure-app-main-page
-    container-name: openprocure
-    image-prop: mainpageImage
 
 pipelines:
   enabled: true
   resources: >
     {"requests": {"cpu": "100m", "memory": "150Mi"}, "limits": {"memory": "500Mi"}}
-  automatic-update:
-    commit-message: automatic update of budgetkey-data-pipelines
-    deployment-name: pipelines
-    container-name: pipelines
 
 postgres:
   enabled: true
@@ -128,27 +87,13 @@ search-api:
   enabled: true
   resources: >
     {"requests": {"cpu": "45m", "memory": "50Mi"}, "limits": {"memory": "300Mi"}}
-  automatic-update:
-    commit-message: automatic update of open-budget-search-api
-    deployment-name: search-api
-    container-name: search-api
 
 socialmap:
   enabled: true
   mainpageResources: >
     {"requests": {"cpu": "30m", "memory": "100Mi"}, "limits": {"memory": "300Mi"}}
-  automatic-update:
-    commit-message: automatic update of socialmap-app-main-page
-    deployment-name: socialmap-app-main-page
-    container-name: socialmap
-    image-prop: mainpageImage
 
 themes:
   enabled: true
   resources: >
     {"requests": {"cpu": "1m", "memory": "10Mi"}, "limits": {"memory": "200Mi"}}
-  automatic-update:
-    commit-message: automatic update of app themes
-    daemonset-name: themes
-    container-name: themes
-    image-prop: themesImage
