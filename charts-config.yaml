@@ -1,0 +1,80 @@
+app-generic-item:
+  automatic-update:
+    commit-message: automatic update of budgetkey-app-generic-item
+    deployment-name: app-generic-item
+    container-name: app-generic-item
+
+app-main-page:
+  automatic-update:
+    commit-message: automatic update of budgetkey-app-main-page
+    deployment-name: app-main-page
+    container-name: app-main-page
+
+app-profile:
+  automatic-update:
+    commit-message: automatic update of budgetkey-app-profile
+    deployment-name: app-profile
+    container-name: app-profile
+
+app-about:
+  automatic-update:
+    commit-message: automatic update of budgetkey-app-about
+    deployment-name: app-about
+    container-name: app-about
+
+app-search:
+  automatic-update:
+    commit-message: automatic update of budgetkey-app-search
+    deployment-name: app-search
+    container-name: app-search
+
+emails:
+  automatic-update:
+    commit-message: automatic update of budgetkey-emails
+    deployment-name: emails
+    container-name: emails
+
+data-api:
+  automatic-update:
+    commit-message: automatic update of open-budget-data-api
+    deployment-name: data-api
+    container-name: data-api
+
+list-manager:
+  automatic-update:
+    commit-message: automatic update of budgetkey-list-manager
+    deployment-name: list-manager
+    container-name: list-manager
+
+openprocure:
+  automatic-update:
+    commit-message: automatic update of openprocure-app-main-page
+    deployment-name: openprocure-app-main-page
+    container-name: openprocure
+    image-prop: mainpageImage
+
+pipelines:
+  automatic-update:
+    commit-message: automatic update of budgetkey-data-pipelines
+    deployment-name: pipelines
+    container-name: pipelines
+
+search-api:
+  automatic-update:
+    commit-message: automatic update of open-budget-search-api
+    deployment-name: search-api
+    container-name: search-api
+
+socialmap:
+  automatic-update:
+    commit-message: automatic update of socialmap-app-main-page
+    deployment-name: socialmap-app-main-page
+    container-name: socialmap
+    image-prop: mainpageImage
+
+themes:
+  automatic-update:
+    commit-message: automatic update of app themes
+    daemonset-name: themes
+    container-name: themes
+    image-prop: themesImage
