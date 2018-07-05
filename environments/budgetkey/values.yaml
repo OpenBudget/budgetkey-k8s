@@ -79,3 +79,7 @@ postgres:
   # kubectl get nodes -l budgetkey-postgres=true -o 'jsonpath={.items[0].status.addresses[?(@.type=='"'"'ExternalIP'"'"')].address}'
   # you will also need to allow firewall to access it (port 5432)
   enableHostPort: true
+
+search-api:
+  INDEX_NAME: 'budgetkey_20180522185054500142_95fb81ed'
+
