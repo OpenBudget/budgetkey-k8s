@@ -4,10 +4,6 @@ kind: Deployment
 metadata:
   name: postgres
 spec:
-  {{ if .Values.nodeSelector }}
-  nodeSelector:
-    {{ .Values.nodeSelector }}
-  {{ end }}
   replicas: 1
   strategy:
     type: Recreate
@@ -31,6 +27,10 @@ spec:
       labels:
         app: postgres
     spec:
+      {{ if .Values.nodeSelector }}
+      nodeSelector:
+        {{ .Values.nodeSelector }}
+      {{ end }}
       containers:
       - name: postgres
         image: {{ .Values.image | default "budgetkey/budgetkey-postgres:latest" | quote }}
