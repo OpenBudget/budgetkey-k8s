@@ -81,5 +81,5 @@ postgres:
   enableHostPort: true
 
 search-api:
-  INDEX_NAME: 'budgetkey_20180522185054500142_95fb81ed'
+  INDEX_NAME: 'budgetkey'
 
