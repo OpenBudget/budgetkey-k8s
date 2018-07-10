@@ -14,6 +14,11 @@ data:
     }
 
     server {
+      server_name obudget.org www.obudget.org;
+      rewrite ^ https://next.obudget.org/ permanent;
+    }
+
+    server {
       server_name socialmap.org.il www.socialmap.org.il;
       location / {
         proxy_pass http://socialmap-app-main-page:8000/;
