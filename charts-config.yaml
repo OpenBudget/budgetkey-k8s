@@ -46,13 +46,6 @@ list-manager:
     deployment-name: list-manager
     container-name: list-manager
 
-openprocure:
-  automatic-update:
-    commit-message: automatic update of openprocure-app-main-page
-    deployment-name: openprocure-app-main-page
-    container-name: openprocure
-    image-prop: mainpageImage
-
 pipelines:
   automatic-update:
     commit-message: automatic update of budgetkey-data-pipelines
@@ -70,6 +63,13 @@ socialmap:
     commit-message: automatic update of socialmap-app-main-page
     deployment-name: socialmap-app-main-page
     container-name: socialmap
+    image-prop: mainpageImage
+
+openprocure:
+  automatic-update:
+    commit-message: automatic update of openprocure-app-main-page
+    deployment-name: openprocure-app-main-page
+    container-name: openprocure
     image-prop: mainpageImage
 
 themes:

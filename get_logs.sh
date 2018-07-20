@@ -21,11 +21,11 @@ LOG_LABELS="app=app-generic-item
             app=kibana
             app=list-manager
             app=nginx
-            app=openprocure-app-main-page
             app=pipelines
             app=postgres
             app=search-api
             app=socialmap-app-main-page
+            app=openprocure-app-main-page
             app=themes"
 
 for label in $LOG_LABELS; do
