@@ -5,7 +5,7 @@ app-generic-item:
 app-main-page:
   image: budgetkey/budgetkey-app-main-page:f9b252e7218787360f17cbfc415447ee4ab0365b
 app-profile:
-  image: budgetkey/budgetkey-app-profile:97da4c478c7b9c225643bf00803ac95ac8c32a15
+  image: budgetkey/budgetkey-app-profile:2a57d5ebad577d2fd4b7ac1f4e6b05bc0410082f
 app-search:
   image: budgetkey/budgetkey-app-search:5f42876c9bf1a1438c14f84041f0ad4d7c4c8887
 data-api:
