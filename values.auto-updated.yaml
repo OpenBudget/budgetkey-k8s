@@ -29,4 +29,4 @@ search-api:
 socialmap:
   mainpageImage: budgetkey/socialmap-app-main-page:3c928d27d63e7ac54bfb22b703f7c01417b68333
 themes:
-  themesImage: budgetkey/budgetkey-app-themes:39d67c5d0d7172514fe867043588008f7b5dab51
+  themesImage: budgetkey/budgetkey-app-themes:571ab0f47d5b1530f2df3f96e8d4201ebc18c9a3
