@@ -1,7 +1,7 @@
 app-about:
   image: budgetkey/budgetkey-app-about:bdf12e674ce2cb1645f58333c858315bd1fdc676
 app-generic-item:
-  image: budgetkey/budgetkey-app-generic-item:d7ca3eda47f6dfcacc28d944d9dd34262be9a2dd
+  image: budgetkey/budgetkey-app-generic-item:43f0b0f7c22e6acc23085a8566022973ee3f3591
 app-main-page:
   image: budgetkey/budgetkey-app-main-page:0dffd8f2bd42f643e8ba63d06bb791124626b9a4
 app-profile:
