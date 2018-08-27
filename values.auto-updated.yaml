@@ -15,7 +15,7 @@ elasticsearch:
 emails:
   image: budgetkey/budgetkey-emails:cc20854636dadd2f32f7b722aa370fbc2ed433c1
 list-manager:
-  image: budgetkey/budgetkey-list-manager:79c715e208e9035c95a474fc25df32a15e34aaac
+  image: budgetkey/budgetkey-list-manager:63f144e08117b2f044b6e92dece57d7227ea4d73
 nginx:
   image: budgetkey/open-budget-nginx-frontend:d8cbc9e27c438584170ee5ab3bc1896e1727f0d1
 openprocure:
