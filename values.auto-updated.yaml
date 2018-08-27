@@ -13,7 +13,7 @@ data-api:
 elasticsearch:
   image: budgetkey/open-budget-elasticsearch:b85fa9a9254979a39e62e191a1d63f877aec4a32
 emails:
-  image: budgetkey/budgetkey-emails:cc20854636dadd2f32f7b722aa370fbc2ed433c1
+  image: budgetkey/budgetkey-emails:899c30b1a18d7a9c8ac82c81994ff8121ec9f2bc
 list-manager:
   image: budgetkey/budgetkey-list-manager:63f144e08117b2f044b6e92dece57d7227ea4d73
 nginx:
