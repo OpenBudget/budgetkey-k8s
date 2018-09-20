@@ -7,7 +7,7 @@ app-main-page:
 app-profile:
   image: budgetkey/budgetkey-app-profile:ee062c1ee868594ff2b5825aca81604412d77ee4
 app-search:
-  image: budgetkey/budgetkey-app-search:c5c89b71aebc5348c683fa2f4f5ee526002c7d34
+  image: budgetkey/budgetkey-app-search:70755c9174e806149e29e687ea73810d04f0af0a
 data-api:
   image: budgetkey/open-budget-data-api:aeef9d3cfc92cb257063ebbd0cd93277e4424ba7
 elasticsearch:
