@@ -27,6 +27,6 @@ postgres:
 search-api:
   image: budgetkey/open-budget-search-api:5a98354c901f6669cc067641ecce725f820c49a3
 socialmap:
-  mainpageImage: budgetkey/socialmap-app-main-page:77bd2dda43be3aac8a91ee724006b3ed0c516278
+  mainpageImage: budgetkey/socialmap-app-main-page:2dc4322d2368378eb5a37d9fd9f4d2d628fc8cee
 themes:
   themesImage: budgetkey/budgetkey-app-themes:0617bac865dbe6c05119333a6eebffd725959ddc
