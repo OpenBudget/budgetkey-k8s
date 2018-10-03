@@ -68,21 +68,17 @@ postgres:
   # prevents postgres from scheduling on the same node as elasticsearch and pipelines
   # enableAntiAffinity: true
   # node selector is needed due to host port
-  # if node changed - first, remove existing label (if the old node still exists)
-  # kubectl label node $(kubectl get nodes -l budgetkey-postgres=true -o jsonpath={.items[0].metadata.name}) budgetkey-postgres-
-  # add the label to node which currently hosts postgres
-  # kubectl label node $(kubectl get pod $(./kubectl.sh get-pod-name postgres) -o jsonpath={.spec.nodeName}) budgetkey-postgres=true
-  # verify that only 1 node has the node selector
-  # kubectl get nodes -l budgetkey-postgres=true
-  nodeSelector: 'budgetkey-postgres: "true"'
+  # dns is updated automatically when node changes, so just remove the nodeSelector
+  # or set to the desired node name
+  nodeSelector: 'kubernetes.io/hostname: gke-hasadna-cluster-pool-4-2f6c125a-zdbz'
   # to get the postgres node external ip:
   # kubectl get nodes -l budgetkey-postgres=true -o 'jsonpath={.items[0].status.addresses[?(@.type=='"'"'ExternalIP'"'"')].address}'
   # you will also need to allow firewall to access it (port 5432)
   enableHostPort: true
   # see https://github.com/OriHoch/kube-ip-dns-updater
-  # kubeIpDnsUpdaterSecret: postgres-dns-updater
+  kubeIpDnsUpdaterSecret: postgres-dns-updater
   # see environments/budgetkey/publicdb-kube-ip-dns-updater-rbac.yaml
-  # kubeIpDnsUpdaterServiceAccountName: budgetkey-postgres-kube-ip-dns-updater
+  kubeIpDnsUpdaterServiceAccountName: budgetkey-postgres-kube-ip-dns-updater
 
 search-api:
   INDEX_NAME: 'budgetkey'

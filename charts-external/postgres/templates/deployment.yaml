@@ -35,7 +35,7 @@ spec:
       serviceAccountName: {{ .Values.kubeIpDnsUpdaterServiceAccountName | quote }}
       initContainers:
       - name: dns
-        image: orihoch/kube-ip-dns-updater:v0.0.8
+        image: orihoch/kube-ip-dns-updater:v0.0.9
         envFrom:
         - secretRef:
             name: {{ .Values.kubeIpDnsUpdaterSecret | quote }}
