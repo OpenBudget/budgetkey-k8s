@@ -31,6 +31,20 @@ spec:
       nodeSelector:
         {{ .Values.nodeSelector }}
       {{ end }}
+      {{ if .Values.kubeIpDnsUpdaterSecret }}
+      serviceAccountName: {{ .Values.kubeIpDnsUpdaterServiceAccountName | quote }}
+      initContainers:
+      - name: dns
+        image: orihoch/kube-ip-dns-updater:v0.0.8
+        envFrom:
+        - secretRef:
+            name: {{ .Values.kubeIpDnsUpdaterSecret | quote }}
+        env:
+        - name: K8S_NODE_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+      {{ end }}
       containers:
       - name: postgres
         image: {{ .Values.image | default "budgetkey/budgetkey-postgres:latest" | quote }}
