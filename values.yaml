@@ -71,7 +71,7 @@ nginx:
 pipelines:
   enabled: true
   resources: >
-    {"requests": {"cpu": "100m", "memory": "150Mi"}, "limits": {"memory": "750Mi"}}
+    {"requests": {"cpu": "100m", "memory": "1Gi"}, "limits": {"memory": "3Gi"}}
 
 postgres:
   enabled: true
