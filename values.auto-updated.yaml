@@ -9,7 +9,7 @@ app-profile:
 app-search:
   image: budgetkey/budgetkey-app-search:efbfdff257dfd556bf67b3a515a245fb850dab26
 data-api:
-  image: budgetkey/open-budget-data-api:584f2ea5fa3bc3220287be0a97f6bc5482e8ba0c
+  image: budgetkey/open-budget-data-api:22226370bacc0ea403d7c283c9c137cc906cae14
 elasticsearch:
   image: budgetkey/open-budget-elasticsearch:a9591c533decd9b2a9f2db72fa2ab057227e8c49
 emails:
