@@ -17,6 +17,9 @@ spec:
         ports:
         - containerPort: 8000
         resources: {{ .Values.resources }}
+        env:
+        - name: BASE_PATH
+          value: "/dashboards/"
         volumeMounts:
         - name: themes
           mountPath: /themes
