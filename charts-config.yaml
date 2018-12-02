@@ -28,6 +28,13 @@ app-search:
     deployment-name: app-search
     container-name: app-search
 
+app-dashboards:
+  automatic-update:
+    commit-message: automatic update of budgetkey-app-dashboards
+    deployment-name: app-dashboards
+    container-name: app-dashboards
+
+
 emails:
   automatic-update:
     commit-message: automatic update of budgetkey-emails

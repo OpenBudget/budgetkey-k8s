@@ -13,6 +13,7 @@ LOG_LABELS="app=app-generic-item
             app=app-profile
             app=app-about
             app=app-search
+            app=app-dashboards
             app=emails
             app=auth
             app=data-api

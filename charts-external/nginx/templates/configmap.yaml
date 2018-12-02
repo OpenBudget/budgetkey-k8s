@@ -99,7 +99,12 @@ data:
         proxy_pass http://openprocure-app-main-page:8000/;
     }
 
+    location /dashboards/ {
+        proxy_pass http://budgetkey-app-dashboards:8000/;
+    }
+
     location / {
         proxy_pass http://budgetkey-app-main-page:8000/;
     }
+
 {{ end }}

@@ -1,0 +1,28 @@
+{{ if .Values.enabled }}
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: app-dashboards
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: app-dashboards
+    spec:
+      terminationGracePeriodSeconds: 5
+      containers:
+      - name: app-dashboards
+        image: {{ .Values.image | default "budgetkey/budgetkey-app-dashboards:latest" | quote }}
+        ports:
+        - containerPort: 8000
+        resources: {{ .Values.resources }}
+        volumeMounts:
+        - name: themes
+          mountPath: /themes
+      volumes:
+      - name: themes
+        hostPath:
+          path: /var/budgetkey-themes
+          type: DirectoryOrCreate
+{{ end }}

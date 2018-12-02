@@ -15,6 +15,7 @@ ALL_DEPLOYMENT_NAMES="auth
                       app-profile
                       app-about
                       app-search
+                      app-dashboards
                       emails
                       socialmap-app-main-page
                       openprocure-app-main-page
