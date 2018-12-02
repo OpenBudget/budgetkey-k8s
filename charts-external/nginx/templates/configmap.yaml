@@ -100,7 +100,7 @@ data:
     }
 
     location /dashboards/ {
-        proxy_pass http://budgetkey-app-dashboards:8000/;
+        proxy_pass http://budgetkey-app-dashboards:8000;
     }
 
     location / {
