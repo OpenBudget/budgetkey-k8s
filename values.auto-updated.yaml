@@ -23,7 +23,7 @@ nginx:
 openprocure:
   mainpageImage: budgetkey/openprocure-app-main-page:9aa16a2000adf97758347b7adca488318e0aded9
 pipelines:
-  image: budgetkey/budgetkey-data-pipelines:c71c4229ffec46d605e8048a9f4332a707fedaf7
+  image: budgetkey/budgetkey-data-pipelines:8b733d9d704a7a4cb80ebab6a75f9c3ba7904871
 postgres:
   image: budgetkey/budgetkey-postgres:3efcf352910056cd965ca9a0212722fa03fb1840
 search-api:
