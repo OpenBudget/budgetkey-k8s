@@ -3,7 +3,7 @@ app-about:
 app-dashboards:
   image: budgetkey/budgetkey-app-dashboards:296267de05a4f88bc1f1affdbe00db977f282588
 app-generic-item:
-  image: budgetkey/budgetkey-app-generic-item:6d7a1b082ef9546cd49acc29d7f02c093396286f
+  image: budgetkey/budgetkey-app-generic-item:14be2c85b4765e9afafd26cac4c0a6a626adb46b
 app-main-page:
   image: budgetkey/budgetkey-app-main-page:110c18c6756b4eee423b6a98085b2a48e2274870
 app-profile:
