@@ -20,8 +20,6 @@ spec:
         env:
         - name: BASE_PATH
           value: "/s/"
-        - name: BASE_URL
-          value: "http://open-budget-search-api:8000"
         volumeMounts:
         - name: themes
           mountPath: /themes
