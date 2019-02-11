@@ -76,12 +76,12 @@ nginx:
 pipelines:
   enabled: true
   resources: >
-    {"requests": {"cpu": "100m", "memory": "1Gi"}, "limits": {"memory": "3Gi"}}
+    {"requests": {"cpu": "200m", "memory": "1Gi"}, "limits": {"memory": "3Gi"}}
 
 postgres:
   enabled: true
   resources: >
-    {"requests": {"cpu": "100m", "memory": "150Mi"}, "limits": {"memory": "500Mi"}}
+    {"requests": {"cpu": "200m", "memory": "500Mi"}, "limits": {"memory": "1.5Gi"}}
 
 search-api:
   enabled: true
