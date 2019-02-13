@@ -25,6 +25,13 @@ data:
       }
     }
 
+    server {
+      server_name pipelines.obudget.org;
+      location / {
+        proxy_pass http://budgetkey-data-pipelines:5000/;
+      }
+    }
+
   kibana.conf: |
     server {
         listen 80;
@@ -75,10 +82,6 @@ data:
 
     location /auth/ {
         proxy_pass http://auth:8000;
-    }
-
-    location /pipelines/ {
-        proxy_pass http://budgetkey-data-pipelines:5000/;
     }
 
     location /datapackages {
