@@ -81,7 +81,7 @@ pipelines:
 postgres:
   enabled: true
   resources: >
-    {"requests": {"cpu": "200m", "memory": "500Mi"}, "limits": {"memory": "1.5Gi"}}
+    {"requests": {"cpu": "750m", "memory": "1500Mi"}, "limits": {"memory": "3Gi"}}
 
 search-api:
   enabled: true
