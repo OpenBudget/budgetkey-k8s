@@ -58,10 +58,11 @@ spec:
         command:
         - sh
         - "-c"
+          # ls -la /var/datapackages &&\
+          # chmod -R 777 /var/datapackages &&\
         - |
           echo "HELLO WORLD!" &&\
-          ls -la /var/datapackages &&\
-          chmod -R 777 /var/datapackages &&\
+          deluser nginx && adduser -D -S -u 1000 -h /var/cache/nginx -s /sbin/nologin -G nginx nginx &&\
           echo "NGINX STARTING" &&\
           nginx -g "daemon off;"
         ports:
