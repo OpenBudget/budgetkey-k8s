@@ -19,7 +19,7 @@ spec:
         - sh
         - "-c"
         - |
-          cp -v /theme.*.json /themes/ &&\
+          cp -v prep/*.json /themes/ &&\
           while true; do sleep 86400; done
         resources: {{ .Values.resources }}
         volumeMounts:
