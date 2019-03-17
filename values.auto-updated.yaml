@@ -23,12 +23,12 @@ nginx:
 openprocure:
   mainpageImage: budgetkey/openprocure-app-main-page:9aa16a2000adf97758347b7adca488318e0aded9
 pipelines:
-  image: budgetkey/budgetkey-data-pipelines:043c3f55f6a888535ec16f69b91efd40b62386c7
+  image: budgetkey/budgetkey-data-pipelines:85d7bb0745f7367434455166c47b0e049863907e
 postgres:
   image: budgetkey/budgetkey-postgres:3efcf352910056cd965ca9a0212722fa03fb1840
 search-api:
-  image: budgetkey/open-budget-search-api:fba3a02b60fd8ca0490134c27170d6f6c63e99d5
+  image: budgetkey/open-budget-search-api:595026d72f8a7cb1e36278c22ffac5b8af765c6c
 socialmap:
   mainpageImage: budgetkey/socialmap-app-main-page:ba0418ac7937d276d4f53b7e73e4d9025c8d8ed1
 themes:
-  themesImage: budgetkey/budgetkey-app-themes:32065f3286711de29f9cc2e7ce35591cc737b7e3
+  themesImage: budgetkey/budgetkey-app-themes:d597e2371a667ded6725891684031f1575f61722
