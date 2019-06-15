@@ -14,6 +14,8 @@ LOG_LABELS="app=app-generic-item
             app=app-about
             app=app-search
             app=app-dashboards
+            app=dgp-server
+            app=dgp-ui
             app=emails
             app=auth
             app=data-api

@@ -37,6 +37,10 @@ list-manager:
   # kubectl create secret generic list-manager --from-literal=DATABASE_URL=
   secretName: list-manager
 
+dgp-server:
+  # kubectl create secret generic dgp-server --from-literal=DATABASE_URL=
+  secretName: dgp-server
+
 nginx:
   # enableLoadBalancer: true
   # gcloud --project=hasadna-general compute addresses create budgetkey-nginx --region=europe-west1

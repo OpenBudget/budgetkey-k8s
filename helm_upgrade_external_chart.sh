@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# source connect.sh
+source connect.sh
 
 CHART_NAME="${1}"
 

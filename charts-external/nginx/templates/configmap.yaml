@@ -26,6 +26,13 @@ data:
     }
 
     server {
+      server_name dgp.obudget.org;
+      location / {
+          proxy_pass http://budgetkey-dgp-ui:8001;
+      }
+    }
+
+    server {
       server_name pipelines.obudget.org;
       location / {
         proxy_pass http://budgetkey-data-pipelines:5000/;
