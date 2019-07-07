@@ -53,7 +53,7 @@ pipelines:
   # see the pipelines configmap for the required keys
   secretName: pipelines
   resources: >
-    {"requests": {"cpu": "200m", "memory": "2Gi"}, "limits": {"memory": "3Gi"}}
+    {"requests": {"cpu": "400m", "memory": "2Gi"}, "limits": {"memory": "4Gi"}}
   # prevents pipelines from scheduling on the same node as elasticsearch
   # enableAntiAffinity: true
   gcePersistentDiskName: budgetkey-pipelines-data-3
