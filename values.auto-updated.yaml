@@ -27,7 +27,7 @@ pipelines:
 postgres:
   image: budgetkey/budgetkey-postgres:3efcf352910056cd965ca9a0212722fa03fb1840
 search-api:
-  image: budgetkey/open-budget-search-api:ac388b7ca8ef533917299cdede71e0ca224a4a44
+  image: budgetkey/open-budget-search-api:c2ae2aec44791a328ceffa34cf4a97b35af4c0c5
 socialmap:
   mainpageImage: budgetkey/socialmap-app-main-page:7e4a4a31d52f1d439312aae1538d958313d34ac6
 themes:
