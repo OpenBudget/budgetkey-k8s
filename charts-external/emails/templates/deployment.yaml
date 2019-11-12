@@ -17,4 +17,9 @@ spec:
         ports:
         - containerPort: 8000
         resources: {{ .Values.resources }}
+        envFrom:
+        {{ if .Values.secretName }}
+        - secretRef:
+            name: {{ .Values.secretName | quote }}
+        {{ end }}
 {{ end }}

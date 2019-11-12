@@ -24,6 +24,10 @@ db-backup:
   #                                         --from-literal=S3_HOST_BUCKET="
   secretName: db-backup
 
+emails:
+  enabled: true
+  secretName: emails
+
 elasticsearch:
   # gcloud --project=hasadna-general compute disks create --size=100GB --zone=europe-west1-b budgetkey-elasticsearch-data
   gcePersistentDiskName: budgetkey-elasticsearch-data-2
