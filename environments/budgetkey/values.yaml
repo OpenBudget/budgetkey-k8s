@@ -78,7 +78,7 @@ postgres:
   # node selector is needed due to host port
   # dns is updated automatically when node changes, so just remove the nodeSelector
   # or set to the desired node name
-  nodeSelector: 'kubernetes.io/hostname: gke-hasadna-cluster-pool-4-2f6c125a-zdbz'
+  # nodeSelector: 'kubernetes.io/hostname: gke-hasadna-cluster-pool-4-2f6c125a-zdbz'
   # to get the postgres node external ip:
   # kubectl get nodes -l budgetkey-postgres=true -o 'jsonpath={.items[0].status.addresses[?(@.type=='"'"'ExternalIP'"'"')].address}'
   # you will also need to allow firewall to access it (port 5432)
