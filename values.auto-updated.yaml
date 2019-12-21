@@ -21,7 +21,7 @@ list-manager:
 nginx:
   image: budgetkey/open-budget-nginx-frontend:d8cbc9e27c438584170ee5ab3bc1896e1727f0d1
 openprocure:
-  mainpageImage: budgetkey/openprocure-app-main-page:13daa6d87d0e133b15d4593da42e3f815a3495c9
+  mainpageImage: budgetkey/openprocure-app-main-page:86bbaf3949c1e53868ad9cf9f705295324487d8b
 pipelines:
   image: budgetkey/budgetkey-data-pipelines:ea72b1d4db06bba5c6bf2621398313e26fe8d9fd
 postgres:
