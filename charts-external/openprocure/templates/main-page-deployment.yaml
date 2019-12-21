@@ -17,6 +17,9 @@ spec:
         ports:
         - containerPort: 8000
         resources: {{ .Values.mainpageResources }}
+        env:
+          - name: BASE_PATH
+            value: "/govbuy/"
         volumeMounts:
         - name: themes
           mountPath: /themes

@@ -106,7 +106,7 @@ data:
     }
 
     location /govbuy/ {
-        proxy_pass http://openprocure-app-main-page:8000/;
+        proxy_pass http://openprocure-app-main-page:8000;
     }
 
     location /dashboards/ {
