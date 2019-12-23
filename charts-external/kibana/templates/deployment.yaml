@@ -14,8 +14,11 @@ spec:
     spec:
       containers:
       - name: kibana
-        image: {{ .Values.image | default "kibana:5.3" | quote }}
+        image: {{ .Values.image | default "elastic/kibana:7.3.2" | quote }}
         ports:
         - containerPort: 5601
+        env:
+        - name: ELASTICSEARCH_HOSTS
+          value: "http://elasticsearch-new:9200"
         resources: {{ .Values.resources }}
 {{ end }}

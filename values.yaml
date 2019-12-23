@@ -64,14 +64,14 @@ db-backup:
 
 elasticsearch:
   enabled: true
-  resources: >
-    {"requests": {"cpu": "100m", "memory": "150Mi"}, "limits": {"memory": "500Mi"}}
-  ES_JAVA_OPTS: "-Xms100m -Xmx100m"
 
+elasticsearch-new:
+  enabled: true
+  
 kibana:
   enabled: true
   resources: >
-    {"requests": {"cpu": "75m", "memory": "150Mi"}, "limits": {"memory": "300Mi"}}
+    {"requests": {"cpu": "75m", "memory": "150Mi"}, "limits": {"memory": "600Mi"}}
 
 list-manager:
   enabled: true

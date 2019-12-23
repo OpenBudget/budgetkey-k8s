@@ -7,19 +7,6 @@ spec:
   replicas: 1
   strategy:
     type: Recreate
-  {{ if .Values.enableAntiAffinity }}
-  affinity:
-    # ensure pipelines won't be on the same node as elasticsearch
-    podAntiAffinity:
-      requiredDuringSchedulingIgnoredDuringExecution:
-      - labelSelector:
-          matchExpressions:
-          - key: app
-            operator: In
-            values:
-            - elasticsearch
-        topologyKey: "kubernetes.io/hostname"
-  {{ end }}
   template:
     metadata:
       labels:

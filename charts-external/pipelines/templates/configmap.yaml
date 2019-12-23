@@ -12,7 +12,7 @@ data:
   # DATAHUB_OWNERID: *********
   # DATAHUB_TOKEN: *********
   # DPP_DB_ENGINE: postgresql://*********@budgetkey-postgres/budgetkey
-  DPP_ELASTICSEARCH: elasticsearch:9200
+  DATAFLOWS_ELASTICSEARCH: elasticsearch-new:9200
   # GITHUB_AUTH_TOKEN: *********
   S3_ENDPOINT_URL: https://ams3.digitaloceanspaces.com
 {{ end }}

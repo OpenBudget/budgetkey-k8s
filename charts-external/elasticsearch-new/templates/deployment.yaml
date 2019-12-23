@@ -2,19 +2,19 @@
 apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
-  name: elasticsearch
+  name: elasticsearch-new
 spec:
   replicas: 1
   strategy:
-    type: Recreate
+    type: Recreate  
   template:
     metadata:
       labels:
-        app: elasticsearch
+        app: elasticsearch-new
     spec:
       containers:
       - name: elasticsearch
-        image: {{ .Values.image | default "budgetkey/open-budget-elasticsearch:latest" | quote }}
+        image: {{ .Values.image | default "budgetkey/open-budget-elasticsearch-commercial:latest" | quote }}
         ports:
         - containerPort: 9200
         - containerPort: 9300
@@ -24,6 +24,10 @@ spec:
           value: {{ .Values.ES_JAVA_OPTS | quote }}
         - name: xpack.security.enabled
           value: "false"
+        - name: discovery.type
+          value: single-node
+        - name: DECODE_KEY
+          valueFrom: {secretKeyRef: {name: {{ .Values.secretName | quote }}, key: DECODE_KEY}}
         volumeMounts:
         - name: data
           mountPath: /usr/share/elasticsearch/data

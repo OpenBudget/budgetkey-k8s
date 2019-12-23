@@ -37,6 +37,14 @@ elasticsearch:
   # prevents elasticsearch from scheduling on the same pod as pipelines and nginx
   # enableAntiAffinity: true
 
+elasticsearch-new:
+  # gcloud --project=hasadna-general compute disks create --size=100GB --zone=europe-west1-b budgetkey-elasticsearch-data
+  gcePersistentDiskName: budgetkey-elasticsearch-data-new
+  resources: >
+    {"requests": {"cpu": "2000m", "memory": "3Gi"}, "limits": {"cpu": "3500m", "memory": "6Gi"}}
+  ES_JAVA_OPTS: "-Xms3g -Xmx3g"
+  secretName: budgetkey-elasticsearch
+
 list-manager:
   # kubectl create secret generic list-manager --from-literal=DATABASE_URL=
   secretName: list-manager
