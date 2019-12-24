@@ -19,7 +19,7 @@ spec:
         resources: {{ .Values.resources }}
         env:
         - name: ES_HOST
-          value: elasticsearch
+          value: elasticsearch-new
         - name: ES_PORT
           value: "9200"
         - name: INDEX_NAME
