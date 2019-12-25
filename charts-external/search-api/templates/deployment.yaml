@@ -13,13 +13,13 @@ spec:
       terminationGracePeriodSeconds: 5
       containers:
       - name: search-api
-        image: "budgetkey/open-budget-search-api:8689942f593db1ae1ba57806658bb47683e3fe14"
+        image: {{ .Values.image | default "budgetkey/open-budget-search-api:latest" | quote }}
         ports:
         - containerPort: 8000
         resources: {{ .Values.resources }}
         env:
         - name: ES_HOST
-          value: elasticsearch
+          value: elasticsearch-new
         - name: ES_PORT
           value: "9200"
         - name: INDEX_NAME
