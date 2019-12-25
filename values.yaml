@@ -98,6 +98,11 @@ search-api:
   resources: >
     {"requests": {"cpu": "45m", "memory": "50Mi"}, "limits": {"memory": "300Mi"}}
 
+search-api-new:
+  enabled: true
+  resources: >
+    {"requests": {"cpu": "45m", "memory": "50Mi"}, "limits": {"memory": "300Mi"}}
+
 socialmap:
   enabled: true
   mainpageResources: >
