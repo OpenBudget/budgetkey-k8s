@@ -19,7 +19,7 @@ emails:
 list-manager:
   image: budgetkey/budgetkey-list-manager:63f144e08117b2f044b6e92dece57d7227ea4d73
 nginx:
-  image: budgetkey/open-budget-nginx-frontend:a8088c1206d9d62ac22bc1596774f175004e1e87
+  image: budgetkey/open-budget-nginx-frontend:50a164f3466d25884481c3e809420c6ca90f729a
 openprocure:
   mainpageImage: budgetkey/openprocure-app-main-page:eeb13039c667d0f255b720c83f2fc0054e6f24e4
 pipelines:
