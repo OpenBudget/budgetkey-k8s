@@ -41,7 +41,7 @@ elasticsearch-new:
   # gcloud --project=hasadna-general compute disks create --size=100GB --zone=europe-west1-b budgetkey-elasticsearch-data
   gcePersistentDiskName: budgetkey-elasticsearch-data-new
   resources: >
-    {"requests": {"cpu": "2000m", "memory": "3Gi"}, "limits": {"cpu": "3500m", "memory": "6Gi"}}
+    {"requests": {"cpu": "3000m", "memory": "4Gi"}, "limits": {"cpu": "3500m", "memory": "6Gi"}}
   ES_JAVA_OPTS: "-Xms3g -Xmx3g"
   secretName: budgetkey-elasticsearch
 
@@ -97,6 +97,6 @@ postgres:
   kubeIpDnsUpdaterServiceAccountName: budgetkey-postgres-kube-ip-dns-updater
 
 search-api:
-  INDEX_NAME: 'budgetkey'
+  INDEX_NAME: 'budgetkey02'
   # was: budgetkey_20180705090302400922_aa29c55d'
 
