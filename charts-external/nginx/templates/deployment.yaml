@@ -16,11 +16,16 @@ spec:
       - name: nginx
         # this is plain nginx alpine with embedded fonts
         # all nginx configurations are done using the configmap
-        image: orihoch/budgetkey-nginx@sha256:04db7f5b12c5cf486f5e314a6a7da4d9c05dac0bb534d773dcff1e949c863341
+        # image: orihoch/budgetkey-nginx@sha256:04db7f5b12c5cf486f5e314a6a7da4d9c05dac0bb534d773dcff1e949c863341
+        # image: budgetkey/open-budget-nginx-frontend:a8088c1206d9d62ac22bc1596774f175004e1e87
+        image: {{ .Values.image | default "budgetkey/open-budget-nginx-frontend:a8088c1206d9d62ac22bc1596774f175004e1e87" | quote }}
         ports:
         - containerPort: 80
         resources: {{ .Values.resources }}
         volumeMounts:
+        - name: configmap
+          mountPath: /etc/nginx/nginx.conf
+          subPath: nginx.conf
         - name: configmap
           mountPath: /etc/nginx/default_server.conf
           subPath: default_server.conf
