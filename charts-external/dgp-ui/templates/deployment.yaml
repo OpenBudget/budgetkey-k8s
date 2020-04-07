@@ -1,0 +1,23 @@
+{{ if .Values.enabled }}
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: dgp-ui
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: dgp-ui
+    spec:
+      terminationGracePeriodSeconds: 5
+      containers:
+      - name: dgp-ui
+        image: {{ .Values.image | default "budgetkey/budgetkey-dgp-ui:latest" | quote }}
+        ports:
+        - containerPort: 8001
+        resources: {{ .Values.resources }}
+        env:
+        - name: BACKEND
+          value: http://budgetkey-dgp-server:8000
+{{ end }}
