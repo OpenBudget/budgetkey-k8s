@@ -98,7 +98,7 @@ postgres:
   # gcloud --project=hasadna-general compute addresses describe budgetkey-postgres --region=europe-west1 | grep ^address:
   # loadBalancerIP: 35.189.219.73
   resources: >
-    {"requests": {"cpu": "1500m", "memory": "6Gi"}}
+    {"requests": {"cpu": "1500m", "memory": "6Gi"}, "limits": {"memory": "8Gi"}}
   # prevents postgres from scheduling on the same node as elasticsearch and pipelines
   # enableAntiAffinity: true
   # node selector is needed due to host port
