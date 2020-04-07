@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-kubectl rollout status deployment/pipelines
+./kubectl.sh rollout-status deployment/pipelines

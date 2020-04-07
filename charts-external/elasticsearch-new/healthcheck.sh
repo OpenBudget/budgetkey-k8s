@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-kubectl rollout status deployment/elasticsearch-new
+./kubectl.sh rollout-status deployment/elasticsearch-new

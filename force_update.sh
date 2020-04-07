@@ -36,9 +36,9 @@ if [ "${1}" == "all" ]; then
     [ "${RES}" != "0" ] && exit "${RES}"
     for deployment_name in $ALL_DEPLOYMENT_NAMES; do
         echo "${deployment_name}"
-        kubectl rollout status deployment "${deployment_name}"
+        ./kubectl.sh rollout-status deployment "${deployment_name}"
     done
     exit "${RES}"
 else
-    patch_deployment "${1}" && kubectl rollout status deployment "${1}"
+    patch_deployment "${1}" && ./kubectl.sh rollout-status deployment "${1}"
 fi

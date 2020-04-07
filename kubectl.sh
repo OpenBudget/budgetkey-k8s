@@ -47,4 +47,11 @@ elif [ "${1}" == "logs" ]; then
     fi
     kubectl logs $(./kubectl.sh get-pod-name "${2}") $ARGS
 
+elif [ "${1}" == "rollout-status" ]; then
+    while [ "$(kubectl get $2 -o jsonpath={.status.unavailableReplicas})" != "" ]; do
+      echo $2: "$(kubectl get $2 -o jsonpath={.status.unavailableReplicas})" unavailableReplicas
+      sleep 5
+    done
+    echo $2: "$(kubectl get $2 -o jsonpath={.status.updatedReplicas})" updatedReplicas
+
 fi

@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-kubectl rollout status deployment/auth
+./kubectl.sh rollout-status deployment/auth

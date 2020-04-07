@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-kubectl rollout status deployment/nginx
+./kubectl.sh rollout-status deployment/nginx

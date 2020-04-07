@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-kubectl rollout status deployment/kibana
+./kubectl.sh rollout-status deployment/kibana

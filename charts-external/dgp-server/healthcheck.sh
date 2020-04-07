@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-kubectl rollout status deployment/dgp-server
+./kubectl.sh rollout-status deployment/dgp-server

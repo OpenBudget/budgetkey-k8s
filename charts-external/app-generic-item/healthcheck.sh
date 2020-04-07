@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-kubectl rollout status deployment/app-generic-item
+./kubectl.sh rollout-status deployment/app-generic-item

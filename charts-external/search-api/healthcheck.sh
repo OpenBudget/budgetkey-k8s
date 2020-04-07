@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-kubectl rollout status deployment/search-api
+./kubectl.sh rollout-status deployment/search-api

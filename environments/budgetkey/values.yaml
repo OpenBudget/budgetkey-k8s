@@ -14,7 +14,7 @@ data-api:
 
 db-backup:
   image: orihoch/kubernetes-db-to-s3@sha256:1f76ced68223d526886654835d411d11a81db367f7dce048129c5f6cce93325a
-  enabled: true
+  enabled: false
   createClusterRole: true
   # kubectl create secret generic db-backup --from-literal=S3_BUCKET= \
   #                                         --from-literal=S3_NAMESPACE= \

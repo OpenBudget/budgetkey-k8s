@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-kubectl rollout status deployment/data-api
+./kubectl.sh rollout-status deployment/data-api

@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-kubectl rollout status deployment/emails
+./kubectl.sh rollout-status deployment/emails

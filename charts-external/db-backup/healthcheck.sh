@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-kubectl rollout status deployment/db-backup
+./kubectl.sh rollout-status deployment/db-backup
