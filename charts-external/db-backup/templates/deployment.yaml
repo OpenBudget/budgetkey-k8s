@@ -1,9 +1,12 @@
 {{ if and .Values.enabled .Values.secretName }}
-apiVersion: apps/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: db-backup
 spec:
+  selector:
+    matchLabels:
+      app: db-backup
   replicas: 1
   strategy:
     type: Recreate

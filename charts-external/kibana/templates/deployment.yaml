@@ -1,9 +1,12 @@
 {{ if .Values.enabled }}
-apiVersion: apps/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: kibana
 spec:
+  selector:
+    matchLabels:
+      app: kibana
   replicas: 1
   strategy:
     type: Recreate

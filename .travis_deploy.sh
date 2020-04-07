@@ -2,7 +2,7 @@
 
 echo "${TRAVIS_COMMIT_MESSAGE}" | grep -- --no-deploy && echo skipping deployment && exit 0
 
-openssl aes-256-cbc -K $encrypted_93b308bc8a42_key -iv $encrypted_93b308bc8a42_iv -in environments/budgetkey/k8s-ops-secret.json.enc -out environments/budgetkey/secret-k8s-ops.json -d
+# openssl aes-256-cbc -K $encrypted_93b308bc8a42_key -iv $encrypted_93b308bc8a42_iv -in environments/budgetkey/k8s-ops-secret.json.enc -out environments/budgetkey/secret-k8s-ops.json -d
 K8S_ENVIRONMENT_NAME="budgetkey"
 OPS_REPO_SLUG="OpenBudget/budgetkey-k8s"
 OPS_REPO_BRANCH="${TRAVIS_BRANCH}"
@@ -31,7 +31,7 @@ OPS_REPO_BRANCH="${TRAVIS_BRANCH}"
     kubectl get pods;
     kubectl get service;
     exit $RES
-' "orihoch/sk8s-ops" "${OPS_REPO_SLUG}" "${OPS_REPO_BRANCH}" "environments/budgetkey/secret-k8s-ops.json"
+' "orihoch/budgetkey-sk8s-ops-kamatera@sha256:1019ea6017d3df41e9068edbcbbc7c840ec6e47c13a5015580da703704405e3b" "${OPS_REPO_SLUG}" "${OPS_REPO_BRANCH}" "$RANCHER_TOKEN" "$RANCHER_ENDPOINT"
 if [ "$?" == "0" ]; then
     echo travis deployment success
     exit 0

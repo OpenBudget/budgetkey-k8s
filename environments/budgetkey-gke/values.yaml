@@ -30,9 +30,7 @@ emails:
 
 elasticsearch:
   # gcloud --project=hasadna-general compute disks create --size=100GB --zone=europe-west1-b budgetkey-elasticsearch-data
-  # gcePersistentDiskName: budgetkey-elasticsearch-data-2
-  nfsServer: "172.16.0.9"
-  nfsPath: "/budgetkey/elasticsearch"
+  gcePersistentDiskName: budgetkey-elasticsearch-data-2
   resources: >
     {"requests": {"cpu": "3000m", "memory": "4Gi"}, "limits": {"cpu": "3500m", "memory": "6Gi"}}
   ES_JAVA_OPTS: "-Xms3g -Xmx3g"
@@ -41,9 +39,7 @@ elasticsearch:
 
 elasticsearch-new:
   # gcloud --project=hasadna-general compute disks create --size=100GB --zone=europe-west1-b budgetkey-elasticsearch-data
-  # gcePersistentDiskName: budgetkey-elasticsearch-data-new
-  nfsServer: "172.16.0.9"
-  nfsPath: "/budgetkey/elasticsearch-new"
+  gcePersistentDiskName: budgetkey-elasticsearch-data-new
   resources: >
     {"requests": {"cpu": "3000m", "memory": "4Gi"}, "limits": {"cpu": "3500m", "memory": "6Gi"}}
   ES_JAVA_OPTS: "-Xms3g -Xmx3g"
@@ -64,16 +60,6 @@ nginx:
   # loadBalancerIP: 35.195.110.140
   # prevents nginx from scheduling on the same node as elasticsearch
   enableAntiAffinity: false
-  hosts:
-    - next.obudget.org
-    - data.obudget.org
-    - socialmap.org.il
-    - www.socialmap.org.il
-    - kibana.obudget.org
-    - www.obudget.org
-    - obudget.org
-    - pipelines.obudget.org
-    - dgp.obudget.org
 
 pipelines:
   # see the pipelines configmap for the required keys
@@ -82,15 +68,11 @@ pipelines:
     {"requests": {"cpu": "2000m", "memory": "4Gi"}, "limits": {"memory": "6Gi"}}
   # prevents pipelines from scheduling on the same node as elasticsearch
   # enableAntiAffinity: true
-  # gcePersistentDiskName: budgetkey-pipelines-data-3
-  nfsServer: "172.16.0.9"
-  nfsPath: "/budgetkey/pipelines"
+  gcePersistentDiskName: budgetkey-pipelines-data-3
 
 postgres:
   # gcloud --project=hasadna-general compute disks create --size=100GB --zone=europe-west1-b budgetkey-postgres-data
-  # gcePersistentDiskName: budgetkey-postgres-data-2
-  nfsServer: "172.16.0.9"
-  nfsPath: "/budgetkey/postgres"
+  gcePersistentDiskName: budgetkey-postgres-data-2
   # kubectl create secret generic postgres --from-literal=POSTGRES_PASSWORD=
   secretName: postgres
   # enableLoadBalancer: true
@@ -104,15 +86,15 @@ postgres:
   # node selector is needed due to host port
   # dns is updated automatically when node changes, so just remove the nodeSelector
   # or set to the desired node name
-  nodeSelector: 'kubernetes.io/hostname: hasadna-worker2'
+  # nodeSelector: 'kubernetes.io/hostname: gke-hasadna-cluster-pool-4-2f6c125a-zdbz'
   # to get the postgres node external ip:
   # kubectl get nodes -l budgetkey-postgres=true -o 'jsonpath={.items[0].status.addresses[?(@.type=='"'"'ExternalIP'"'"')].address}'
   # you will also need to allow firewall to access it (port 5432)
   enableHostPort: true
   # see https://github.com/OriHoch/kube-ip-dns-updater
-  # kubeIpDnsUpdaterSecret: postgres-dns-updater
+  kubeIpDnsUpdaterSecret: postgres-dns-updater
   # see environments/budgetkey/publicdb-kube-ip-dns-updater-rbac.yaml
-  # kubeIpDnsUpdaterServiceAccountName: budgetkey-postgres-kube-ip-dns-updater
+  kubeIpDnsUpdaterServiceAccountName: budgetkey-postgres-kube-ip-dns-updater
 
 search-api:
   INDEX_NAME: 'budgetkey02'

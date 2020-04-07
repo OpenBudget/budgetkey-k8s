@@ -58,12 +58,12 @@ data-api:
     {"requests": {"cpu": "45m", "memory": "50Mi"}, "limits": {"memory": "300Mi"}}
 
 db-backup:
-  enabled: true
+  enabled: false
   resources: >
     {"requests": {"cpu": "10m", "memory": "100Mi"}, "limits": {"cpu": "50m", "memory": "200Mi"}}
 
 elasticsearch:
-  enabled: true
+  enabled: false
 
 elasticsearch-new:
   enabled: true

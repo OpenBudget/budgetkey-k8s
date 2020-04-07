@@ -4,6 +4,61 @@ kind: ConfigMap
 metadata:
   name: nginx
 data:
+  nginx.conf: |
+    user  nginx;
+    worker_processes  1;
+
+    error_log  /var/log/nginx/error.log warn;
+    pid        /var/run/nginx.pid;
+
+    events {
+        worker_connections  1024;
+    }
+
+    http {
+        include       /etc/nginx/mime.types;
+        default_type  application/octet-stream;
+
+        log_format  main_ext  '$remote_addr - $remote_user [$time_local] "$request" '
+                        '$status $body_bytes_sent "$http_referer" '
+                        '"$http_user_agent" "$http_x_forwarded_for" '
+                        '"$host" sn="$server_name" '
+                        'rt=$request_time '
+                        'ua="$upstream_addr" us="$upstream_status" '
+                        'ut="$upstream_response_time" ul="$upstream_response_length" '
+                        'cs=$upstream_cache_status' ;
+
+        access_log  /var/log/nginx/access.log main_ext;
+
+        sendfile        on;
+        #tcp_nopush     on;
+
+        keepalive_timeout           65;
+        proxy_connect_timeout       600;
+        proxy_send_timeout          600;
+        proxy_read_timeout          600;
+        send_timeout                600;
+
+        gzip  on;
+
+        server {
+            listen 80 default_server;
+            include /etc/nginx/default_server.conf;
+            error_page 500 502 503 504 /500.html;
+            location = /500.html {
+                root /usr/share/nginx/errors;
+                internal;
+            }
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header Host $http_host;
+            proxy_redirect off;
+            include "/etc/nginx/server-rules.conf";
+        }
+
+        include /etc/nginx/servers.conf;
+        include /etc/nginx/conf.d/*.conf;
+    }
+
   default_server.conf: |
     server_name  next.obudget.org;
 
@@ -25,12 +80,12 @@ data:
       }
     }
 
-    server {
-      server_name dgp.obudget.org;
-      location / {
-          proxy_pass http://budgetkey-dgp-ui:8001;
-      }
-    }
+    # server {
+    #   server_name dgp.obudget.org;
+    #   location / {
+    #       proxy_pass http://budgetkey-dgp-ui:8001;
+    #   }
+    # }
 
     server {
       server_name pipelines.obudget.org;
@@ -111,6 +166,10 @@ data:
 
     location /dashboards/ {
         proxy_pass http://budgetkey-app-dashboards:8000;
+    }
+
+    location = /basic_status {
+        stub_status;
     }
 
     location / {

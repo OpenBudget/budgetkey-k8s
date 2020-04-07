@@ -11,24 +11,6 @@ The Budgetkey Kubernetes environment manages most Budgetkey infrastructure as co
 
 ### Setting up and connecting to the environment
 
-#### Manage production environments on Google Kubernetes Engine
-
-* Start a bash shell with all required dependencies and budgetkey-k8s code
-  * `docker run -it --entrypoint bash -e OPS_REPO_SLUG=OpenBudget/budgetkey-k8s orihoch/sk8s-ops`
-  * If you want to install locally, see these Dockerfiles: [sk8s-ops](https://github.com/OriHoch/sk8s-ops/blob/master/Dockerfile) [cloud-sdk-docker](https://github.com/GoogleCloudPlatform/cloud-sdk-docker/blob/master/alpine/Dockerfile)
-* Authenticate with Google Cloud Platform
-  * `gcloud auth login`
-
-#### Infrastructure development on Google Kubernetes Engine
-
-* Clone and change directory to the budgetkey-k8s repo
-  * `git clone https://github.com/OpenBudget/budgetkey-k8s.git`
-  * `cd budgetkey-k8s`
-* Start a bash shell with all required dependencies and mounted volume to the host `budgetkey-k8s` code
-  * `docker run -it --entrypoint bash -v `pwd`:/ops orihoch/sk8s-ops`
-* Authenticate with Google Cloud Platform
-  * `gcloud auth login`
-
 #### Local infrastructure development using Minikube
 
 * Install Minikube according to the instructions in latest [release notes](https://github.com/kubernetes/minikube/releases)
@@ -40,10 +22,8 @@ The Budgetkey Kubernetes environment manages most Budgetkey infrastructure as co
   * use the hasadna-k8s script to get the correct version -
   * `curl -L https://raw.githubusercontent.com/hasadna/hasadna-k8s/master/apps_travis_script.sh | bash /dev/stdin install_helm`
   * if you have problems, refer to helm docs - [helm client](https://docs.helm.sh/using_helm/#installing-the-helm-client)
-* Initialize helm on the server
-  * `helm init --history-max 2 --upgrade --wait`
 * Verify helm version on both client and server
-  * `helm version`
+  * `helm2 version`
 * Clone the budgetkey-k8s repo
   * `git clone https://github.com/OpenBudget/budgetkey-k8s.git`
 * Change to the budgetkey-k8s directory
@@ -57,9 +37,7 @@ All code assumes you are inside a bash shell with required dependencies and conn
 
 ### Deployment
 
-Deployments are managed using [Helm](https://github.com/kubernetes/helm)
-
-The helm server-side component is managed cluster-wide by [hasadna-k8s](https://github.com/hasadna/hasadna-k8s)
+Deployments are managed using [Helm3](https://github.com/kubernetes/helm)
 
 You should make sure you have the correct helm client version using hasadna-k8s script:
 
@@ -76,7 +54,7 @@ Deploy all charts (if dry run succeeds)
 You can also upgrade a single chart
 
 ```
-./helm_upgrade_external_chart.sh  socialmap
+./helm_upgrade_external_chart.sh socialmap
 ```
 
 The helm_upgrade scripts forward all arguments to the underlying `helm upgrade` command, some useful arguments:

@@ -15,11 +15,26 @@ if which dotenv >/dev/null && which helm >/dev/null && which kubectl >/dev/null 
   if [ "${1}" == "" ]; then
       echo "source switch_environment.sh <ENVIRONMENT_NAME>"
   else
-  	ENVIRONMENT_NAME="${1}"	
+  	ENVIRONMENT_NAME="${1}"
+  	[ -f .env ] && eval `dotenv -f ".env" list`
   	if [ ! -f "environments/${ENVIRONMENT_NAME}/.env" ]; then
-  		echo "missing environments/${ENVIRONMENT_NAME}/.env"
+  		if [ "${KUBECONFIG}" == "" ]; then
+        echo "Missing KUBECONFIG env var, example usage:"
+        echo "  export KUBECONFIG=/path/to/.kubeconfig"
+        echo "  source switch_environment.sh ${ENVIRONMENT_NAME}"
+      else
+        echo "Switching to ${ENVIRONMENT_NAME} environment"
+        rm -f .env
+        ! echo "CLOUDSDK_CORE_PROJECT=
+CLOUDSDK_CONTAINER_CLUSTER=
+CLOUDSDK_COMPUTE_ZONE=
+K8S_NAMESPACE=${ENVIRONMENT_NAME}
+K8S_HELM_RELEASE_NAME=${ENVIRONMENT_NAME}
+K8S_ENVIRONMENT_NAME=${ENVIRONMENT_NAME}
+K8S_ENVIRONMENT_CONTEXT=" > .env && echo "Failed to create .env file"
+        source connect.sh
+      fi
   	else
-  		[ -f .env ] && eval `dotenv -f ".env" list`
   		echo "Switching to ${ENVIRONMENT_NAME} environment"
   		rm -f .env
   		if ! ln -s "`pwd`/environments/${ENVIRONMENT_NAME}/.env" ".env"; then

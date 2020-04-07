@@ -1,9 +1,12 @@
 {{ if .Values.enabled }}
-apiVersion: apps/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: elasticsearch-new
 spec:
+  selector:
+    matchLabels:
+      app: elasticsearch-new
   replicas: 1
   strategy:
     type: Recreate  
@@ -36,6 +39,10 @@ spec:
       {{ if .Values.gcePersistentDiskName }}
         gcePersistentDisk:
           pdName: {{ .Values.gcePersistentDiskName | quote }}
+      {{ else if .Values.nfsServer }}
+        nfs:
+          server: {{ .Values.nfsServer | quote }}
+          path: {{ .Values.nfsPath | quote }}
       {{ else }}
         {{ .Values.global.persistentDataVolume.type }}: {
           {{ if eq .Values.global.persistentDataVolume.type "hostPath" }}

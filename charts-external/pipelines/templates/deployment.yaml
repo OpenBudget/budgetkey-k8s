@@ -1,9 +1,12 @@
 {{ if .Values.enabled }}
-apiVersion: apps/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: pipelines
 spec:
+  selector:
+    matchLabels:
+      app: pipelines
   replicas: 1
   strategy:
     type: Recreate
@@ -67,6 +70,10 @@ spec:
         {{ if .Values.gcePersistentDiskName }}
         gcePersistentDisk:
           pdName: {{ .Values.gcePersistentDiskName | quote }}
+        {{ else if .Values.nfsServer }}
+        nfs:
+          server: {{ .Values.nfsServer | quote }}
+          path: {{ .Values.nfsPath | quote }}
         {{ else }}
         emptyDir: {}
         {{ end }}
