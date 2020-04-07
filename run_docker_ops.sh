@@ -25,7 +25,7 @@ echo "DOCKER_RUN_PARAMS=${DOCKER_RUN_PARAMS}"
 [ -z "${RANCHER_TOKEN}" ] && usage && exit 1
 
 [ -z "${SCRIPT}" ] && SCRIPT="bash"
-[ -z "${OPS_DOCKER_IMAGE}" ] && OPS_DOCKER_IMAGE="orihoch/budgetkey-sk8s-ops-kamatera@sha256:1019ea6017d3df41e9068edbcbbc7c840ec6e47c13a5015580da703704405e3b" \
+[ -z "${OPS_DOCKER_IMAGE}" ] && OPS_DOCKER_IMAGE="orihoch/budgetkey-sk8s-ops-kamatera@sha256:62136308dae17c0849c028f6d80d147574e6ef049ef60bf1179eca53e3eed143" \
                              && echo "OPS_DOCKER_IMAGE=${OPS_DOCKER_IMAGE}"
 [ -z "${OPS_REPO_BRANCH}" ] && OPS_REPO_BRANCH="master" \
                             && echo "OPS_REPO_BRANCH=${OPS_REPO_BRANCH}"

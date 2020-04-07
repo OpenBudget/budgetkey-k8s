@@ -13,7 +13,7 @@ RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s 
     chmod +x ./kubectl &&\
     mv ./kubectl /usr/local/bin/
 
-RUN echo 'rancher login --token $RANCHER_TOKEN $RANCHER_ENDPOINT' >> ~/.bashrc
+RUN echo 'rancher login --token $RANCHER_TOKEN $RANCHER_ENDPOINT --context c-vrqxr:p-wk9df' >> ~/.bashrc
 RUN echo 'rancher kubectl config view --raw | grep -v certificate-authority-data: > /.kubeconfig' >> ~/.bashrc
 RUN echo 'export KUBECONFIG=/.kubeconfig' >> ~/.bashrc
 RUN echo 'kubectl config set-context --current --namespace=oknesset' >> ~/.bashrc
