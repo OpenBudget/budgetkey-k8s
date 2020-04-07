@@ -1,0 +1,23 @@
+{{ if .Values.enabled }}
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: dgp-server
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: dgp-server
+    spec:
+      terminationGracePeriodSeconds: 5
+      containers:
+      - name: dgp-server
+        image: {{ .Values.image | default "budgetkey/budgetkey-dgp-server:latest" | quote }}
+        ports:
+        - containerPort: 8000
+        resources: {{ .Values.resources }}
+        env:
+        - name: DATABASE_URL
+          valueFrom: {secretKeyRef: {name: {{ .Values.secretName | quote }}, key: DATABASE_URL}}
+{{ end }}

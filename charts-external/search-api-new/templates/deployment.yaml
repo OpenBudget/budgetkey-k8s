@@ -1,0 +1,27 @@
+{{ if .Values.enabled }}
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: search-api-new
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: search-api-new
+    spec:
+      terminationGracePeriodSeconds: 5
+      containers:
+      - name: search-api-new
+        image: "budgetkey/open-budget-search-api:latest"
+        ports:
+        - containerPort: 8000
+        resources: {{ .Values.resources }}
+        env:
+        - name: ES_HOST
+          value: elasticsearch-new
+        - name: ES_PORT
+          value: "9200"
+        - name: INDEX_NAME
+          value: {{ .Values.INDEX_NAME | default "budgetkey" | quote }}
+{{ end }}
