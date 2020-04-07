@@ -31,7 +31,7 @@ OPS_REPO_BRANCH="${TRAVIS_BRANCH}"
     kubectl get pods;
     kubectl get service;
     exit $RES
-' "orihoch/budgetkey-sk8s-ops-kamatera@sha256:62136308dae17c0849c028f6d80d147574e6ef049ef60bf1179eca53e3eed143" "${OPS_REPO_SLUG}" "${OPS_REPO_BRANCH}" "$RANCHER_ENDPOINT" "$RANCHER_TOKEN"
+' "orihoch/budgetkey-sk8s-ops-kamatera@sha256:a1ecdb2779c1bfc211b8442d497abd53de869d4af640a5f478951040e756ae72" "${OPS_REPO_SLUG}" "${OPS_REPO_BRANCH}" "$RANCHER_ENDPOINT" "$RANCHER_TOKEN"
 if [ "$?" == "0" ]; then
     echo travis deployment success
     exit 0

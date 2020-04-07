@@ -13,6 +13,8 @@ RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s 
     chmod +x ./kubectl &&\
     mv ./kubectl /usr/local/bin/
 
+RUN apk --update --no-cache add sudo && echo "Set disable_coredump false" >> /etc/sudo.conf
+
 RUN echo 'rancher login --token $RANCHER_TOKEN $RANCHER_ENDPOINT --context c-vrqxr:p-wk9df' >> ~/.bashrc
 RUN echo 'rancher kubectl config view --raw | grep -v certificate-authority-data: > /.kubeconfig' >> ~/.bashrc
 RUN echo 'export KUBECONFIG=/.kubeconfig' >> ~/.bashrc
