@@ -9,6 +9,7 @@ data:
   # DATABASE_URL: postgresql://*********@budgetkey-postgres/budgetkey
   DATAHUB_ENDPOINT: https://api.datahub.io
   DATAHUB_OWNER: budgetkey
+  INDEX_NAME: budgetkey02
   # DATAHUB_OWNERID: *********
   # DATAHUB_TOKEN: *********
   # DPP_DB_ENGINE: postgresql://*********@budgetkey-postgres/budgetkey
