@@ -1,0 +1,9 @@
+apiVersion: autoscaling.k8s.io/v1beta2
+kind: VerticalPodAutoscaler
+metadata:
+  name: deployment-nginx
+spec:
+  targetRef:
+    apiVersion: apps/v1
+    kind: deployment
+    name: nginx
