@@ -45,7 +45,7 @@ elasticsearch-new:
   nfsServer: "172.16.0.9"
   nfsPath: "/budgetkey/elasticsearch-new"
   resources: >
-    {"requests": {"cpu": "3000m", "memory": "4Gi"}, "limits": {"cpu": "3500m", "memory": "6Gi"}}
+    {"requests": {"cpu": "300m", "memory": "5271Mi"}, "limits": {"cpu": "800m", "memory": "9000Mi"}}
   ES_JAVA_OPTS: "-Xms3g -Xmx3g"
   secretName: budgetkey-elasticsearch
 
@@ -79,7 +79,7 @@ pipelines:
   # see the pipelines configmap for the required keys
   secretName: pipelines
   resources: >
-    {"requests": {"cpu": "2000m", "memory": "4Gi"}, "limits": {"memory": "6Gi"}}
+    {"requests": {"cpu": "2822m", "memory": "5546Mi"}, "limits": {"cpu": "2822m", "memory": "9000Mi"}}
   # prevents pipelines from scheduling on the same node as elasticsearch
   # enableAntiAffinity: true
   # gcePersistentDiskName: budgetkey-pipelines-data-3
@@ -98,7 +98,7 @@ postgres:
   # gcloud --project=hasadna-general compute addresses describe budgetkey-postgres --region=europe-west1 | grep ^address:
   # loadBalancerIP: 35.189.219.73
   resources: >
-    {"requests": {"cpu": "1500m", "memory": "6Gi"}, "limits": {"memory": "8Gi"}}
+    {"requests": {"cpu": "1554m", "memory": "9641Mi"}, "limits": {"cpu": "1554m", "memory": "15000Mi"}}
   # prevents postgres from scheduling on the same node as elasticsearch and pipelines
   # enableAntiAffinity: true
   # node selector is needed due to host port

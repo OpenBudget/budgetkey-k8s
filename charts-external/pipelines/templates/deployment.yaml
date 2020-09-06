@@ -57,7 +57,7 @@ spec:
           nginx -g "daemon off;"
         ports:
         - containerPort: 80
-        resources: {"requests": {"cpu": "30m", "memory": "150Mi"}, "limits": {"memory": "300Mi"}}
+        resources: {"requests": {"cpu": "12m", "memory": "194Mi"}, "limits": {"cpu": "78m", "memory": "1395Mi"}}
         volumeMounts:
         - name: pipelines-nginx-conf
           mountPath: /etc/nginx/conf.d
