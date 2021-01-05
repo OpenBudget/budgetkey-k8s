@@ -56,7 +56,7 @@ list-manager:
 data-input:
   nfsServer: "172.16.0.9"
   nfsPath: "/budgetkey/data-input-db"
-  dataInputServerImage: "budgetkey/budgetkey-app-data-input"
+  # dataInputServerImage: "budgetkey/budgetkey-app-data-input"
   # kubectl create secret generic data-input --from-literal=DATABASE_URL=
   secretName: data-input
 
