@@ -8,6 +8,7 @@ source connect.sh
 
 ALL_DEPLOYMENT_NAMES="auth
                       list-manager
+                      data-input
                       dgp-ui
                       dgp-server
                       data-api

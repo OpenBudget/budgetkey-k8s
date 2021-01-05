@@ -53,6 +53,13 @@ list-manager:
   # kubectl create secret generic list-manager --from-literal=DATABASE_URL=
   secretName: list-manager
 
+data-input:
+  nfsServer: "172.16.0.9"
+  nfsPath: "/budgetkey/data-input-db"
+  dataInputServerImage: "budgetkey/budgetkey-app-data-input"
+  # kubectl create secret generic data-input --from-literal=DATABASE_URL=
+  secretName: data-input
+
 dgp-server:
   # kubectl create secret generic dgp-server --from-literal=DATABASE_URL=
   secretName: dgp-server
@@ -74,6 +81,7 @@ nginx:
     - obudget.org
     - pipelines.obudget.org
     - dgp.obudget.org
+    - data-input.obudget.org
 
 pipelines:
   # see the pipelines configmap for the required keys

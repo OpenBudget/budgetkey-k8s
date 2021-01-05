@@ -1,0 +1,83 @@
+{{ if .Values.enabled }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: data-input
+spec:
+  selector:
+    matchLabels:
+      app: data-input
+  replicas: 1
+  revisionHistoryLimit: 2
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: data-input
+    spec:
+      terminationGracePeriodSeconds: 10
+      containers:
+      - name: db
+        image: akariv/dgp-app-db
+        resources: {"requests": {"cpu": "25m", "memory": "256Mi"}, "limits": {"cpu": "78m", "memory": "2Gi"}}
+        volumeMounts:
+          - name: data
+            mountPath: /var/lib/postgresql/data
+            subPath: postgres_data2
+      - name: minio
+        image: minio/minio
+        command:
+          - /usr/bin/docker-entrypoint.sh
+          - server
+          - /data
+        env:
+          - name: MINIO_ACCESS_KEY
+            value: access_key
+          - name: MINIO_SECRET_KEY
+            value: secret_key
+          - name: MINIO_REGION_NAME
+            value: us-east-1
+      - name: server
+        image: {{ .Values.dataInputServerImage | default "budgetkey/budgetkey-app-data-input" | quote }}
+        resources: {"requests": {"cpu": "247m", "memory": "1953Mi"}, "limits": {"cpu": "500m", "memory": "4000Mi"}}
+        securityContext:
+          runAsGroup: 0
+          runAsUser: 0
+        ports:
+        - containerPort: 5000
+        env:
+        - name: EXTERNAL_ADDRESS
+          value: https://data-input.obudget.org
+        - name: PUBLIC_KEY
+          valueFrom: {"secretKeyRef":{"name":"auth", "key":"PUBLIC_KEY"}}
+        - name: PRIVATE_KEY
+          valueFrom: {"secretKeyRef":{"name":"auth", "key":"PRIVATE_KEY"}}
+        - name: GOOGLE_KEY
+          valueFrom: {"secretKeyRef":{"name":"data-input", "key":"GOOGLE_KEY"}}
+        - name: GOOGLE_SECRET
+          valueFrom: {"secretKeyRef":{"name":"data-input", "key":"GOOGLE_SECRET"}}
+        - name: DATABASE_URL
+          value: postgresql://postgres:postgres@localhost/auth
+        - name: DATASETS_DATABASE_URL
+          value: postgresql://postgres:postgres@localhost/datasets
+        - name: AIRFLOW__CORE__SQL_ALCHEMY_CONN
+          value: postgresql://postgres:postgres@localhost/airflow
+        - name: ETLS_DATABASE_URL
+          value: postgresql://postgres:postgres@localhost/etls
+        - name: BUCKET_NAME
+          value: data-input
+        - name: AWS_ACCESS_KEY_ID
+          value: access_key
+        - name: AWS_SECRET_ACCESS_KEY
+          value: secret_key
+        - name: AWS_REGION
+          value: us-east-1
+        - name: S3_ENDPOINT_URL
+          value: http://localhost:9000
+      volumes:
+        - name: data
+          nfs:
+            server: {{ .Values.nfsServer | quote }}
+            path: {{ .Values.nfsPath | quote }}
+{{ end }}

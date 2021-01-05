@@ -94,6 +94,13 @@ data:
       }
     }
 
+    server {
+      server_name data-input.obudget.org;
+      location / {
+        proxy_pass http://budgetkey-data-input:5000/;
+      }
+    }
+
   kibana.conf: |
     server {
         listen 80;
