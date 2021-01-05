@@ -33,4 +33,4 @@ socialmap:
 themes:
   themesImage: budgetkey/budgetkey-app-themes:2a296469f982e06d2ce4098831e5ed15d50c2040
 data-input:
-  dataInputServerImage: budgetkey/budgetkey-app-data-input@sha256:c12fe38a6a82170bd8fab3453264bb03fac3c292791801e734dc57ee6d45d44a
+  dataInputServerImage: budgetkey/budgetkey-app-data-input@sha256:bc6d574e27eb82aee1ee50d9d6901965b80aba5c6c5a292c98bcb5d2a24d5f5f
