@@ -34,3 +34,5 @@ socialmap:
   mainpageImage: budgetkey/socialmap-app-main-page:b90903b291f6cb0412854dcb5e8279ed48a82be1
 themes:
   themesImage: budgetkey/budgetkey-app-themes:2a296469f982e06d2ce4098831e5ed15d50c2040
+data-input:
+  dataInputServerImage: budgetkey/budgetkey-app-data-input@sha256:379351e1c0f7fb35a28237e866298e48c55160565d05250ab447425c2f0f8dc9
