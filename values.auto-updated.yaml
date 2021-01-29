@@ -13,7 +13,7 @@ app-search:
 data-api:
   image: budgetkey/open-budget-data-api:0b83b0ec600fd7afce3fa69f096062aea8c48b7f
 data-input:
-  dataInputServerImage: budgetkey/budgetkey-app-data-input@sha256:bc6d574e27eb82aee1ee50d9d6901965b80aba5c6c5a292c98bcb5d2a24d5f5f
+  dataInputServerImage: budgetkey/budgetkey-app-data-input@sha256:379351e1c0f7fb35a28237e866298e48c55160565d05250ab447425c2f0f8dc9
 elasticsearch:
   image: budgetkey/open-budget-elasticsearch:a9591c533decd9b2a9f2db72fa2ab057227e8c49
 emails:
@@ -25,7 +25,7 @@ nginx:
 openprocure:
   mainpageImage: budgetkey/openprocure-app-main-page:c899ac1552cddba13864768647c6088369305efc
 pipelines:
-  image: budgetkey/budgetkey-data-pipelines:4cf8c65271ceae907d10a2509be28554a8713777
+  image: budgetkey/budgetkey-data-pipelines:3a62681bdfd1824ce1a3c69e0906484cbcaa8bb4
 postgres:
   image: budgetkey/budgetkey-postgres:3efcf352910056cd965ca9a0212722fa03fb1840
 search-api:
@@ -34,5 +34,3 @@ socialmap:
   mainpageImage: budgetkey/socialmap-app-main-page:b90903b291f6cb0412854dcb5e8279ed48a82be1
 themes:
   themesImage: budgetkey/budgetkey-app-themes:2a296469f982e06d2ce4098831e5ed15d50c2040
-data-input:
-  dataInputServerImage: budgetkey/budgetkey-app-data-input@sha256:379351e1c0f7fb35a28237e866298e48c55160565d05250ab447425c2f0f8dc9
