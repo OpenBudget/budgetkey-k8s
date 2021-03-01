@@ -1,8 +1,8 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
 import sys, yaml, os, subprocess, json
 
 with open('charts-config.yaml') as f:
-    values = yaml.load(f)
+    values = yaml.load(f, Loader=yaml.SafeLoader)
 
 commit_message = sys.argv[1]
 
