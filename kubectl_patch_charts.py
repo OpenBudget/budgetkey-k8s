@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 import sys, yaml, os, subprocess, json
 
 with open('charts-config.yaml') as f:
