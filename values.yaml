@@ -106,7 +106,7 @@ search-api:
 search-api-new:
   enabled: true
   resources: >
-    {"requests": {"cpu": "25m", "memory": "256Mi"}, "limits": {"cpu": "78m", "memory": "435Mi"}}
+    {"requests": {"cpu": "25m", "memory": "256Mi"}, "limits": {"cpu": "165m", "memory": "536Mi"}}
 
 socialmap:
   enabled: true
