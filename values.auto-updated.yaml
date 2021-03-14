@@ -17,7 +17,7 @@ data-input:
 elasticsearch:
   image: budgetkey/open-budget-elasticsearch:a9591c533decd9b2a9f2db72fa2ab057227e8c49
 emails:
-  image: budgetkey/budgetkey-emails:f8a84a1134316aac7d6db8cae4ce6ff37c91a262
+  image: budgetkey/budgetkey-emails:35b193bf063b1b80a8949157380931a4771d6b02
 list-manager:
   image: budgetkey/budgetkey-list-manager:63f144e08117b2f044b6e92dece57d7227ea4d73
 nginx:
