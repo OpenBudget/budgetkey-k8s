@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 if [ "${1}" == "script" ]; then
+    [ "${DOCKER_USER}" != "" ] && docker login -u "${DOCKER_USER:-$DOCKER_USERNAME}" -p "${DOCKER_PASS:-$DOCKER_PASSWORD}"
     docker pull "${DOCKER_IMAGE}:latest"
     docker build --cache-from "${DOCKER_IMAGE}:latest" -t "${DOCKER_IMAGE}:latest" .
     [ "$?" != "0" ] && echo failed script && exit 1
