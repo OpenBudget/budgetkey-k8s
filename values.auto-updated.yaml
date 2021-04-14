@@ -13,7 +13,7 @@ app-search:
 data-api:
   image: budgetkey/open-budget-data-api:74dc9eb87079c31af5af684b5e7dc98fe26621ee
 data-input:
-  dataInputServerImage: budgetkey/budgetkey-app-data-input@sha256:d1c0c67c503f015262feaa2deb93831282bb8eaf8f43b37be88815fadafcbc44
+  dataInputServerImage: budgetkey/budgetkey-app-data-input@sha256:ab3b8aaa350d4a3ed07eeecbc79f8047a332bccb02fa8a84ce92f8bd0cd06307
 elasticsearch:
   image: budgetkey/open-budget-elasticsearch:a9591c533decd9b2a9f2db72fa2ab057227e8c49
 emails:
