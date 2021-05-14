@@ -50,7 +50,7 @@ dgp-server:
 emails:
   enabled: true
   resources: >
-    {"requests": {"cpu": "93m", "memory": "1658Mi"}, "limits": {"cpu": "105m", "memory": "2500Mi"}}
+    {"requests": {"cpu": "93m", "memory": "1658Mi"}, "limits": {"cpu": "1000m", "memory": "5000Mi"}}
 
 auth:
   enabled: true
