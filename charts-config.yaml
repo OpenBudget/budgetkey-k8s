@@ -40,6 +40,7 @@ data-input:
     commit-message: automatic update of budgetkey-app-data-input
     deployment-name: data-input
     container-name: server
+    image-prop: dataInputServerImage
 
 
 emails:
