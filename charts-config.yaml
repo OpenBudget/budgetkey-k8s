@@ -35,6 +35,13 @@ app-dashboards:
     container-name: app-dashboards
 
 
+data-input:
+  automatic-update:
+    commit-message: automatic update of budgetkey-app-data-input
+    deployment-name: data-input
+    container-name: server
+
+
 emails:
   automatic-update:
     commit-message: automatic update of budgetkey-emails
