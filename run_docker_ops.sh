@@ -30,13 +30,13 @@ echo "DOCKER_RUN_PARAMS=${DOCKER_RUN_PARAMS}"
 [ -z "${OPS_REPO_BRANCH}" ] && OPS_REPO_BRANCH="master" \
                             && echo "OPS_REPO_BRANCH=${OPS_REPO_BRANCH}"
 
-! docker run -it -e "OPS_REPO_SLUG=${OPS_REPO_SLUG}" \
-                 -e "OPS_REPO_BRANCH=${OPS_REPO_BRANCH}" \
-                 -e "RANCHER_TOKEN=${RANCHER_TOKEN}" \
-                 -e "RANCHER_ENDPOINT=${RANCHER_ENDPOINT}" \
-                 $DOCKER_RUN_PARAMS \
-                 "${OPS_DOCKER_IMAGE}" \
-                 -c "source ~/.bashrc && source switch_environment.sh ${ENVIRONMENT_NAME}; ${SCRIPT}" \
+! docker run  -e "OPS_REPO_SLUG=${OPS_REPO_SLUG}" \
+              -e "OPS_REPO_BRANCH=${OPS_REPO_BRANCH}" \
+              -e "RANCHER_TOKEN=${RANCHER_TOKEN}" \
+              -e "RANCHER_ENDPOINT=${RANCHER_ENDPOINT}" \
+              $DOCKER_RUN_PARAMS \
+              "${OPS_DOCKER_IMAGE}" \
+              -c "source ~/.bashrc && source switch_environment.sh ${ENVIRONMENT_NAME}; ${SCRIPT}" \
     && echo "failed to run SCRIPT" && exit 1
 
 echo "Great Success!"
