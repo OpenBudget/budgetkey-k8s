@@ -30,7 +30,7 @@ jobs:
       - name: deploy
         env:
           TRAVIS_COMMIT_MESSAGE: ${{ github.event.commits[0].message }}
-          TRAVIS_BRANCH: ${{ github.ref }}
+          TRAVIS_BRANCH: ${{ github.event.ref }}
           RANCHER_ENDPOINT: ${{ secrets.RANCHER_ENDPOINT }}
           RANCHER_TOKEN: ${{ secrets.RANCHER_TOKEN }}
         run: |

@@ -5,7 +5,7 @@ echo "${TRAVIS_COMMIT_MESSAGE}" | grep -- --no-deploy && echo skipping deploymen
 # openssl aes-256-cbc -K $encrypted_93b308bc8a42_key -iv $encrypted_93b308bc8a42_iv -in environments/budgetkey/k8s-ops-secret.json.enc -out environments/budgetkey/secret-k8s-ops.json -d
 K8S_ENVIRONMENT_NAME="budgetkey"
 OPS_REPO_SLUG="OpenBudget/budgetkey-k8s"
-OPS_REPO_BRANCH="${TRAVIS_BRANCH}"
+OPS_REPO_BRANCH="${TRAVIS_BRANCH##*/}"
 ./run_docker_ops.sh "${K8S_ENVIRONMENT_NAME}" '
     RES=0;
     curl -L https://raw.githubusercontent.com/hasadna/hasadna-k8s/master/apps_travis_script.sh | bash /dev/stdin install_helm;
