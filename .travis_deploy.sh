@@ -8,8 +8,8 @@ OPS_REPO_SLUG="OpenBudget/budgetkey-k8s"
 OPS_REPO_BRANCH="${TRAVIS_BRANCH##*/}"
 ./run_docker_ops.sh "${K8S_ENVIRONMENT_NAME}" '
     RES=0;
-    curl -L https://raw.githubusercontent.com/hasadna/hasadna-k8s/master/apps_travis_script.sh > apps_travis_script.sh
-    chmod +x apps_travis_script.sh
+    curl -L https://raw.githubusercontent.com/hasadna/hasadna-k8s/master/apps_travis_script.sh > apps_travis_script.sh;
+    chmod +x apps_travis_script.sh;
     ./apps_travis_script.sh install_helm;
     ./kubectl_patch_charts.py "'"${TRAVIS_COMMIT_MESSAGE}"'" --dry-run
     PATCH_RES=$?
