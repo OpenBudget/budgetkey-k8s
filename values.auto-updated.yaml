@@ -11,7 +11,7 @@ app-profile:
 app-search:
   image: budgetkey/budgetkey-app-search:f63d99250b04fe26153b8eb2def24da06d70c543
 data-api:
-  image: budgetkey/open-budget-data-api:c1fe9eec0dbb62bd56d766b1caba4c481beaceb0
+  image: budgetkey/open-budget-data-api:3d5ca953e3e86614da423672f7a1a10c75a6e9f2
 data-input:
   dataInputServerImage: budgetkey/budgetkey-app-data-input:efce2931566f521186c1f8ef38e22a689d576b59
 elasticsearch:
