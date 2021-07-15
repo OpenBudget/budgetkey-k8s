@@ -33,4 +33,4 @@ search-api:
 socialmap:
   mainpageImage: budgetkey/socialmap-app-main-page:b90903b291f6cb0412854dcb5e8279ed48a82be1
 themes:
-  themesImage: budgetkey/budgetkey-app-themes:3689a4ee603d6e9a535e6f193bfdf864ba906528
+  themesImage: budgetkey/budgetkey-app-themes:5bace58bbb294bc028ae5f3d1ce22aaa2664a933
