@@ -60,7 +60,7 @@ auth:
 data-api:
   enabled: true
   resources: >
-    {"requests": {"cpu": "25m", "memory": "363Mi"}, "limits": {"cpu": "78m", "memory": "900Mi"}}
+    {"requests": {"cpu": "500m", "memory": "1Gi"}, "limits": {"cpu": "500m", "memory": "1Gi"}}
 
 db-backup:
   enabled: false
@@ -96,7 +96,7 @@ pipelines:
 postgres:
   enabled: true
   resources: >
-    {"requests": {"cpu": "750m", "memory": "1500Mi"}, "limits": {"memory": "3Gi"}}
+    {"requests": {"cpu": "750m", "memory": "3Gi"}, "limits": {"memory": "3Gi"}}
 
 search-api:
   enabled: true
