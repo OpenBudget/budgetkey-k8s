@@ -65,7 +65,7 @@ data:
   servers.conf: |
     server {
       server_name data.obudget.org;
-      return 301 https://app.redash.io/hasadna/;
+      return 301 https://redash.hasadna.org.il/;
     }
 
     server {
