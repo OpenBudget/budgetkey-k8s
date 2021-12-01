@@ -60,9 +60,16 @@ data:
     }
 
   default_server.conf: |
-    server_name  next.obudget.org;
+    server_name  next.obudget.org socialpro.org.il;
 
   servers.conf: |
+    server {
+      server_name next.obudget.org;
+      location / {
+        proxy_pass http://budgetkey-app-main-page:8000/;
+      }
+    }
+
     server {
       server_name data.obudget.org;
       return 301 https://redash.hasadna.org.il/;
@@ -177,10 +184,6 @@ data:
 
     location = /basic_status {
         stub_status;
-    }
-
-    location / {
-        proxy_pass http://budgetkey-app-main-page:8000/;
     }
 
 {{ end }}
