@@ -67,14 +67,14 @@ data:
     server_name  next.obudget.org;
 
   servers.conf: |
-      server {
-          server_name socialpro.org.il www.socialpro.org.il;
-          include "/etc/nginx/server-rules.conf";
+    server {
+      server_name socialpro.org.il www.socialpro.org.il;
+      include "/etc/nginx/server-rules.conf";
 
-          location / {
-            proxy_pass http://budgetkey-app-main-page:8000/;
-          }
+      location / {
+        proxy_pass http://budgetkey-app-main-page:8000/;
       }
+    }
 
     server {
       server_name data.obudget.org;
