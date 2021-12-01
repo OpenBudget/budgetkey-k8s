@@ -82,6 +82,9 @@ nginx:
     - pipelines.obudget.org
     - dgp.obudget.org
     - data-input.obudget.org
+    - socialpro.org.il
+    - www.socialpro.org.il
+
 
 pipelines:
   # see the pipelines configmap for the required keys
