@@ -53,6 +53,10 @@ data:
             proxy_set_header Host $http_host;
             proxy_redirect off;
             include "/etc/nginx/server-rules.conf";
+
+            location / {
+              proxy_pass http://budgetkey-app-main-page:8000/;
+            }
         }
 
         include /etc/nginx/servers.conf;
@@ -60,15 +64,17 @@ data:
     }
 
   default_server.conf: |
-    server_name  next.obudget.org socialpro.org.il;
+    server_name  next.obudget.org;
 
   servers.conf: |
-    server {
-      server_name next.obudget.org;
-      location / {
-        proxy_pass http://budgetkey-app-main-page:8000/;
+      server {
+          server_name socialpro.org.il www.socialpro.org.il;
+          include "/etc/nginx/server-rules.conf";
+
+          location / {
+            proxy_pass http://budgetkey-app-main-page:8000/;
+          }
       }
-    }
 
     server {
       server_name data.obudget.org;
