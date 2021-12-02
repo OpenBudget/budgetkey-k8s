@@ -72,7 +72,7 @@ data:
       include "/etc/nginx/server-rules.conf";
 
       location / {
-        proxy_pass http://budgetkey-app-main-page:8000/;
+        proxy_pass http://budgetkey-app-generic-item:8000;
       }
     }
 
