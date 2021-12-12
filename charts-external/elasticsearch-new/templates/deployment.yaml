@@ -24,7 +24,8 @@ spec:
         resources: {{ .Values.resources }}
         env:
         - name: ES_JAVA_OPTS
-          value: {{ .Values.ES_JAVA_OPTS | quote }}
+          # -Dlog4j2.formatMsgNoLookups=true is required to mitigate CVE-2021-44228
+          value: {{ printf "-Dlog4j2.formatMsgNoLookups=true %s" .Values.ES_JAVA_OPTS | quote }}
         - name: xpack.security.enabled
           value: "false"
         - name: discovery.type
