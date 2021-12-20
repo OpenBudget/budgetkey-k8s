@@ -30,7 +30,7 @@ data:
 
         access_log  /var/log/nginx/access.log main_ext;
 
-        proxy_cache_path /var/run/cache levels=1:2 keys_zone=my_cache:10m max_size=10g inactive=60m use_temp_path=off;
+        # proxy_cache_path /var/run/cache levels=1:2 keys_zone=my_cache:10m max_size=10g inactive=60m use_temp_path=off;
 
         sendfile        on;
         #tcp_nopush     on;
@@ -141,7 +141,7 @@ data:
     }
 
     location /api/ {
-        proxy_cache my_cache;
+        # proxy_cache my_cache;
         proxy_pass http://open-budget-data-api:8000;
     }
 
