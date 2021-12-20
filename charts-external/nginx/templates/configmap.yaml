@@ -15,8 +15,6 @@ data:
         worker_connections  1024;
     }
 
-    proxy_cache_path /var/run/cache levels=1:2 keys_zone=my_cache:10m max_size=10g inactive=60m use_temp_path=off;
-
     http {
         include       /etc/nginx/mime.types;
         default_type  application/octet-stream;
@@ -31,6 +29,8 @@ data:
                         'cs=$upstream_cache_status' ;
 
         access_log  /var/log/nginx/access.log main_ext;
+
+        proxy_cache_path /var/run/cache levels=1:2 keys_zone=my_cache:10m max_size=10g inactive=60m use_temp_path=off;
 
         sendfile        on;
         #tcp_nopush     on;
