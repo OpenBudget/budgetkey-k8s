@@ -34,6 +34,6 @@ LOG_LABELS="app=app-generic-item
 
 for label in $LOG_LABELS; do
     echo "${label}"
-    kubectl logs -l "${label}" $PARAMS
+    kubectl -n budgetkey logs -l "${label}" $PARAMS
     [ "${PAUSE}" == "1" ] && read -p "Press <Return> to continue..."
 done
