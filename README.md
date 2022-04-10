@@ -2,67 +2,22 @@
 
 The Budgetkey Kubernetes environment manages most Budgetkey infrastructure as code.
 
-## Interacting with the environment
+The root of this repository is a Helm chart with helm charts under [charts-external](/charts-external) defined as dependencies of this chart.
+The dependencies are defined in [Chart.yaml](/Chart.yaml). 
 
-### Prerequisites
+Values are defined in the following Helm value files:
 
-* Using Linux / OSX? Use [Docker](https://docs.docker.com/install/)
-* Using Windows? Use [Google Cloud Shell](https://cloud.google.com/shell/docs/quickstart)
+* [values-global.yaml](/values-global.yaml) - global values - should be relevant for any environment
+* [values-hasadna.yaml](/values-hasadna.yaml) - values which are specific for Hasadna's production Kubernetes cluster
+* [values.auto-updated.yaml](/values.auto-updated.yaml) - values which are auto-updated by CI/CD from other repositories.
 
-### Setting up and connecting to the environment
+This chart is continuously synced to Hasadna cluster via ArgoCD as defined [here](https://github.com/hasadna/hasadna-k8s/blob/master/apps/hasadna-argocd/values-hasadna.yaml).
 
-#### Local infrastructure development using Minikube
-
-* Install Minikube according to the instructions in latest [release notes](https://github.com/kubernetes/minikube/releases)
-* Create the local minikube cluster
-  * `minikube start`
-* Verify you are connected to the cluster
-  * `kubectl get nodes`
-* Install Helm client
-  * use the hasadna-k8s script to get the correct version -
-  * `curl -L https://raw.githubusercontent.com/hasadna/hasadna-k8s/master/apps_travis_script.sh | bash /dev/stdin install_helm`
-  * if you have problems, refer to helm docs - [helm client](https://docs.helm.sh/using_helm/#installing-the-helm-client)
-* Verify helm version on both client and server
-  * `helm2 version`
-* Clone the budgetkey-k8s repo
-  * `git clone https://github.com/OpenBudget/budgetkey-k8s.git`
-* Change to the budgetkey-k8s directory
-  * `cd budgetkey-k8s`
-* Switch to the minikube environment
-  * `source switch_environment.sh minikube`
+Local development can be done by installing either this root helm chart or any of the dependant charts to your local Kubernetes cluster using Helm.
 
 ## Common Tasks
 
 All code assumes you are inside a bash shell with required dependencies and connected ot the relevant environment
-
-### Deployment
-
-Deployments are managed using [Helm3](https://github.com/kubernetes/helm)
-
-You should make sure you have the correct helm client version using hasadna-k8s script:
-
-```
-curl -L https://raw.githubusercontent.com/hasadna/hasadna-k8s/master/apps_travis_script.sh | bash /dev/stdin install_helm
-```
-
-Deploy all charts (if dry run succeeds)
-
-```
-./helm_upgrade_all.sh --install --debug --dry-run && ./helm_upgrade_all.sh --install
-```
-
-You can also upgrade a single chart
-
-```
-./helm_upgrade_external_chart.sh socialmap
-```
-
-The helm_upgrade scripts forward all arguments to the underlying `helm upgrade` command, some useful arguments:
-
-* For initial installation you should add `--install`
-* Depending on the changes you might need to add `--recreate-pods` or `--force`
-* For debugging you can also use `--debug` and `--dry-run`
-
 
 ### Adding an external app
 
@@ -71,20 +26,6 @@ The helm_upgrade scripts forward all arguments to the underlying `helm upgrade` 
   * Copy the relevant steps from an existing app's [.travis.yml](https://github.com/OriHoch/socialmap-app-main-page/blob/master/.travis.yml)
   * Also, suggested to keep deployment notes in the app's [README.md](https://github.com/OriHoch/socialmap-app-main-page/blob/master/README.md#deployment)
   * Follow the app's README to setup Docker and GitHub credentials on Travis
-
-### Creating a new environment
-
-You can create a new environment by copying an existing environment directory and modifying the values.
-
-See the [sk8s environments documentation](https://github.com/OriHoch/sk8s/blob/master/environments/README.md#environments) for more details about environments, namespaces and clusters.
-
-### Modifying configuration values
-
-The default values are at `values.yaml` - these are used in the chart template files (under `templates`, `charts`  and `charts-external` directories)
-
-Each environment can override these values using `environments/ENVIRONMENT_NAME/values.yaml`
-
-Finally, automation scripts write values to `values.auto-updated.yaml`
 
 ### Modifying secrets
 
@@ -104,31 +45,3 @@ You can use the following snippet in the secrets.sh script to check if secret ex
 ! kubectl describe secret <SECRET_NAME> &&\
   kubectl create secret generic <SECRET_NAME> <CREATE_SECRET_PARAMS>
 ```
-
-### Continuous Deployment
-
-* Enable Travis for the repo (run `travis enable` from the repo directory)
-* Create a `.travis.yml` file based on existing file and modify according to your requirements
-
-Depending on what you intend to do in your continuous deployment script you may need some of the following:
-
-To connect and run commands on a Google Kubernetes Engine environment:
-
-* Create a Google Compute Cloud service account, download the service account json file
-    * set the service account json on the app's travis
-* `travis encrypt-file ../budgetkey-k8s/secret-budgetkey-k8s-ops.json budgetkey-k8s-ops-secret.json.enc`
-* Copy the `openssl` command output by the above command and modify in the .travis-yml
-* The -out param should be `-out k8s-ops-secret.json`
-
-To push changes to GitHub
-
-* Create a GitHub machine user according to [these instructions](https://developer.github.com/v3/guides/managing-deploy-keys/#machine-users).
-  * Give this user write permissions to the k8s repo.
-* Add the GitHub machine user secret key to travis on the app's repo:
-  * `travis env set --private K8S_OPS_GITHUB_REPO_TOKEN "*****"`
-
-To build and push docker images
-
-* `travis env set --private DOCKER_USERNAME "***"`
-* `travis env set --private DOCKER_PASSWORD "***"`
-
