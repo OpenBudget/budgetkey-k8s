@@ -7,3 +7,5 @@ spec:
     apiVersion: apps/v1
     kind: deployment
     name: app-profile
+  updatePolicy:
+    updateMode: "Off"
