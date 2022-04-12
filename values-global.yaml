@@ -12,6 +12,11 @@ app-main-page:
   resources: >
     {"requests": {"cpu": "25m", "memory": "256Mi"}, "limits": {"cpu": "78m", "memory": "536Mi"}}
 
+app-source-of-money:
+  enabled: true
+  resources: >
+    {"requests": {"cpu": "25m", "memory": "256Mi"}, "limits": {"cpu": "78m", "memory": "536Mi"}}
+
 app-profile:
   enabled: true
   resources: >

@@ -1,0 +1,31 @@
+{{ if .Values.enabled }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-source-of-money
+spec:
+  selector:
+    matchLabels:
+      app: app-source-of-money
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: app-source-of-money
+    spec:
+      terminationGracePeriodSeconds: 5
+      containers:
+      - name: app-source-of-money
+        image: {{ .Values.image | default "inbararan/source-of-money:latest" | quote }}
+        ports:
+        - containerPort: 8000
+        resources: {{ .Values.resources }}
+        volumeMounts:
+        - name: themes
+          mountPath: /themes
+      volumes:
+      - name: themes
+        hostPath:
+          path: /var/budgetkey-themes
+          type: DirectoryOrCreate
+{{ end }}
