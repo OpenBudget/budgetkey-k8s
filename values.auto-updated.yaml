@@ -10,6 +10,8 @@ app-profile:
   image: budgetkey/budgetkey-app-profile:e09993dfa91b1140b6ab9cc377b2b838f6e525cd
 app-search:
   image: budgetkey/budgetkey-app-search:1c7b84b66c2fcd0b1186ccf83192133fb4e6ce14
+app-source-of-money:
+  image: budgetkey/budgetkey-app-source-of-money:1f8fcd6bd5075a423e0420c3202986687a76d901
 data-api:
   image: budgetkey/open-budget-data-api:22e3ed1791698e2f2ffa7b8ce9b62a9f4c533b7b
 data-input:
