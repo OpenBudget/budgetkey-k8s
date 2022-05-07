@@ -11,7 +11,7 @@ app-profile:
 app-search:
   image: budgetkey/budgetkey-app-search:1c7b84b66c2fcd0b1186ccf83192133fb4e6ce14
 app-source-of-money:
-  image: budgetkey/budgetkey-app-source-of-money:f090cde54ca705e317e63e362448f24b3c0c8dcd
+  image: budgetkey/budgetkey-app-source-of-money:153ae45b137a201d2c91f1fcc50daa7699524fdb
 data-api:
   image: budgetkey/open-budget-data-api:22e3ed1791698e2f2ffa7b8ce9b62a9f4c533b7b
 data-input:
