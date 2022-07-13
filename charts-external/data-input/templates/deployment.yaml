@@ -58,13 +58,13 @@ spec:
         - name: GOOGLE_SECRET
           valueFrom: {"secretKeyRef":{"name":"data-input", "key":"GOOGLE_SECRET"}}
         - name: DATABASE_URL
-          value: postgresql://postgres:postgres@localhost/auth
+          value: {"secretKeyRef":{"name":"data-input", "key":"DATABASE_URL__AUTH"}}
         - name: DATASETS_DATABASE_URL
           value: postgresql://postgres:postgres@localhost/datasets
         - name: AIRFLOW__CORE__SQL_ALCHEMY_CONN
           value: postgresql://postgres:postgres@localhost/airflow
         - name: ETLS_DATABASE_URL
-          value: postgresql://postgres:postgres@localhost/etls
+          value: {"secretKeyRef":{"name":"data-input", "key":"DATABASE_URL__ETLS"}}
         - name: BUCKET_NAME
           value: data-input
         - name: AWS_ACCESS_KEY_ID
