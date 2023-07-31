@@ -13,7 +13,7 @@ app-search:
 app-source-of-money:
   image: budgetkey/budgetkey-app-source-of-money:9d7a9b7e098449e8578869675c711dd3ea1ef6d2
 data-api:
-  image: budgetkey/open-budget-data-api:b7efa225cc35d9e9e1578165a5517554207e38b5
+  image: budgetkey/open-budget-data-api:484612dc57eb1e284f89c00bb9fa0202bd7768cf
 data-input:
   dataInputServerImage: budgetkey/budgetkey-app-data-input:15e4426ace195d23a518e7dafd9243ff0a33925b
 elasticsearch:
