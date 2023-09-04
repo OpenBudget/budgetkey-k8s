@@ -41,9 +41,9 @@ spec:
       - name: server
         image: {{ .Values.dataInputServerImage | default "budgetkey/budgetkey-app-data-input" | quote }}
         resources: {"requests": {"cpu": "247m", "memory": "1953Mi"}, "limits": {"cpu": "500m", "memory": "4000Mi"}}
-        securityContext:
-          runAsGroup: 0
-          runAsUser: 0
+        # securityContext:
+        #   runAsGroup: 0
+        #   runAsUser: 0
         ports:
         - containerPort: 5000
         env:
