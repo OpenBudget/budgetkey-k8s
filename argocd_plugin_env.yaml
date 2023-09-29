@@ -1,0 +1,6 @@
+- name: HELM_ARGS
+  value: -f values-global.yaml  -f values-hasadna.yaml  -f values.auto-updated.yaml
+- name: INIT_PLUGIN_FUNCTIONS
+  value: init_helm
+- name: INIT_HELM_DEPENDENCY_BUILD
+  value: "true"

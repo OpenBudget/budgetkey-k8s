@@ -11,7 +11,7 @@ Values are defined in the following Helm value files:
 * [values-hasadna.yaml](/values-hasadna.yaml) - values which are specific for Hasadna's production Kubernetes cluster
 * [values.auto-updated.yaml](/values.auto-updated.yaml) - values which are auto-updated by CI/CD from other repositories.
 
-This chart is continuously synced to Hasadna cluster via ArgoCD as defined [here](https://github.com/hasadna/hasadna-k8s/blob/master/apps/hasadna-argocd/values-hasadna.yaml).
+This chart is continuously synced to Hasadna cluster via ArgoCD as defined [here](https://github.com/hasadna/hasadna-k8s/blob/master/apps/hasadna-argocd/templates/).
 
 Local development can be done by installing either this root helm chart or any of the dependant charts to your local Kubernetes cluster using Helm.
 
