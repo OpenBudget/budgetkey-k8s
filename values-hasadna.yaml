@@ -72,6 +72,7 @@ nginx:
   # prevents nginx from scheduling on the same node as elasticsearch
   enableAntiAffinity: false
   hosts:
+    - new.obudget.org
     - next.obudget.org
     - data.obudget.org
     - socialmap.org.il
