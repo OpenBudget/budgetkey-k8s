@@ -70,6 +70,63 @@ data:
 
   servers.conf: |
     server {
+      server_name new.obudget.org;
+
+      location /search/ {
+          proxy_pass http://open-budget-search-api:8000;
+      }
+
+      location /get/ {
+          proxy_pass http://open-budget-search-api:8000;
+      }
+
+      location /api/ {
+          proxy_cache my_cache;
+          proxy_pass http://open-budget-data-api:8000;
+      }
+
+      location /list {
+          proxy_pass http://budgetkey-list-manager:8000;
+      }
+
+      location /auth/ {
+          proxy_pass http://auth:8000;
+      }
+
+      location /datapackages {
+        proxy_pass http://budgetkey-data-pipelines;
+      }
+
+      location /_fonts {
+        root /var/;
+        if ($request_filename ~ "^.+(eot|svg|ttf|otf|woff2|woff)$") {
+            add_header "Access-Control-Allow-Origin" "*";
+            add_header "Access-Control-Allow-Methods" "POST, GET, OPTIONS";
+        }
+        autoindex on;
+        add_header Access-Control-Allow-Origin *;
+      }
+
+      location /govbuy/ {
+          proxy_pass http://openprocure-app-main-page:8000;
+      }
+
+      location /dashboards/ {
+          proxy_pass http://budgetkey-app-dashboards:8000;
+      }
+
+      location /income/ {
+          proxy_pass http://budgetkey-app-source-of-money:8000;
+      }
+
+      location = /basic_status {
+          stub_status;
+      }
+
+      proxy_pass http://budgetkey-app:4000;
+    }
+
+    server {
       server_name socialpro.org.il www.socialpro.org.il;
       include "/etc/nginx/server-rules.conf";
 

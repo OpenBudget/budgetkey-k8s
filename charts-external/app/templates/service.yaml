@@ -4,7 +4,7 @@ metadata:
   name: budgetkey-app
 spec:
   ports:
-  - name: '8000'
-    port: 8000
+  - name: '4000'
+    port: 4000
   selector:
     app: app
