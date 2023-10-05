@@ -8,7 +8,8 @@ else
     PARAMS="$@"
 fi
 
-LOG_LABELS="app=app-generic-item
+LOG_LABELS="app=app
+            app=app-generic-item
             app=app-main-page
             app=app-profile
             app=app-about

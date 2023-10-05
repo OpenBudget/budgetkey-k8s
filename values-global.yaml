@@ -2,6 +2,11 @@ global:
   persistentDataVolume:
     type: emptyDir
 
+app:
+  enabled: true
+  resources: >
+    {"requests": {"cpu": "25m", "memory": "256Mi"}, "limits": {"cpu": "165m", "memory": "641Mi"}}
+
 app-generic-item:
   enabled: true
   resources: >
