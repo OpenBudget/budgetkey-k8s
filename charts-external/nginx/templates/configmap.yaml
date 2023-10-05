@@ -123,6 +123,9 @@ data:
           stub_status;
       }
 
+      location / {
+        proxy_pass http://budgetkey-app:4000;
+      }
     }
 
     server {
