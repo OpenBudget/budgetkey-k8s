@@ -5,7 +5,7 @@ global:
 app:
   enabled: true
   resources: >
-    {"requests": {"cpu": "25m", "memory": "256Mi"}, "limits": {"cpu": "165m", "memory": "641Mi"}}
+    {"requests": {"cpu": "250m", "memory": "512Mi"}, "limits": {"cpu": "1000m", "memory": "1Gi"}}
 
 app-generic-item:
   enabled: true

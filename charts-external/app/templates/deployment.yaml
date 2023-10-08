@@ -18,6 +18,6 @@ spec:
       - name: app
         image: {{ .Values.image | default "budgetkey/budgetkey-app:latest" | quote }}
         ports:
-        - containerPort: 8000
+        - containerPort: 4000
         resources: {{ .Values.resources }}
 {{ end }}
