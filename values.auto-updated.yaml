@@ -1,5 +1,5 @@
 app:
-  image: budgetkey/budgetkey-app:d258b62e11d6465db0d6a2cc0dc9abfb9a72850b
+  image: budgetkey/budgetkey-app:e18c9cd2ff4b507a019baa8416398f9cf032b542
 app-about:
   image: budgetkey/budgetkey-app-about:022150a2124f7f46ff267ac07e42521de21fd856
 app-dashboards:
