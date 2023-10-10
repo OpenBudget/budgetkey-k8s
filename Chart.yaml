@@ -69,9 +69,6 @@ dependencies:
 - name: search-api
   version: v0.0.0
   repository: file://charts-external/search-api
-- name: search-api-new
-  version: v0.0.0
-  repository: file://charts-external/search-api-new
 - name: socialmap
   version: v0.0.0
   repository: file://charts-external/socialmap
