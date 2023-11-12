@@ -6,6 +6,9 @@ dependencies:
 - name: app
   version: v0.0.0
   repository: file://charts-external/app
+- name: api
+  version: v0.0.0
+  repository: file://charts-external/api
 - name: app-about
   version: v0.0.0
   repository: file://charts-external/app-about

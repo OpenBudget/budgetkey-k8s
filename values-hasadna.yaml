@@ -129,3 +129,5 @@ search-api:
   INDEX_NAME: 'budgetkey02'
   # was: budgetkey_20180705090302400922_aa29c55d'
 
+api:
+  secretName: api
