@@ -21,13 +21,8 @@ spec:
         - containerPort: 5000
         resources: {{ .Values.resources }}
         env:
-        {{ if .Values.secretName }}
         - name: DATABASE_READONLY_URL
           valueFrom: {secretKeyRef: {name: {{ .Values.secretName | quote }}, key: DATABASE_READONLY_URL}}
-        {{ else }}
-        - name: DATABASE_READONLY_URL
-          value: postgresql://budgetkey:123456@postgres/budgetkey
-        {{ end }}
         - name: DATABASE_PRIVATE_URL
           valueFrom: {secretKeyRef: {name: {{ .Values.secretName | quote }}, key: DATABASE_PRIVATE_URL}}
         - name: ES_HOST
@@ -35,16 +30,17 @@ spec:
         - name: ES_PORT
           value: "9200"
         - name: INDEX_NAME
-          value: {{ .Values.INDEX_NAME | default "budgetkey" | quote }}
+          value: {{ .Values.indexName | default "budgetkey" | quote }}
         - name: EXTERNAL_ADDRESS
           value: {{ .Values.global.serverName | default "next.obudget.org" | quote }}
-        envFrom:
-        - configMapRef:
-            name: auth
-        {{ if .Values.secretName }}
-        # override the values from configmap
-        - secretRef:
-            name: {{ .Values.secretName | quote }}
-        {{ end }}
+
+        - name: GOOGLE_KEY
+          valueFrom: {secretKeyRef: {name: {{ .Values.secretName | quote }}, key: GOOGLE_KEY}}
+        - name: GOOGLE_SECRET
+          valueFrom: {secretKeyRef: {name: {{ .Values.secretName | quote }}, key: GOOGLE_SECRET}}
+        - name: PRIVATE_KEY
+          valueFrom: {secretKeyRef: {name: {{ .Values.secretName | quote }}, key: PRIVATE_KEY}}
+        - name: PUBLIC_KEY
+          valueFrom: {secretKeyRef: {name: {{ .Values.secretName | quote }}, key: PUBLIC_KEY}}
 
 {{ end }}
