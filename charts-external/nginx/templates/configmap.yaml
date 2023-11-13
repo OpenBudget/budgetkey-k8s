@@ -133,16 +133,16 @@ data:
 
   server-rules.conf: |
     location /search/ {
-        proxy_pass http://open-budget-search-api:8000;
+        proxy_pass http://budgetkey-api:5000;
     }
 
     location /get/ {
-        proxy_pass http://open-budget-search-api:8000;
+        proxy_pass http://budgetkey-api:5000;
     }
 
     location /api/ {
         proxy_cache my_cache;
-        proxy_pass http://open-budget-data-api:8000;
+        proxy_pass http://budgetkey-api:5000;
     }
 
     location /list {
@@ -150,7 +150,7 @@ data:
     }
 
     location /auth/ {
-        proxy_pass http://auth:8000;
+        proxy_pass http://budgetkey-api:5000;
     }
 
     location /datapackages {
