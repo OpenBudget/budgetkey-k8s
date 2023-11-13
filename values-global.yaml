@@ -68,12 +68,12 @@ emails:
     {"requests": {"cpu": "93m", "memory": "1658Mi"}, "limits": {"cpu": "1000m", "memory": "5000Mi"}}
 
 auth:
-  enabled: true
+  enabled: false
   resources: >
     {"requests": {"cpu": "25m", "memory": "256Mi"}, "limits": {"cpu": "78m", "memory": "536Mi"}}
 
 data-api:
-  enabled: true
+  enabled: false
   resources: >
     {"requests": {"cpu": "500m", "memory": "1Gi"}, "limits": {"cpu": "500m", "memory": "1Gi"}}
 
@@ -114,12 +114,12 @@ postgres:
     {"requests": {"cpu": "750m", "memory": "3Gi"}, "limits": {"memory": "3Gi"}}
 
 search-api:
-  enabled: true
+  enabled: false
   resources: >
     {"requests": {"cpu": "25m", "memory": "256Mi"}, "limits": {"cpu": "165m", "memory": "536Mi"}}
 
 search-api-new:
-  enabled: true
+  enabled: false
   resources: >
     {"requests": {"cpu": "25m", "memory": "256Mi"}, "limits": {"cpu": "165m", "memory": "536Mi"}}
 
