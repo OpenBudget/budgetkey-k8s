@@ -9,33 +9,33 @@ dependencies:
 - name: api
   version: v0.0.0
   repository: file://charts-external/api
-- name: app-about
-  version: v0.0.0
-  repository: file://charts-external/app-about
+# - name: app-about
+#   version: v0.0.0
+#   repository: file://charts-external/app-about
 - name: app-dashboards
   version: v0.0.0
   repository: file://charts-external/app-dashboards
-- name: app-generic-item
-  version: v0.0.0
-  repository: file://charts-external/app-generic-item
-- name: app-main-page
-  version: v0.0.0
-  repository: file://charts-external/app-main-page
+# - name: app-generic-item
+#   version: v0.0.0
+#   repository: file://charts-external/app-generic-item
+# - name: app-main-page
+#   version: v0.0.0
+#   repository: file://charts-external/app-main-page
 - name: app-source-of-money
   version: v0.0.0
   repository: file://charts-external/app-source-of-money
-- name: app-profile
-  version: v0.0.0
-  repository: file://charts-external/app-profile
-- name: app-search
-  version: v0.0.0
-  repository: file://charts-external/app-search
-- name: auth
-  version: v0.0.0
-  repository: file://charts-external/auth
-- name: data-api
-  version: v0.0.0
-  repository: file://charts-external/data-api
+# - name: app-profile
+#   version: v0.0.0
+#   repository: file://charts-external/app-profile
+# - name: app-search
+#   version: v0.0.0
+#   repository: file://charts-external/app-search
+# - name: auth
+#   version: v0.0.0
+#   repository: file://charts-external/auth
+# - name: data-api
+#   version: v0.0.0
+#   repository: file://charts-external/data-api
 - name: data-input
   version: v0.0.0
   repository: file://charts-external/data-input
@@ -69,9 +69,9 @@ dependencies:
 - name: postgres
   version: v0.0.0
   repository: file://charts-external/postgres
-- name: search-api
-  version: v0.0.0
-  repository: file://charts-external/search-api
+# - name: search-api
+#   version: v0.0.0
+#   repository: file://charts-external/search-api
 - name: socialmap
   version: v0.0.0
   repository: file://charts-external/socialmap
