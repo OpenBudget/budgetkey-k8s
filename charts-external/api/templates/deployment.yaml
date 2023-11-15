@@ -42,5 +42,13 @@ spec:
           valueFrom: {secretKeyRef: {name: {{ .Values.secretName | quote }}, key: PRIVATE_KEY}}
         - name: PUBLIC_KEY
           valueFrom: {secretKeyRef: {name: {{ .Values.secretName | quote }}, key: PUBLIC_KEY}}
-
+        volumeMounts:
+          - name: data
+            mountPath: /var/run/budgetkey-api
+            subPath: budgetkey-api
+      volumes:
+      - name: data
+        nfs:
+          server: {{ .Values.nfsServer | quote }}
+          path: {{ .Values.nfsPath | quote }}
 {{ end }}
