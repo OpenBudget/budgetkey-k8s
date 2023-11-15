@@ -142,7 +142,7 @@ data:
 
     location /api/ {
         proxy_cache my_cache;
-        proxy_pass http://api:5000;
+        proxy_pass http://api:5001;
     }
 
     location /list {

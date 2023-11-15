@@ -7,7 +7,7 @@ spec:
   selector:
     matchLabels:
       app: api
-  replicas: 2
+  replicas: 1
   template:
     metadata:
       labels:
@@ -21,8 +21,10 @@ spec:
         - containerPort: 5000
         resources: {{ .Values.resources }}
         env:
-        - name: DATABASE_READONLY_URL
-          valueFrom: {secretKeyRef: {name: {{ .Values.secretName | quote }}, key: DATABASE_READONLY_URL}}
+        - name: PORT
+          value: "5000"
+        - name: SERVICES
+          value: auth,es,lists
         - name: DATABASE_PRIVATE_URL
           valueFrom: {secretKeyRef: {name: {{ .Values.secretName | quote }}, key: DATABASE_PRIVATE_URL}}
         - name: ES_HOST
@@ -42,6 +44,27 @@ spec:
           valueFrom: {secretKeyRef: {name: {{ .Values.secretName | quote }}, key: PRIVATE_KEY}}
         - name: PUBLIC_KEY
           valueFrom: {secretKeyRef: {name: {{ .Values.secretName | quote }}, key: PUBLIC_KEY}}
+        volumeMounts:
+          - name: data
+            mountPath: /var/run/budgetkey-api
+            subPath: budgetkey-api
+      volumes:
+      - name: data
+        nfs:
+          server: {{ .Values.nfsServer | quote }}
+          path: {{ .Values.nfsPath | quote }}
+      - name: slow-api
+        image: {{ .Values.image | default "budgetkey/budgetkey-api:latest" | quote }}
+        ports:
+        - containerPort: 5001
+        resources: {{ .Values.resources }}
+        env:
+        - name: PORT
+          value: "5001"
+        - name: SERVICES
+          value: db
+        - name: DATABASE_READONLY_URL
+          valueFrom: {secretKeyRef: {name: {{ .Values.secretName | quote }}, key: DATABASE_READONLY_URL}}
         volumeMounts:
           - name: data
             mountPath: /var/run/budgetkey-api
