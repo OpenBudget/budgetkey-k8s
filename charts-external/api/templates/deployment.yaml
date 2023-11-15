@@ -48,11 +48,6 @@ spec:
           - name: data
             mountPath: /var/run/budgetkey-api
             subPath: budgetkey-api
-      volumes:
-      - name: data
-        nfs:
-          server: {{ .Values.nfsServer | quote }}
-          path: {{ .Values.nfsPath | quote }}
       - name: slow-api
         image: {{ .Values.image | default "budgetkey/budgetkey-api:latest" | quote }}
         ports:
