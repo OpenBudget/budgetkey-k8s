@@ -46,6 +46,8 @@ spec:
           valueFrom: {secretKeyRef: {name: {{ .Values.secretName | quote }}, key: PRIVATE_KEY}}
         - name: PUBLIC_KEY
           valueFrom: {secretKeyRef: {name: {{ .Values.secretName | quote }}, key: PUBLIC_KEY}}
+        - name: SECRET_KEY
+          valueFrom: {secretKeyRef: {name: {{ .Values.secretName | quote }}, key: SECRET_KEY}}
         volumeMounts:
           - name: data
             mountPath: /var/run/budgetkey-api
