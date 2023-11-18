@@ -66,6 +66,9 @@ spec:
           value: db
         - name: DATABASE_READONLY_URL
           valueFrom: {secretKeyRef: {name: {{ .Values.secretName | quote }}, key: DATABASE_READONLY_URL}}
+        - name: SECRET_KEY
+          value: defunct
+
         volumeMounts:
           - name: data
             mountPath: /var/run/budgetkey-api
