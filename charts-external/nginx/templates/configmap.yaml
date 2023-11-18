@@ -149,6 +149,10 @@ data:
         proxy_pass http://budgetkey-list-manager:8000;
     }
 
+    location /lists {
+        proxy_pass http://api:5000;
+    }
+
     location /auth/ {
         proxy_pass http://api:5000;
     }
