@@ -23,6 +23,8 @@ spec:
         env:
         - name: PORT
           value: "5000"
+        - name: TIMEOUT
+          value: "30"
         - name: SERVICES
           value: auth,es,lists
         - name: DATABASE_PRIVATE_URL
@@ -56,6 +58,8 @@ spec:
         env:
         - name: PORT
           value: "5001"
+        - name: TIMEOUT
+          value: "180"
         - name: SERVICES
           value: db
         - name: DATABASE_READONLY_URL
