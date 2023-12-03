@@ -6,13 +6,14 @@ metadata:
 data:
   nginx.conf: |
     user  nginx;
-    worker_processes  1;
+    worker_processes  16;
 
     error_log  /var/log/nginx/error.log warn;
     pid        /var/run/nginx.pid;
+    worker_rlimit_nofile 8192;
 
     events {
-        worker_connections  1024;
+        worker_connections  4096;
     }
 
     http {
@@ -43,6 +44,11 @@ data:
 
         gzip  on;
 
+        upstream api-server {
+            server api:5000;
+            keepalive 32;
+        }
+
         server {
             listen 80 default_server;
             include /etc/nginx/default_server.conf;
@@ -57,6 +63,8 @@ data:
             include "/etc/nginx/server-rules.conf";
 
             location / {
+              proxy_http_version 1.1;
+              proxy_set_header   "Connection" "";
               proxy_pass http://budgetkey-app:4000;
             }
         }
@@ -133,28 +141,40 @@ data:
 
   server-rules.conf: |
     location /search/ {
-        proxy_pass http://api:5000;
+        proxy_http_version 1.1;
+        proxy_set_header   "Connection" "";
+        proxy_pass http://api-server;
     }
 
     location /get/ {
-        proxy_pass http://api:5000;
+        proxy_http_version 1.1;
+        proxy_set_header   "Connection" "";
+        proxy_pass http://api-server;
     }
 
     location /api/ {
+        proxy_http_version 1.1;
+        proxy_set_header   "Connection" "";
         proxy_cache my_cache;
         proxy_pass http://api:5001;
     }
 
     location /list {
+        proxy_http_version 1.1;
+        proxy_set_header   "Connection" "";
         proxy_pass http://budgetkey-list-manager:8000;
     }
 
     location /lists {
-        proxy_pass http://api:5000;
+        proxy_http_version 1.1;
+        proxy_set_header   "Connection" "";
+        proxy_pass http://api-server;
     }
 
     location /auth/ {
-        proxy_pass http://api:5000;
+        proxy_http_version 1.1;
+        proxy_set_header   "Connection" "";
+        proxy_pass http://api-server;
     }
 
     location /datapackages {
