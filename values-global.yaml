@@ -10,7 +10,7 @@ app:
 api:
   enabled: true
   resources: >
-    {"requests": {"cpu": "500m", "memory": "1Gi"}, "limits": {"cpu": "500m", "memory": "1Gi"}}
+    {"requests": {"cpu": "1500m", "memory": "2Gi"}, "limits": {"cpu": "2500m", "memory": "3Gi"}}
 
 app-generic-item:
   enabled: false
