@@ -1,0 +1,16 @@
+{{- if and .Values.enabled .Values.hosts }}
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: postgres
+spec:
+  rules:
+  {{ range .Values.hosts }}
+  - host: {{ . }}
+    http:
+      paths:
+      - backend:
+          serviceName: postgres
+          servicePort: 5432
+  {{ end }}
+{{- end }}

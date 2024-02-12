@@ -124,6 +124,8 @@ postgres:
   # kubeIpDnsUpdaterSecret: postgres-dns-updater
   # see environments/budgetkey/publicdb-kube-ip-dns-updater-rbac.yaml
   # kubeIpDnsUpdaterServiceAccountName: budgetkey-postgres-kube-ip-dns-updater
+  hosts:
+    - db.obudget.org
 
 search-api:
   INDEX_NAME: 'budgetkey02'
