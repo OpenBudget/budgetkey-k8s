@@ -1,7 +1,7 @@
 api:
   image: budgetkey/budgetkey-api:5279f8a9c6339c40a0aaa3d9a01d1a8b05dd9d50
 app:
-  image: budgetkey/budgetkey-app:5095e30894049408ee9a803ce3bc9b2ee4ca0da7
+  image: budgetkey/budgetkey-app:40f3d459a2eb093fa1edc05285c672eca52470f0
 app-about:
   image: budgetkey/budgetkey-app-about:022150a2124f7f46ff267ac07e42521de21fd856
 app-dashboards:
