@@ -68,6 +68,12 @@ spec:
           valueFrom: {secretKeyRef: {name: {{ .Values.secretName | quote }}, key: DATABASE_READONLY_URL}}
         - name: SECRET_KEY
           value: defunct
+        - name: ES_HOST
+          value: elasticsearch-new
+        - name: ES_PORT
+          value: "9200"
+        - name: INDEX_NAME
+          value: {{ .Values.indexName | default "budgetkey" | quote }}
 
         volumeMounts:
           - name: data
