@@ -49,6 +49,11 @@ data:
             keepalive 32;
         }
 
+        upstream slow-api-server {
+            server api:5000;
+            keepalive 32;
+        }
+
         server {
             listen 80 default_server;
             include /etc/nginx/default_server.conf;
@@ -156,7 +161,7 @@ data:
         proxy_http_version 1.1;
         proxy_set_header   "Connection" "";
         proxy_cache my_cache;
-        proxy_pass http://api-server;
+        proxy_pass http://slow-api-server;
     }
 
     location /list {

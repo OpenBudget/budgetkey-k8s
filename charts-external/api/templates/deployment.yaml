@@ -63,7 +63,7 @@ spec:
         - name: TIMEOUT
           value: "180"
         - name: SERVICES
-          value: db
+          value: db,simpledb
         - name: DATABASE_READONLY_URL
           valueFrom: {secretKeyRef: {name: {{ .Values.secretName | quote }}, key: DATABASE_READONLY_URL}}
         - name: SECRET_KEY
