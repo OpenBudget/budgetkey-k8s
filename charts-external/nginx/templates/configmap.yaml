@@ -50,7 +50,7 @@ data:
         }
 
         upstream slow-api-server {
-            server api:5000;
+            server api:5001;
             keepalive 32;
         }
 
