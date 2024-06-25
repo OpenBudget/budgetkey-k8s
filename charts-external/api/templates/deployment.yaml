@@ -74,6 +74,8 @@ spec:
           value: "9200"
         - name: INDEX_NAME
           value: {{ .Values.indexName | default "budgetkey" | quote }}
+        - name: EXTERNAL_ADDRESS
+          value: {{ .Values.global.serverName | default "next.obudget.org" | quote }}
 
         volumeMounts:
           - name: data
