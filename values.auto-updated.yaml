@@ -4,8 +4,6 @@ app:
   image: budgetkey/budgetkey-app:5a84b8892f3aa09ffd7ec3a41c6b1bb9bcec3ba0
 app-about:
   image: budgetkey/budgetkey-app-about:022150a2124f7f46ff267ac07e42521de21fd856
-app-dashboards:
-  image: budgetkey/budgetkey-app-dashboards:1a848a0cda9455e87b99725b36d0f699f23be593
 app-generic-item:
   image: budgetkey/budgetkey-app-generic-item:d55eb4fe7b44e3a2eb27986063a44891276a58ff
 app-main-page:

@@ -200,10 +200,6 @@ data:
         proxy_pass http://openprocure-app-main-page:8000;
     }
 
-    location /dashboards/ {
-        proxy_pass http://budgetkey-app-dashboards:8000;
-    }
-
     location /income/ {
         proxy_pass http://budgetkey-app-source-of-money:8000;
     }

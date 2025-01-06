@@ -42,11 +42,6 @@ app-search:
   resources: >
     {"requests": {"cpu": "25m", "memory": "256Mi"}, "limits": {"cpu": "78m", "memory": "641Mi"}}
 
-app-dashboards:
-  enabled: true
-  resources: >
-    {"requests": {"cpu": "25m", "memory": "256Mi"}, "limits": {"cpu": "78m", "memory": "339Mi"}}
-
 data-input:
   enabled: true
   resources: >
