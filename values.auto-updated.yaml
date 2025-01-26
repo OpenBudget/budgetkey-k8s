@@ -1,5 +1,5 @@
 api:
-  image: budgetkey/budgetkey-api:fa209f16d66680ec0aedf6de4d4ddf222a0dedce
+  image: budgetkey/budgetkey-api:d78ddf9987fdf43338e3c80b86f421c75d452ec6
 app:
   image: budgetkey/budgetkey-app:a75e47be6cb66b3d55240f4b06a5da7ce61a9db9
 app-about:
