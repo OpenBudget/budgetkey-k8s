@@ -50,9 +50,9 @@ spec:
               echo "Creating certs";
               echo -ne \
                 "instances:\n"\
-                "  - name: es01\n"\
+                "  - name: elasticsearch8\n"\
                 "    dns:\n"\
-                "      - es01\n"\
+                "      - elasticsearch8\n"\
                 "      - localhost\n"\
                 "    ip:\n"\
                 "      - 127.0.0.1\n"\
@@ -67,9 +67,9 @@ spec:
             find /es-data -type d -exec chmod 777 {} \;;
             find /es-data -type f -exec chmod 666 {} \;;
             echo "Waiting for Elasticsearch availability";
-            until curl -s --cacert config/certs/ca/ca.crt https://es01:9200 | grep -q "missing authentication credentials"; do sleep 30; done;
+            until curl -s --cacert config/certs/ca/ca.crt https://elasticsearch8:9200 | grep -q "missing authentication credentials"; do sleep 30; done;
             echo "Setting kibana_system password";
-            until curl -s -X POST --cacert config/certs/ca/ca.crt -u "elastic:${ELASTIC_PASSWORD}" -H "Content-Type: application/json" https://es01:9200/_security/user/kibana_system/_password -d "{\"password\":\"${KIBANA_PASSWORD}\"}" | grep -q "^{}"; do sleep 10; done;
+            until curl -s -X POST --cacert config/certs/ca/ca.crt -u "elastic:${ELASTIC_PASSWORD}" -H "Content-Type: application/json" https://elasticsearch8:9200/_security/user/kibana_system/_password -d "{\"password\":\"${KIBANA_PASSWORD}\"}" | grep -q "^{}"; do sleep 10; done;
             echo "All done!";
       - name: es01
         image: {{ .Values.elasticImage | default "docker.elastic.co/elasticsearch/elasticsearch:8.17.0" | quote }}
