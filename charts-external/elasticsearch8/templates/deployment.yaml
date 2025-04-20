@@ -28,8 +28,9 @@ spec:
         - name: certs
           mountPath: /usr/share/elasticsearch/config/certs
         command: 
-        - >
-          bash -c '
+        - /bin/bash
+        - "-c"
+        - |
             if [ -z "${ELASTIC_PASSWORD}" ]; then
               echo "Set the ELASTIC_PASSWORD environment variable in the .env file";
               exit 1;
@@ -65,7 +66,6 @@ spec:
             echo "Setting kibana_system password";
             until curl -s -X POST --cacert config/certs/ca/ca.crt -u "elastic:${ELASTIC_PASSWORD}" -H "Content-Type: application/json" https://es01:9200/_security/user/kibana_system/_password -d "{\"password\":\"${KIBANA_PASSWORD}\"}" | grep -q "^{}"; do sleep 10; done;
             echo "All done!";
-          '
       containers:
       - name: es01
         image: {{ .Values.elasticImage | default "docker.elastic.co/elasticsearch/elasticsearch:8.17.0" | quote }}
