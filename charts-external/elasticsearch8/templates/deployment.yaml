@@ -71,7 +71,7 @@ spec:
             echo "Setting kibana_system password";
             until curl -s -X POST --cacert config/certs/ca/ca.crt -u "elastic:${ELASTIC_PASSWORD}" -H "Content-Type: application/json" https://elasticsearch8:9200/_security/user/kibana_system/_password -d "{\"password\":\"${KIBANA_PASSWORD}\"}" | grep -q "^{}"; do sleep 10; done;
             echo "All done!";
-      - name: es01
+      - name: elasticsearch8
         image: {{ .Values.elasticImage | default "docker.elastic.co/elasticsearch/elasticsearch:8.17.0" | quote }}
         ports:
         - containerPort: 9200
@@ -81,7 +81,7 @@ spec:
         - name: ES_JAVA_OPTS
           value: {{ .Values.ES_JAVA_OPTS | quote }}
         - name: node.name
-          value: es01
+          value: elasticsearch8
         - name: cluster.name
           value: budgetkey-es-cluster
         - name: discovery.type
@@ -95,17 +95,17 @@ spec:
         - name: xpack.security.http.ssl.enabled
           value: "true"
         - name: xpack.security.http.ssl.key
-          value: /usr/share/elasticsearch/config/certs/es01/es01.key
+          value: /usr/share/elasticsearch/config/certs/elasticsearch8/elasticsearch8.key
         - name: xpack.security.http.ssl.certificate
-          value: /usr/share/elasticsearch/config/certs/es01/es01.crt
+          value: /usr/share/elasticsearch/config/certs/elasticsearch8/elasticsearch8.crt
         - name: xpack.security.http.ssl.certificate_authorities
           value: /usr/share/elasticsearch/config/certs/ca/ca.crt
         - name: xpack.security.transport.ssl.enabled
           value: "true"
         - name: xpack.security.transport.ssl.key
-          value: /usr/share/elasticsearch/config/certs/es01/es01.key
+          value: /usr/share/elasticsearch/config/certs/elasticsearch8/elasticsearch8.key
         - name: xpack.security.transport.ssl.certificate
-          value: /usr/share/elasticsearch/config/certs/es01/es01.crt
+          value: /usr/share/elasticsearch/config/certs/elasticsearch8/elasticsearch8.crt
         - name: xpack.security.transport.ssl.certificate_authorities
           value: /usr/share/elasticsearch/config/certs/ca/ca.crt
         - name: xpack.security.transport.ssl.verification_mode
