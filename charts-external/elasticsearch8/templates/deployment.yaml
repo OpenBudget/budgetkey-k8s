@@ -91,7 +91,7 @@ spec:
         - name: ELASTIC_PASSWORD
           valueFrom: {secretKeyRef: {name: {{ .Values.secretName | quote }}, key: ELASTIC_PASSWORD}}
         - name: xpack.security.enabled
-          value: "false"
+          value: "true"
         - name: xpack.security.http.ssl.enabled
           value: "true"
         - name: xpack.security.http.ssl.key
