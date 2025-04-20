@@ -43,6 +43,9 @@ spec:
         - mountPath: /home/dpp/.ssh
           name: data
           subPath: budgetkey-persistent-data/.ssh
+        - name: escerts
+          mountPath: /var/elasticsearch/certs
+          readOnly: true
       - name: nginx
         image: nginx:alpine
         command:
@@ -65,9 +68,6 @@ spec:
         - mountPath: /var/datapackages
           name: data
           subPath: budgetkey-persistent-data/datapackages
-        - name: escerts
-          mountPath: /var/elasticsearch/certs
-          readOnly: true
       volumes:
       - name: data
         {{ if .Values.gcePersistentDiskName }}
