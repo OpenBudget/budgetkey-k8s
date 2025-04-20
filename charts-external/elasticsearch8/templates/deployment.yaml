@@ -27,7 +27,8 @@ spec:
         volumeMounts:
         - name: certs
           mountPath: /usr/share/elasticsearch/config/certs
-        command: >
+        command: 
+        - >
           bash -c '
             if [ -z "${ELASTIC_PASSWORD}" ]; then
               echo "Set the ELASTIC_PASSWORD environment variable in the .env file";
