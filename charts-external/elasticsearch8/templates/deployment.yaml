@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: es01
-        image: "docker.elastic.co/elasticsearch/elasticsearch:{{ .Values.stackVersion | default "8.17.0" | quote }}"
+        # image: "docker.elastic.co/elasticsearch/elasticsearch:{{ .Values.stackVersion | default "8.17.0" | quote }}"
         ports:
         - containerPort: 9200
         - containerPort: 9300
