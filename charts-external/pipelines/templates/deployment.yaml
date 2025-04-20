@@ -65,6 +65,8 @@ spec:
         - mountPath: /var/datapackages
           name: data
           subPath: budgetkey-persistent-data/datapackages
+        - name: escerts
+          mountPath: /var/elasticsearch/certs
       volumes:
       - name: data
         {{ if .Values.gcePersistentDiskName }}
@@ -77,6 +79,10 @@ spec:
         {{ else }}
         emptyDir: {}
         {{ end }}
+      - name: escerts
+        nfs:
+          server: {{ .Values.nfsServer | quote }}
+          path: {{ .Values.nfsPathEsCerts | quote }}
       - name: pipelines-nginx-conf
         configMap:
           name: pipelines-nginx-conf

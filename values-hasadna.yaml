@@ -97,6 +97,7 @@ pipelines:
   # gcePersistentDiskName: budgetkey-pipelines-data-3
   nfsServer: "172.16.0.9"
   nfsPath: "/budgetkey/pipelines"
+  nfsPathEsCerts: "/budgetkey/elasticsearch-certs"
 
 postgres:
   # gcloud --project=hasadna-general compute disks create --size=100GB --zone=europe-west1-b budgetkey-postgres-data
