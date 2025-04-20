@@ -67,6 +67,7 @@ spec:
           subPath: budgetkey-persistent-data/datapackages
         - name: escerts
           mountPath: /var/elasticsearch/certs
+          readOnly: true
       volumes:
       - name: data
         {{ if .Values.gcePersistentDiskName }}
