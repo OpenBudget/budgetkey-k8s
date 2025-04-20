@@ -16,7 +16,7 @@ spec:
         app: elasticsearch8
     spec:
       containers:
-      - name: es_setup
+      - name: setup
         image: {{ .Values.elasticImage | default "docker.elastic.co/elasticsearch/elasticsearch:8.17.0" | quote }}
         # user: 0
         env:
