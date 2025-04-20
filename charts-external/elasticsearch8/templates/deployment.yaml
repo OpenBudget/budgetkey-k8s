@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: es_setup
-        image: "docker.elastic.co/elasticsearch/elasticsearch:{{ .Value.stackVersion | default "8.17.0" | quote }}"
+        image: "docker.elastic.co/elasticsearch/elasticsearch:{{ .Values.stackVersion | default "8.17.0" | quote }}"
         user: 0
         env:
         - name: ELASTIC_PASSWORD
