@@ -33,9 +33,9 @@ dependencies:
 - name: kibana
   version: v0.0.0
   repository: file://charts-external/kibana
-- name: list-manager
-  version: v0.0.0
-  repository: file://charts-external/list-manager
+# - name: list-manager
+#   version: v0.0.0
+#   repository: file://charts-external/list-manager
 - name: nginx
   version: v0.0.0
   repository: file://charts-external/nginx
