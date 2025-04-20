@@ -15,7 +15,7 @@ spec:
       labels:
         app: elasticsearch8
     spec:
-      containers:
+      initContainers:
       - name: setup
         image: {{ .Values.elasticImage | default "docker.elastic.co/elasticsearch/elasticsearch:8.17.0" | quote }}
         # user: 0
@@ -66,6 +66,7 @@ spec:
             until curl -s -X POST --cacert config/certs/ca/ca.crt -u "elastic:${ELASTIC_PASSWORD}" -H "Content-Type: application/json" https://es01:9200/_security/user/kibana_system/_password -d "{\"password\":\"${KIBANA_PASSWORD}\"}" | grep -q "^{}"; do sleep 10; done;
             echo "All done!";
           '
+      containers:
       - name: es01
         image: {{ .Values.elasticImage | default "docker.elastic.co/elasticsearch/elasticsearch:8.17.0" | quote }}
         ports:
