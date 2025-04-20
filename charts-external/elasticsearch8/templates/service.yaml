@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: elasticsearch
+  name: elasticsearch8
 spec:
   ports:
   - name: '9200'
@@ -9,4 +9,4 @@ spec:
   - name: '9300'
     port: 9300
   selector:
-    app: elasticsearch
+    app: elasticsearch8
