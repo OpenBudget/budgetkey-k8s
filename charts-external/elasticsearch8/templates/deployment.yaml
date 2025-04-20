@@ -18,7 +18,7 @@ spec:
       containers:
       - name: es_setup
         image: {{ .Values.elasticImage | default "docker.elastic.co/elasticsearch/elasticsearch:8.17.0" | quote }}
-        user: 0
+        # user: 0
         env:
         - name: ELASTIC_PASSWORD
           valueFrom: {secretKeyRef: {name: {{ .Values.secretName | quote }}, key: ELASTIC_PASSWORD}}
