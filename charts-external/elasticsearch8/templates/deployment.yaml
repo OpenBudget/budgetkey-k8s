@@ -71,6 +71,9 @@ spec:
             echo "Setting kibana_system password";
             until curl -s -X POST --cacert config/certs/ca/ca.crt -u "elastic:${ELASTIC_PASSWORD}" -H "Content-Type: application/json" https://elasticsearch8:9200/_security/user/kibana_system/_password -d "{\"password\":\"${KIBANA_PASSWORD}\"}" | grep -q "^{}"; do sleep 10; done;
             echo "All done!";
+            while true; do
+              sleep 3600;
+            done
       - name: elasticsearch8
         image: {{ .Values.elasticImage | default "docker.elastic.co/elasticsearch/elasticsearch:8.17.0" | quote }}
         ports:
