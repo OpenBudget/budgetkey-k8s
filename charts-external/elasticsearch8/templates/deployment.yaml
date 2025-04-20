@@ -28,6 +28,8 @@ spec:
         volumeMounts:
         - name: certs
           mountPath: /usr/share/elasticsearch/config/certs
+        - name: esdata
+          mountPath: /es-data
         command: 
         - /bin/bash
         - "-c"
@@ -62,6 +64,8 @@ spec:
             chown -R root:root config/certs;
             find . -type d -exec chmod 755 {} \;;
             find . -type f -exec chmod 644 {} \;;
+            find /es-data -type d -exec chmod 777 {} \;;
+            find /es-data -type f -exec chmod 666 {} \;;
             echo "Waiting for Elasticsearch availability";
             until curl -s --cacert config/certs/ca/ca.crt https://es01:9200 | grep -q "missing authentication credentials"; do sleep 30; done;
             echo "Setting kibana_system password";
