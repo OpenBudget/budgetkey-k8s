@@ -29,6 +29,10 @@ spec:
           value: auth,es,lists
         - name: DATABASE_PRIVATE_URL
           valueFrom: {secretKeyRef: {name: {{ .Values.secretName | quote }}, key: DATABASE_PRIVATE_URL}}
+        - name: ES_HOST
+          value: elasticsearch-new
+        - name: ES_PORT
+          value: "9200"
         - name: ES_CONNECTION
           value: https://elasticsearch8:9200
         - name: ES_CERT_PATH
