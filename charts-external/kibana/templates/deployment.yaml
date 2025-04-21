@@ -33,9 +33,16 @@ spec:
         volumeMounts:
         - name: certs
           mountPath: /usr/share/kibana/config/certs
+          readOnly: true
+        - name: kibanadata
+          mountPath: /usr/share/kibana/data
       volumes:
       - name: certs
         nfs:
           server: {{ .Values.nfsServer | quote }}
           path: {{ .Values.nfsPathEsCerts | quote }}
+      - name: kibanadata
+        nfs:
+          server: {{ .Values.nfsServer | quote }}
+          path: {{ .Values.nfsPathKibanaData | quote }}
 {{ end }}

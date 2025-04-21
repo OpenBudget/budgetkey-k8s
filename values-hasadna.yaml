@@ -43,6 +43,7 @@ elasticsearch8:
 kibana:
   nfsServer: "172.16.0.9"
   nfsPathEsCerts: "/budgetkey/elasticsearch-certs"
+  nfsPathKibanaData: "/budgetkey/kibana-data"
   secretName: budgetkey-elasticsearch
 
 
