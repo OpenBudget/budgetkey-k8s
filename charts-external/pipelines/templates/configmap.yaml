@@ -9,11 +9,11 @@ data:
   # DATABASE_URL: postgresql://*********@budgetkey-postgres/budgetkey
   DATAHUB_ENDPOINT: https://api.datahub.io
   DATAHUB_OWNER: budgetkey
-  INDEX_NAME: budgetkey02
+  INDEX_NAME: budgetkey
   # DATAHUB_OWNERID: *********
   # DATAHUB_TOKEN: *********
   # DPP_DB_ENGINE: postgresql://*********@budgetkey-postgres/budgetkey
-  DATAFLOWS_ELASTICSEARCH: elasticsearch-new:9200
+  DATAFLOWS_ELASTICSEARCH: https://elasticsearch8:9200
   # GITHUB_AUTH_TOKEN: *********
   S3_ENDPOINT_URL: https://ams3.digitaloceanspaces.com
 {{ end }}
