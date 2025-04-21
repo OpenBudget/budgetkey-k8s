@@ -29,10 +29,12 @@ spec:
           value: auth,es,lists
         - name: DATABASE_PRIVATE_URL
           valueFrom: {secretKeyRef: {name: {{ .Values.secretName | quote }}, key: DATABASE_PRIVATE_URL}}
-        - name: ES_HOST
-          value: elasticsearch-new
-        - name: ES_PORT
-          value: "9200"
+        - name: ES_CONNECTION
+          value: https://elasticsearch8:9200
+        - name: ES_CERT_PATH
+          value: /usr/share/elasticsearch/config/certs/ca/ca.crt
+        - name: ELASTIC_PASSWORD
+          valueFrom: {secretKeyRef: {name: {{ .Values.secretNameEs | quote }}, key: ELASTIC_PASSWORD}}        
         - name: INDEX_NAME
           value: {{ .Values.indexName | default "budgetkey" | quote }}
         - name: EXTERNAL_ADDRESS
@@ -52,6 +54,8 @@ spec:
           - name: data
             mountPath: /var/run/budgetkey-api
             subPath: budgetkey-api
+          - name: certs
+            mountPath: /usr/share/elasticsearch/config/certs
       - name: slow-api
         image: {{ .Values.image | default "budgetkey/budgetkey-api:latest" | quote }}
         ports:
@@ -86,4 +90,8 @@ spec:
         nfs:
           server: {{ .Values.nfsServer | quote }}
           path: {{ .Values.nfsPath | quote }}
+      - name: certs
+        nfs:
+          server: {{ .Values.nfsServer | quote }}
+          path: {{ .Values.nfsPathEsCerts | quote }}
 {{ end }}

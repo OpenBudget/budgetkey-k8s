@@ -144,3 +144,5 @@ api:
   indexName: 'budgetkey02'
   nfsServer: "172.16.0.9"
   nfsPath: "/budgetkey/api"
+  secretNameEs: budgetkey-elasticsearch
+  nfsPathEsCerts: "/budgetkey/elasticsearch-certs"
