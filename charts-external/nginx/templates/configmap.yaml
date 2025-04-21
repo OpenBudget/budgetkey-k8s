@@ -164,12 +164,6 @@ data:
         proxy_pass http://slow-api-server;
     }
 
-    location /list {
-        proxy_http_version 1.1;
-        proxy_set_header   "Connection" "";
-        proxy_pass http://budgetkey-list-manager:8000;
-    }
-
     location /lists {
         proxy_http_version 1.1;
         proxy_set_header   "Connection" "";
