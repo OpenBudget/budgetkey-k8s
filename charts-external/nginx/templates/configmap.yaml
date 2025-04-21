@@ -136,8 +136,8 @@ data:
         client_max_body_size 50m;
         location / {
             proxy_pass http://kibana:5601;
-            auth_basic "Kibana";
-            auth_basic_user_file /etc/nginx/kibana.htpasswd;
+            # auth_basic "Kibana";
+            # auth_basic_user_file /etc/nginx/kibana.htpasswd;
         }
     }
 
