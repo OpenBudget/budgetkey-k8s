@@ -29,6 +29,8 @@ spec:
           valueFrom: {secretKeyRef: {name: {{ .Values.secretName | quote }}, key: KIBANA_PASSWORD}}
         - name: ELASTICSEARCH_SSL_CERTIFICATEAUTHORITIES
           value: "/usr/share/kibana/config/certs/ca/ca.crt"
+        - name: ELASTICSEARCH_SERVER_PUBLICBASE_URL
+          value: "https://kibana.obudget.org"
         resources: {{ .Values.resources }}
         volumeMounts:
         - name: certs
