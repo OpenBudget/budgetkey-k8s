@@ -142,7 +142,7 @@ data:
     }
 
   kibana.htpasswd: |
-    budgetkey:$apr1$osnd5bKS$QCBIR1f6GiqNpN3b/hqzP.
+    elastic:$apr1$osnd5bKS$QCBIR1f6GiqNpN3b/hqzP.
 
   server-rules.conf: |
     location /search/ {
