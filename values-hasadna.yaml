@@ -40,6 +40,12 @@ elasticsearch8:
   # prevents elasticsearch from scheduling on the same pod as pipelines and nginx
   # enableAntiAffinity: true
 
+kibana:
+  nfsServer: "172.16.0.9"
+  nfsPathEsCerts: "/budgetkey/elasticsearch-certs"
+  secretName: budgetkey-elasticsearch
+
+
 elasticsearch-new:
   # gcloud --project=hasadna-general compute disks create --size=100GB --zone=europe-west1-b budgetkey-elasticsearch-data
   # gcePersistentDiskName: budgetkey-elasticsearch-data-new

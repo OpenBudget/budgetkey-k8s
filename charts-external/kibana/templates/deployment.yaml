@@ -17,11 +17,25 @@ spec:
     spec:
       containers:
       - name: kibana
-        image: {{ .Values.image | default "elastic/kibana:7.3.2" | quote }}
+        image: {{ .Values.image | default "elastic/kibana:8.17.0" | quote }}
         ports:
         - containerPort: 5601
         env:
         - name: ELASTICSEARCH_HOSTS
-          value: "http://elasticsearch-new:9200"
+          value: "https://elasticsearch8:9200"
+        - name: ELASTICSEARCH_USERNAME
+          value: "kibana_system"
+        - name: ELASTICSEARCH_PASSWORD
+          valueFrom: {secretKeyRef: {name: {{ .Values.secretName | quote }}, key: KIBANA_PASSWORD}}
+        - name: ELASTICSEARCH_SSL_CERTIFICATEAUTHORITIES
+          value: "/usr/share/kibana/config/certs/ca/ca.crt"
         resources: {{ .Values.resources }}
+        volumeMounts:
+        - name: certs
+          mountPath: /usr/share/kibana/config/certs
+      volumes:
+      - name: certs
+        nfs:
+          server: {{ .Values.nfsServer | quote }}
+          path: {{ .Values.nfsPathEsCerts | quote }}
 {{ end }}
