@@ -76,18 +76,14 @@ spec:
         - mountPath: /var/datapackages
           name: data
           subPath: budgetkey-persistent-data/datapackages
+        - mountPath: /var/embedcache
+          name: data
+          subPath: embedcache
       volumes:
       - name: data
-        {{ if .Values.gcePersistentDiskName }}
-        gcePersistentDisk:
-          pdName: {{ .Values.gcePersistentDiskName | quote }}
-        {{ else if .Values.nfsServer }}
         nfs:
           server: {{ .Values.nfsServer | quote }}
           path: {{ .Values.nfsPath | quote }}
-        {{ else }}
-        emptyDir: {}
-        {{ end }}
       - name: escerts
         nfs:
           server: {{ .Values.nfsServer | quote }}
