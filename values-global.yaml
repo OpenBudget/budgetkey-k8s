@@ -81,7 +81,7 @@ elasticsearch8:
   enabled: true
 
 elasticsearch-new:
-  enabled: true
+  enabled: false
   
 kibana:
   enabled: true
