@@ -80,6 +80,12 @@ spec:
           value: elasticsearch-new
         - name: ES_PORT
           value: "9200"
+        - name: ES_CONNECTION
+          value: https://elasticsearch8:9200
+        - name: ES_CERT_PATH
+          value: /usr/share/elasticsearch/config/certs/ca/ca.crt
+        - name: ELASTIC_PASSWORD
+          valueFrom: {secretKeyRef: {name: {{ .Values.secretNameEs | quote }}, key: ELASTIC_PASSWORD}}        
         - name: INDEX_NAME
           value: {{ .Values.indexName | default "budgetkey" | quote }}
         - name: EXTERNAL_ADDRESS
