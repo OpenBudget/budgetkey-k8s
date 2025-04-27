@@ -54,9 +54,9 @@ spec:
         - name: escerts
           mountPath: /var/elasticsearch/certs
           readOnly: true
-        - mountPath: /var/embedcache
+        - mountPath: /var/ai-cache
           name: data
-          subPath: embedcache
+          subPath: ai-cache
       - name: nginx
         image: nginx:alpine
         command:
