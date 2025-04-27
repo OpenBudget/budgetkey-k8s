@@ -85,11 +85,13 @@ spec:
         - name: ES_CERT_PATH
           value: /usr/share/elasticsearch/config/certs/ca/ca.crt
         - name: ELASTIC_PASSWORD
-          valueFrom: {secretKeyRef: {name: {{ .Values.secretNameEs | quote }}, key: ELASTIC_PASSWORD}}        
+          valueFrom: {secretKeyRef: {name: {{ .Values.secretNameEs | quote }}, key: ELASTIC_PASSWORD}}
         - name: INDEX_NAME
           value: {{ .Values.indexName | default "budgetkey" | quote }}
         - name: EXTERNAL_ADDRESS
           value: {{ .Values.global.serverName | default "next.obudget.org" | quote }}
+        - name: OPENAI_API_KEY
+          valueFrom: {secretKeyRef: {name: {{ .Values.secretNamePipelines | quote }}, key: OPENAI_API_KEY}}
 
         volumeMounts:
           - name: data
