@@ -54,6 +54,9 @@ spec:
           valueFrom: {secretKeyRef: {name: {{ .Values.secretName | quote }}, key: PUBLIC_KEY}}
         - name: SECRET_KEY
           valueFrom: {secretKeyRef: {name: {{ .Values.secretName | quote }}, key: SECRET_KEY}}
+        - name: OPENAI_API_KEY
+          valueFrom: {secretKeyRef: {name: {{ .Values.secretNamePipelines | quote }}, key: OPENAI_API_KEY}}
+
         volumeMounts:
           - name: data
             mountPath: /var/run/budgetkey-api
