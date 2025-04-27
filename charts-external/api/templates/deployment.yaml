@@ -91,6 +91,8 @@ spec:
           valueFrom: {secretKeyRef: {name: {{ .Values.secretNameEs | quote }}, key: ELASTIC_PASSWORD}}
         - name: INDEX_NAME
           value: {{ .Values.indexName | default "budgetkey" | quote }}
+        - name: DEBUG_QUERIES
+          value: "true"
         - name: EXTERNAL_ADDRESS
           value: {{ .Values.global.serverName | default "next.obudget.org" | quote }}
         - name: OPENAI_API_KEY
