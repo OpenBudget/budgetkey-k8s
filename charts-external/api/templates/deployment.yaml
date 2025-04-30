@@ -102,6 +102,8 @@ spec:
           - name: data
             mountPath: /var/run/budgetkey-api
             subPath: budgetkey-api
+          - name: certs
+            mountPath: /usr/share/elasticsearch/config/certs
       volumes:
       - name: data
         nfs:
