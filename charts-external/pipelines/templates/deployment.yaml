@@ -36,6 +36,11 @@ spec:
         - secretRef:
             name: {{ .Values.secretName | quote }}
         {{ end }}
+        {{ if .Values.secretNameFacilities }}
+        # override the values from configmap
+        - secretRef:
+            name: {{ .Values.secretNameFacilities | quote }}
+        {{ end }}
         {{ if .Values.secretNameElastic }}
         # override the values from configmap
         - secretRef:

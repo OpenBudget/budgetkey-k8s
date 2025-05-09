@@ -98,6 +98,7 @@ pipelines:
   # see the pipelines configmap for the required keys
   secretName: pipelines
   secretNameElastic: budgetkey-elasticsearch
+  secretNameFacilities: budgetkey-facilities
   resources: >
     {"requests": {"cpu": "2822m", "memory": "5546Mi"}, "limits": {"cpu": "2822m", "memory": "9000Mi"}}
   # prevents pipelines from scheduling on the same node as elasticsearch
