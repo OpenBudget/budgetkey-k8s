@@ -115,8 +115,6 @@ spec:
           value: certificate
         - name: xpack.license.self_generated.type
           value: basic
-        - name: index.shard.check_on_startup
-          value: fix
         volumeMounts:
         - name: certs
           mountPath: /usr/share/elasticsearch/config/certs

@@ -35,7 +35,7 @@ elasticsearch8:
   stackVersion: "8.17.0"
   resources: >
     {"requests": {"cpu": "300m", "memory": "5271Mi"}, "limits": {"cpu": "800m", "memory": "9000Mi"}}
-  ES_JAVA_OPTS: "-Xms3g -Xmx3g"
+  ES_JAVA_OPTS: "-Xms6g -Xmx6g"
   secretName: budgetkey-elasticsearch
   # prevents elasticsearch from scheduling on the same pod as pipelines and nginx
   # enableAntiAffinity: true
