@@ -34,8 +34,8 @@ elasticsearch8:
   nfsPathEsCerts: "/budgetkey/elasticsearch-certs"
   stackVersion: "8.17.0"
   resources: >
-    {"requests": {"cpu": "300m", "memory": "5271Mi"}, "limits": {"cpu": "800m", "memory": "9000Mi"}}
-  ES_JAVA_OPTS: "-Xms6g -Xmx6g"
+    {"requests": {"cpu": "300m", "memory": "8000Mi"}, "limits": {"cpu": "800m", "memory": "12000Mi"}}
+  ES_JAVA_OPTS: "-Xms8g -Xmx12g"
   secretName: budgetkey-elasticsearch
   # prevents elasticsearch from scheduling on the same pod as pipelines and nginx
   # enableAntiAffinity: true
