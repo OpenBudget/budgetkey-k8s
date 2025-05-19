@@ -87,7 +87,10 @@ data:
       include "/etc/nginx/server-rules.conf";
 
       location / {
-        proxy_pass http://budgetkey-app:4000;
+        #proxy_pass http://budgetkey-app:4000;
+        
+        default_type text/html;
+        return 200 '<!DOCTYPE html><html lang="he" dir="rtl"><head><meta charset="utf-8"><title>מפתח לרכש החברתי | אתר בעדכון</title><style>body{margin:0;font-family:"Heebo",Arial,sans-serif;background:#fff;color:#fff}header{height:90px;display:flex;align-items:center;padding:0 40px}.notice-card{background:#192841;box-shadow:0 10px 10px #00000080;margin:40px auto;max-width:640px;padding:80px 40px;text-align:center;border-radius:8px}.notice-card h1{margin:0 0 24px 0;font-size:2rem;font-weight:700}.notice-card p{margin:0;font-size:1.25rem}</style></head><body dir="rtl"><header><img src="https://next.obudget.org/assets/common/img/soproc.svg" width="100"></header><section class="notice-card"><h1>מפתח לרכש החברתי</h1><p>האתר נמצא בעדכון ויחזור במהרה</p></section></body></html>';
       }
     }
 
