@@ -86,9 +86,14 @@ spec:
           subPath: budgetkey-persistent-data/datapackages
       volumes:
       - name: data
+      {{- if .Values.pvcName }}
+        persistentVolumeClaim:
+          claimName: {{ .Values.pvcName | quote }}
+      {{- else }}
         nfs:
           server: {{ .Values.nfsServer | quote }}
           path: {{ .Values.nfsPath | quote }}
+      {{- end }}
       - name: escerts
         nfs:
           server: {{ .Values.nfsServer | quote }}
