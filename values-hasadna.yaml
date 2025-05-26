@@ -30,7 +30,7 @@ emails:
 
 elasticsearch8:
   nfsServer: "172.16.0.9"
-  nfsPathEsData: "/budgetkey/elasticsearch8"
+  pvcName: elasticsearch
   nfsPathEsCerts: "/budgetkey/elasticsearch-certs"
   stackVersion: "8.17.0"
   resources: >
@@ -104,15 +104,14 @@ pipelines:
   # prevents pipelines from scheduling on the same node as elasticsearch
   # enableAntiAffinity: true
   # gcePersistentDiskName: budgetkey-pipelines-data-3
+  pvcName: pipelines
   nfsServer: "172.16.0.9"
-  nfsPath: "/budgetkey/pipelines"
   nfsPathEsCerts: "/budgetkey/elasticsearch-certs"
 
 postgres:
   # gcloud --project=hasadna-general compute disks create --size=100GB --zone=europe-west1-b budgetkey-postgres-data
   # gcePersistentDiskName: budgetkey-postgres-data-2
-  nfsServer: "172.16.0.9"
-  nfsPath: "/budgetkey/postgres"
+  pvcName: postgres
   # kubectl create secret generic postgres --from-literal=POSTGRES_PASSWORD=
   secretName: postgres
   # enableLoadBalancer: true

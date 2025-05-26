@@ -75,6 +75,9 @@ spec:
       {{ if .Values.gcePersistentDiskName }}
         gcePersistentDisk:
           pdName: {{ .Values.gcePersistentDiskName | quote }}
+      {{ else if .Values.pvcName }}
+        persistentVolumeClaim:
+          claimName: {{ .Values.pvcName | quote }}
       {{ else if .Values.nfsServer }}
         nfs:
           server: {{ .Values.nfsServer | quote }}
