@@ -79,7 +79,6 @@ spec:
           value: http://localhost:9000
       volumes:
         - name: data
-          nfs:
-            server: {{ .Values.nfsServer | quote }}
-            path: {{ .Values.nfsPath | quote }}
+          persistentVolumeClaim:
+            claimName: data-input-db2
 {{ end }}

@@ -40,11 +40,9 @@ spec:
           mountPath: /usr/share/kibana/data
       volumes:
       - name: certs
-        nfs:
-          server: {{ .Values.nfsServer | quote }}
-          path: {{ .Values.nfsPathEsCerts | quote }}
+        persistentVolumeClaim:
+          claimName: elasticsearch-certs2
       - name: kibanadata
-        nfs:
-          server: {{ .Values.nfsServer | quote }}
-          path: {{ .Values.nfsPathKibanaData | quote }}
+        persistentVolumeClaim:
+          claimName: kibana-data2
 {{ end }}

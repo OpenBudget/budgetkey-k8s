@@ -72,22 +72,6 @@ spec:
           subPath: data
       volumes:
       - name: data
-      {{ if .Values.gcePersistentDiskName }}
-        gcePersistentDisk:
-          pdName: {{ .Values.gcePersistentDiskName | quote }}
-      {{ else if .Values.pvcName }}
         persistentVolumeClaim:
-          claimName: {{ .Values.pvcName | quote }}
-      {{ else if .Values.nfsServer }}
-        nfs:
-          server: {{ .Values.nfsServer | quote }}
-          path: {{ .Values.nfsPath | quote }}
-      {{ else }}
-        {{ .Values.global.persistentDataVolume.type }}: {
-          {{ if eq .Values.global.persistentDataVolume.type "hostPath" }}
-            "path": "{{ .Values.global.persistentDataVolume.basePath }}/postgres",
-            "type": "DirectoryOrCreate"
-          {{ end }}
-        }
-      {{ end }}
+          claimName: postgres
 {{ end }}

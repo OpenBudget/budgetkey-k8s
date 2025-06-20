@@ -122,16 +122,9 @@ spec:
           mountPath: /usr/share/elasticsearch/data
       volumes:
       - name: esdata
-      {{- if .Values.pvcName }}
         persistentVolumeClaim:
-          claimName: {{ .Values.pvcName | quote }}
-      {{- else }}
-        nfs:
-          server: {{ .Values.nfsServer | quote }}
-          path: {{ .Values.nfsPathEsData | quote }}
-      {{- end }}
+          claimName: elasticsearch
       - name: certs
-        nfs:
-          server: {{ .Values.nfsServer | quote }}
-          path: {{ .Values.nfsPathEsCerts | quote }}
+        persistentVolumeClaim:
+          claimName: elasticsearch-certs2
 {{ end }}
