@@ -24,9 +24,6 @@ dependencies:
 - name: elasticsearch8
   version: v0.0.0
   repository: file://charts-external/elasticsearch8
-- name: elasticsearch-new
-  version: v0.0.0
-  repository: file://charts-external/elasticsearch-new
 - name: emails
   version: v0.0.0
   repository: file://charts-external/emails

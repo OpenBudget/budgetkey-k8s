@@ -86,18 +86,11 @@ spec:
           subPath: budgetkey-persistent-data/datapackages
       volumes:
       - name: data
-      {{- if .Values.pvcName }}
         persistentVolumeClaim:
-          claimName: {{ .Values.pvcName | quote }}
-      {{- else }}
-        nfs:
-          server: {{ .Values.nfsServer | quote }}
-          path: {{ .Values.nfsPath | quote }}
-      {{- end }}
+          claimName: pipelines
       - name: escerts
-        nfs:
-          server: {{ .Values.nfsServer | quote }}
-          path: {{ .Values.nfsPathEsCerts | quote }}
+        persistentVolumeClaim:
+          claimName: elasticsearch-certs2
       - name: pipelines-nginx-conf
         configMap:
           name: pipelines-nginx-conf
