@@ -20,13 +20,14 @@ spec:
       containers:
       - name: db
         image: akariv/dgp-app-db
-        resources: {"requests": {"cpu": "25m", "memory": "256Mi"}, "limits": {"cpu": "78m", "memory": "2Gi"}}
+        resources: {"requests": {"cpu": "150m", "memory": "300Mi"}, "limits": {"cpu": "300m", "memory": "2Gi"}}
         volumeMounts:
           - name: data
             mountPath: /var/lib/postgresql/data
             subPath: postgres_data2
       - name: minio
         image: minio/minio
+        resources: {"requests": {"cpu": "100m", "memory": "300Mi"}, "limits": {"cpu": "200m", "memory": "600Mi"}}
         command:
           - /usr/bin/docker-entrypoint.sh
           - server
@@ -40,7 +41,7 @@ spec:
             value: us-east-1
       - name: server
         image: {{ .Values.dataInputServerImage | default "budgetkey/budgetkey-app-data-input" | quote }}
-        resources: {"requests": {"cpu": "247m", "memory": "1953Mi"}, "limits": {"cpu": "500m", "memory": "4000Mi"}}
+        resources: {"requests": {"cpu": "400m", "memory": "1953Mi"}, "limits": {"cpu": "800m", "memory": "4000Mi"}}
         # securityContext:
         #   runAsGroup: 0
         #   runAsUser: 0
