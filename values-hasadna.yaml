@@ -30,9 +30,11 @@ emails:
 
 elasticsearch8:
   stackVersion: "8.17.0"
+  # setting resources and limits exactly the same puts the pod in Guaranteed QOS class - which is what we want to keep ES stable
   resources: >
-    {"requests": {"cpu": "300m", "memory": "8000Mi"}, "limits": {"cpu": "800m", "memory": "12000Mi"}}
-  ES_JAVA_OPTS: "-Xms8g -Xmx12g"
+    {"requests": {"cpu": "3000m", "memory": "16000Mi"}, "limits": {"cpu": "3000m", "memory": "16000Mi"}}
+  # java   (startup heap) (max heap)   - ideally both should be the same, and ~50%-75% of total RAM
+  ES_JAVA_OPTS: "-Xms12g -Xmx12g"
   secretName: budgetkey-elasticsearch
   # prevents elasticsearch from scheduling on the same pod as pipelines and nginx
   # enableAntiAffinity: true
