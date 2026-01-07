@@ -36,6 +36,7 @@ elasticsearch8:
   # java   (startup heap) (max heap)   - ideally both should be the same, and ~50%-75% of total RAM
   ES_JAVA_OPTS: "-Xms12g -Xmx12g"
   secretName: budgetkey-elasticsearch
+  elasticImage: "ghcr.io/whiletrue-industries/elasticsearch-analysis-hebrew:8.17.0"
   # prevents elasticsearch from scheduling on the same pod as pipelines and nginx
   # enableAntiAffinity: true
 
