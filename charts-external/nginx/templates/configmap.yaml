@@ -199,7 +199,7 @@ data:
     }
 
     location /mcp/ {
-        proxy_pass http://mcp:8000/;
+        proxy_pass http://mcp:8000;
     }
 
     location = /basic_status {
