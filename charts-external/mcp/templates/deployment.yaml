@@ -16,7 +16,7 @@ spec:
       terminationGracePeriodSeconds: 5
       containers:
       - name: mcp
-        image: {{ .Values.image | default "budgetkey/budgetkey-mcp:latest" | quote }}
+        image: {{ .Values.image | default "ghcr.io/openbudget/budgetkey-mcp:latest" | quote }}
         ports:
         - containerPort: 8000
         resources: {{ .Values.resources }}
