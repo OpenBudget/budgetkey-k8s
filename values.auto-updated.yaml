@@ -24,6 +24,8 @@ emails:
   image: budgetkey/budgetkey-emails:cc406d632d85ad9a6472cbf848032945f69db523
 list-manager:
   image: budgetkey/budgetkey-list-manager:63f144e08117b2f044b6e92dece57d7227ea4d73
+mcp:
+  image: budgetkey/budgetkey-mcp:latest
 nginx:
   image: budgetkey/open-budget-nginx-frontend:117077065b87884f3ae4c5be018763de64e1f66b
 openprocure:

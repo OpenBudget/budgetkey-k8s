@@ -33,6 +33,9 @@ dependencies:
 # - name: list-manager
 #   version: v0.0.0
 #   repository: file://charts-external/list-manager
+- name: mcp
+  version: v0.0.0
+  repository: file://charts-external/mcp
 - name: nginx
   version: v0.0.0
   repository: file://charts-external/nginx

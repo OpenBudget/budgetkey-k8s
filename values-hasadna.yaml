@@ -47,6 +47,9 @@ list-manager:
   # kubectl create secret generic list-manager --from-literal=DATABASE_URL=
   secretName: list-manager
 
+mcp:
+  enabled: true
+
 data-input:
   # dataInputServerImage: "budgetkey/budgetkey-app-data-input"
   # kubectl create secret generic data-input --from-literal=DATABASE_URL=

@@ -1,0 +1,26 @@
+{{ if .Values.enabled }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mcp
+spec:
+  selector:
+    matchLabels:
+      app: mcp
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: mcp
+    spec:
+      terminationGracePeriodSeconds: 5
+      containers:
+      - name: mcp
+        image: {{ .Values.image | default "budgetkey/budgetkey-mcp:latest" | quote }}
+        ports:
+        - containerPort: 8000
+        resources: {{ .Values.resources }}
+        env:
+        - name: BUDGETKEY_API_BASE
+          value: {{ .Values.global.serverName | default "next.obudget.org" | quote }}
+{{ end }}

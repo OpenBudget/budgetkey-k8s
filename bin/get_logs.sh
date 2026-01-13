@@ -24,6 +24,7 @@ LOG_LABELS="app=app
             app=elasticsearch
             app=kibana
             app=list-manager
+            app=mcp
             app=nginx
             app=pipelines
             app=postgres

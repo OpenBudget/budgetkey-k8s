@@ -93,6 +93,11 @@ list-manager:
   resources: >
     {"requests": {"cpu": "25m", "memory": "256Mi"}, "limits": {"cpu": "78m", "memory": "435Mi"}}
 
+mcp:
+  enabled: true
+  resources: >
+    {"requests": {"cpu": "250m", "memory": "256Mi"}, "limits": {"cpu": "500m", "memory": "512Mi"}}
+
 nginx:
   enabled: true
   resources: >
