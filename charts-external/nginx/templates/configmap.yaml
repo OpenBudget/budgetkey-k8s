@@ -198,6 +198,10 @@ data:
         proxy_pass http://budgetkey-app-source-of-money:8000;
     }
 
+    location /mcp {
+        proxy_pass http://mcp:8000/mcp;
+    }
+
     location /mcp/ {
         proxy_pass http://mcp:8000;
     }
