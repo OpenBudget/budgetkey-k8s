@@ -25,7 +25,7 @@ emails:
 list-manager:
   image: budgetkey/budgetkey-list-manager:63f144e08117b2f044b6e92dece57d7227ea4d73
 mcp:
-  image: ghcr.io/openbudget/budgetkey-mcp:861aa48af6537677b79e68453b10ae75018a35d1
+  image: ghcr.io/openbudget/budgetkey-mcp:5735adf278007cb2c29e483ab7c5408c60f28665
 nginx:
   image: budgetkey/open-budget-nginx-frontend:117077065b87884f3ae4c5be018763de64e1f66b
 openprocure:
