@@ -22,5 +22,5 @@ spec:
         resources: {{ .Values.resources }}
         env:
         - name: BUDGETKEY_API_BASE
-          value: {{ .Values.global.serverName | default "https://next.obudget.org" | quote }}
+          value: "https://next.obudget.org"
 {{ end }}
