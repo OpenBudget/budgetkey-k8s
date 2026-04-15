@@ -29,7 +29,8 @@ data:
                         'ut="$upstream_response_time" ul="$upstream_response_length" '
                         'cs=$upstream_cache_status' ;
 
-        access_log  /var/log/nginx/access.log main_ext;
+        # access log is too big to be stored on disk, stdout is handled by loki and can be viewed in grafana
+        access_log  /dev/stdout main_ext;
 
         proxy_cache_path /var/run/ levels=1:2 keys_zone=my_cache:10m max_size=10g inactive=60m use_temp_path=off;
 
