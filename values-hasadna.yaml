@@ -26,6 +26,10 @@ db-backup:
 
 emails:
   enabled: true
+  # kubectl create secret generic emails --from-literal=SMTP_HOST= \
+  #                                      --from-literal=SMTP_PORT= \
+  #                                      --from-literal=SMTP_USER= \
+  #                                      --from-literal=SMTP_PASS=
   secretName: emails
 
 elasticsearch8:
@@ -87,7 +91,7 @@ pipelines:
   secretNameElastic: budgetkey-elasticsearch
   secretNameFacilities: budgetkey-facilities
   resources: >
-    {"requests": {"cpu": "2822m", "memory": "5546Mi"}, "limits": {"cpu": "2822m", "memory": "9000Mi"}}
+    {"requests": {"cpu": "2000m", "memory": "8162Mi"}, "limits": {"cpu": "4000m", "memory": "16Gi"}}
   # prevents pipelines from scheduling on the same node as elasticsearch
   # enableAntiAffinity: true
 
