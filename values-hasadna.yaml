@@ -113,7 +113,7 @@ postgres:
   # to get the postgres node external ip:
   # kubectl get nodes -l budgetkey-postgres=true -o 'jsonpath={.items[0].status.addresses[?(@.type=='"'"'ExternalIP'"'"')].address}'
   # you will also need to allow firewall to access it (port 5432)
-  enableHostPort: true
+  enableHostPort: false
   # see https://github.com/OriHoch/kube-ip-dns-updater
   # kubeIpDnsUpdaterSecret: postgres-dns-updater
   # see environments/budgetkey/publicdb-kube-ip-dns-updater-rbac.yaml
