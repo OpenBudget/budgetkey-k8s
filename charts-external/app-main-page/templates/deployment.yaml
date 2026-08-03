@@ -14,6 +14,7 @@ spec:
         app: app-main-page
     spec:
       terminationGracePeriodSeconds: 5
+      tolerations: {{ .Values.global.tolerations | toJson }}
       containers:
       - name: app-main-page
         image: {{ .Values.image | default "budgetkey/budgetkey-app-main-page:latest" | quote }}

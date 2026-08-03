@@ -1,6 +1,10 @@
 global:
   persistentDataVolume:
     type: emptyDir
+  tolerations:
+    - key: "HighPriorityWorkloads"
+      operator: "Exists"
+      effect: "NoSchedule"
 
 app:
   enabled: true
