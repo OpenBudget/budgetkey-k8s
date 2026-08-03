@@ -14,6 +14,7 @@ spec:
         app: dgp-ui
     spec:
       terminationGracePeriodSeconds: 5
+      tolerations: {{ .Values.global.tolerations | toJson }}
       containers:
       - name: dgp-ui
         image: {{ .Values.image | default "budgetkey/budgetkey-dgp-ui:latest" | quote }}

@@ -14,6 +14,7 @@ spec:
         app: data-api
     spec:
       terminationGracePeriodSeconds: 5
+      tolerations: {{ .Values.global.tolerations | toJson }}
       containers:
       - name: data-api
         image: {{ .Values.image | default "budgetkey/open-budget-data-api:latest" | quote }}

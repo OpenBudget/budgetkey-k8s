@@ -17,6 +17,7 @@ spec:
         app: data-input
     spec:
       terminationGracePeriodSeconds: 10
+      tolerations: {{ .Values.global.tolerations | toJson }}
       containers:
       - name: db
         image: akariv/dgp-app-db
