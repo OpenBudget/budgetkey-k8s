@@ -14,6 +14,7 @@ spec:
         app: mcp
     spec:
       terminationGracePeriodSeconds: 5
+      tolerations: {{ .Values.global.tolerations | toJson }}
       containers:
       - name: mcp
         image: {{ .Values.image | default "ghcr.io/openbudget/budgetkey-mcp:latest" | quote }}

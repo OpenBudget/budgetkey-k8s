@@ -15,6 +15,7 @@ spec:
       labels:
         app: kibana
     spec:
+      tolerations: {{ .Values.global.tolerations | toJson }}
       containers:
       - name: kibana
         image: {{ .Values.image | default "elastic/kibana:8.17.0" | quote }}

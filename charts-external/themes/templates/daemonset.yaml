@@ -12,6 +12,7 @@ spec:
       labels:
         name: themes
     spec:
+      tolerations: {{ .Values.global.tolerations | toJson }}
       containers:
       - name: themes
         image: {{ .Values.themesImage | default "budgetkey/budgetkey-app-themes:latest" | quote }}

@@ -19,6 +19,7 @@ spec:
         checksum/nginx-config: {{ include (print $.Template.BasePath "/nginx-configmap.yaml") . | sha256sum }}
     spec:
       terminationGracePeriodSeconds: 5
+      tolerations: {{ .Values.global.tolerations | toJson }}
       containers:
       - name: pipelines
         image: {{ .Values.image | default "budgetkey/budgetkey-data-pipelines:latest" | quote }}

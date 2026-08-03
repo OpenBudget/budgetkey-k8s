@@ -14,6 +14,7 @@ spec:
         app: socialmap-app-main-page
     spec:
       terminationGracePeriodSeconds: 5
+      tolerations: {{ .Values.global.tolerations | toJson }}
       containers:
       - name: socialmap
         image: {{ .Values.mainpageImage | quote }}

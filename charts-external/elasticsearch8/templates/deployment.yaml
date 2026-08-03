@@ -15,6 +15,7 @@ spec:
       labels:
         app: elasticsearch8
     spec:
+      tolerations: {{ .Values.global.tolerations | toJson }}
       containers:
       - name: setup
         image: {{ .Values.elasticImage | default "docker.elastic.co/elasticsearch/elasticsearch:8.17.0" | quote }}

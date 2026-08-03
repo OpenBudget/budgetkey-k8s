@@ -14,6 +14,7 @@ spec:
         app: openprocure-app-main-page
     spec:
       terminationGracePeriodSeconds: 5
+      tolerations: {{ .Values.global.tolerations | toJson }}
       containers:
       - name: openprocure
         image: {{ .Values.mainpageImage | default "budgetkey/openprocure-app-main-page:latest" | quote }}

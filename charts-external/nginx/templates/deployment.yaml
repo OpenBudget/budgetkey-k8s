@@ -15,6 +15,7 @@ spec:
       annotations:
         checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
     spec:
+      tolerations: {{ .Values.global.tolerations | toJson }}
       containers:
       - name: nginx
         # this is plain nginx alpine with embedded fonts
