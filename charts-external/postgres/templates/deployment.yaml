@@ -36,7 +36,10 @@ spec:
       #{{ end }}
       {{ if .Values.kubeIpDnsUpdaterSecret }}
       serviceAccountName: {{ .Values.kubeIpDnsUpdaterServiceAccountName | quote }}
-      tolerations: {{ .Values.global.tolerations | toJson }}
+      tolerations:
+        - key: "HighPriorityWorkloads"
+          operator: "Exists"
+          effect: "NoSchedule"
       initContainers:
       - name: dns
         image: orihoch/kube-ip-dns-updater:v0.0.9
