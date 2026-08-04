@@ -17,7 +17,7 @@ app-source-of-money:
 data-api:
   image: budgetkey/open-budget-data-api:076404e4159757d6f40b93ab1e2698cb6f3714db
 data-input:
-  dataInputServerImage: budgetkey/budgetkey-app-data-input:1466c74a0f0212a137d029c21edb776d4a96a4cb
+  dataInputServerImage: budgetkey/budgetkey-app-data-input:9ad2e3611d0f4b64faefbf70b4229963679726a0
 elasticsearch:
   image: budgetkey/open-budget-elasticsearch:a9591c533decd9b2a9f2db72fa2ab057227e8c49
 emails:
