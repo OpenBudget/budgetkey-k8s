@@ -10,36 +10,13 @@ spec:
   replicas: 1
   strategy:
     type: Recreate
-  {{ if .Values.enableAntiAffinity }}
-  affinity:
-    # ensure postgres won't be on the same node as elasticsearch, pipelines or nginx
-    podAntiAffinity:
-      requiredDuringSchedulingIgnoredDuringExecution:
-      - labelSelector:
-          matchExpressions:
-          - key: app
-            operator: In
-            values:
-            - elasticsearch
-            - pipelines
-            - nginx
-        topologyKey: "kubernetes.io/hostname"
-  {{ end }}
   template:
     metadata:
       labels:
         app: postgres
     spec:
-      #{{ if .Values.nodeSelector }}
-      #nodeSelector:
-      #  {{ .Values.nodeSelector }}
-      #{{ end }}
       {{ if .Values.kubeIpDnsUpdaterSecret }}
       serviceAccountName: {{ .Values.kubeIpDnsUpdaterServiceAccountName | quote }}
-      tolerations:
-        - key: "HighPriorityWorkloads"
-          operator: "Exists"
-          effect: "NoSchedule"
       initContainers:
       - name: dns
         image: orihoch/kube-ip-dns-updater:v0.0.9
@@ -52,6 +29,10 @@ spec:
             fieldRef:
               fieldPath: spec.nodeName
       {{ end }}
+      tolerations:
+        - key: "HighPriorityWorkloads"
+          operator: "Exists"
+          effect: "NoSchedule"
       containers:
       - name: postgres
         image: {{ .Values.image | default "budgetkey/budgetkey-postgres:latest" | quote }}
