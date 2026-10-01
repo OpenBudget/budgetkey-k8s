@@ -27,7 +27,9 @@ spec:
             mountPath: /var/lib/postgresql/data
             subPath: postgres_data2
       - name: minio
-        image: minio/minio
+        # minio changes to closed source and removed their images
+        # this is a fork, pulled Oct 1, 2026 - https://github.com/pgsty/silo
+        image: pgsty/minio@sha256:b6bfe7239bfc83fb90d31612d9704d86039dd714f7904b3f1ad68f211e602372
         resources: {"requests": {"cpu": "100m", "memory": "300Mi"}, "limits": {"cpu": "200m", "memory": "600Mi"}}
         command:
           - /usr/bin/docker-entrypoint.sh
